@@ -66,7 +66,7 @@ $username = $_SESSION['username'];
         
         <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
 
-        <a href="member.php"> <img src="../assets/member.png" alt="" height="45">Members</a>
+        <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
     </div>
   </aside>
 

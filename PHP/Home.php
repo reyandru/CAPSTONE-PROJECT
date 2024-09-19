@@ -33,6 +33,7 @@ $username = $_SESSION['username'];
           <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
           <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
         </a>
+        
         <div class="consts-dropDown">
           <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50" width="45px"></button>
         </div>
@@ -56,7 +57,7 @@ $username = $_SESSION['username'];
         <a href="progress.php"> <img src="../assets/prog.png" alt="" height="45"> Progress</a>
         <a href="records.php"> <img src="../assets/records.png" alt="" height="45"> Records</a>
         <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45"> Profile</a>
-        <a href="member.php"> <img src="../assets/member.png" alt="" height="45">Members</a>
+        <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
       </div>
     </aside>
 

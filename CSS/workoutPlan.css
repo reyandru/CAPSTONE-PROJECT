@@ -92,7 +92,7 @@ header{
 
 .userName{
 color: white;
-font-size: 18px;
+font-size: 26px;
 font-family: "arial";
 }
 
@@ -467,6 +467,10 @@ font-family: "arial";
 }
 
 .activity{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
   background-color: #0CC0DF;
@@ -581,6 +585,7 @@ font-family: "arial";
   flex-direction: column;
   padding: 5px;
   height: 550px;
+  width: 100%;
   overflow: hidden;
 }
 

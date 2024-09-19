@@ -1,0 +1,130 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php"); // Redirect to login if not logged in
+    exit();
+}
+$username = $_SESSION['username'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Dr. ACE Fitness Gym</title>
+  <link rel="icon" href="assets/logs.png">
+  <link rel="stylesheet" href="../CSS/equipment.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+      <h6>DR. ACE Fitness Gym</h6>
+    </div>
+
+    <div class="left-container">
+      <div class="userProfil">
+        <a href="profile.php">
+          <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+          <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
+        </a>
+
+  <div class="consts-dropDown">
+    <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50"
+      width="45px"></button>
+  </div>
+  </div>
+  <div class="DD-container">
+        <a href="first.html"> <button class="logOutBtn">LOG OUT</button></a>
+      </div>
+</div>
+     
+ 
+    
+    </header>
+<div class="container">
+  <aside class="nav">
+    <div class="hamburger" id="hamburger" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div class="menu" id="menu">
+
+        <a href="Home.html"> <img src="../assets/home.png" alt="" height="45"> Home</a>
+
+        <a href="workoutplan.html"> <img src="../assets/DB.png" alt="" height="45">  Workout Plan</a>
+
+        <a href="progress.html"> <img src="../assets/prog.png" alt="" height="45">  Progress</a>
+
+        <a href="records.html"> <img src="../assets/records.png" alt="" height="45"> Records</a>
+        
+        <a href="profile.html"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
+
+        <a href="equipments.html"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="conts1">
+      <div class="page"> 
+        <a href="home.html"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Equipments</p>
+      </div>
+    </div>
+
+    <div class="conts2">
+     <div class="equipments_contianer">
+      <div class="title">  <h1>GYM EQUIPMENTS AND GUIDES</h1></div>
+
+      <div class="equipmentsList">
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment1')"> <img src="../assets/Dumbbells.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment2')"> <img src="../assets/Kettlebells .jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment3')"> <img src="../assets/chest press machine.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment4')"> <img src="../assets/Treadmills and Stationary bikes.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment5')"> <img src="../assets/back extension machine..jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment6')"> <img src="../assets/shoulder press machine.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment7')"> <img src="../assets/yoga mats.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment8')"> <img src="../assets/preacher curl bench.jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment9')"> <img src="../assets/leg curl and leg extension machine..jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment10')"> <img src="../assets/plyo soft boxes..jpg" alt="" height="180" width="190"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/seated cable row machinee.jpg" alt="" height="180" width="190"></button></div>
+        
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Medicine balls.jpg" alt="" height="180" width="190"></button></div>
+        
+
+       
+      </div>
+      <div id="description">
+        <div id="quitBTN"><button>x</button></div>
+  <div class="equip-container"> 
+    <img id="equip-image" src="" alt="images"/>
+    <p id="equip-text"></p>
+  </div>
+        
+      </div>
+     </div>
+    </div>
+
+  </main>
+
+</div>
+   
+    <script src="../Javascript/equipments.js"></script>
+  </body>
+</html>
