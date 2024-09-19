@@ -1,0 +1,274 @@
+
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+body{
+background-image: url(../assets/dbBG.png);
+background-repeat: no-repeat;
+background-size: cover;
+overflow: hidden;
+}
+
+.container{
+display: flex;
+justify-content: space-around;
+align-items:center;
+height: 745px;
+padding: 30px;
+}
+
+.conts1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 700px;
+  width: 700px;
+}
+
+.form-wrap{
+  display: grid;
+  justify-content: center;
+  border-radius: 0 30px 30px 30px;
+  background-color: rgba(250, 250, 250, 0.7);
+  height: 670px;
+  width: 550px;
+  font-weight: 800;
+}
+
+.ttl-wrap{
+  margin-top: 70px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 5px;
+}
+
+.ttl-wrap p{
+  font-size: 55px;
+  font-weight: 800;
+  font-family: "Nunito";
+  color: #112C9F;
+}
+
+.ttl-wrap h3{
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Nunito";
+  color: #112C9F;
+}
+
+
+.inputs-wrap{
+  display: flex;
+  height: 280px;
+  width: 500px;
+}
+
+.right, .left{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #112C9F;
+  font-size: 18px;
+  font-family: "nunito";
+  padding-inline: 20px;
+  height: 280px;
+  width: 250px;
+}
+
+.sex{
+  margin-bottom: 25px;
+  height: 30px;
+  display: flex;
+  column-gap: 10px;
+}
+
+.sex input{
+  cursor: pointer;
+}
+
+input{
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 16px;
+  height: 40px;
+  background-color: #EAEAEA;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#fn,#age,#address,#ln,#cn{
+  width: 200px;
+}
+
+label{
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+.bot{
+  /* padding: 15px; */
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  column-gap: 15px;
+  color: #112C9F;
+  font-size: 18px;
+  font-family: "nunito";
+  width: 500px;
+  height: 220px;
+}
+
+.bot input{
+  width: 450px;
+}
+
+.bot input, .bot label{
+  margin-left: 20px;
+}
+
+
+.bot button{
+  background-color: #112C9F;
+  border: none;
+  color: white;
+  font-family: "Nunito";
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 20px;
+  width: 400px;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.two-btn{
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.conts2{
+  display: flex;
+  justify-content: flex-end;
+  height: 660px;
+  width: 650px;
+}
+.conts2 img{
+  border-radius: 100px;
+  border: 7px solid white;
+}
+
+
+@media screen and (max-width: 768px) {
+  body{
+    background-image: url(../assets/ok.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    }
+
+    .ttl-wrap{
+      margin-top: 0px;
+      padding: 0;
+    }
+
+    .form-wrap{
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0 30px 30px 30px;
+      background-color: white;
+      height: 600px;
+      width: 440px;
+    }
+
+    .conts2 img{
+     height: 120px;
+    }
+
+    .ttl-wrap p{
+      font-size: 50px;
+    }
+    .inputs-wrap{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 290px;
+      width: 200px;
+    }
+
+    input{
+      height: 30px;
+    }
+
+    #fn,#age,#address,#ln,#cn{
+      width: 175px;
+    }
+
+    .bot{
+      width: 100%;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      row-gap: 1.5rem;
+    }
+
+    .bot input, .bot label{
+      width: 390px;
+    }
+
+    .bot input{
+      margin: 0;
+      padding: 14px;
+    }
+
+
+    form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 410px;
+      height: 560px;
+    }
+
+    .right, .left{
+      height: 280px;
+      width: 250px;
+    }
+
+    .two-btn button{
+      width: 300px;
+      font-size: 16px;
+    }
+
+    .two-btn p{
+      font-size:16px ;
+    }
+      
+    footer{
+      width: 767px;
+      font-size: 14px;
+    }
+  }
+
+

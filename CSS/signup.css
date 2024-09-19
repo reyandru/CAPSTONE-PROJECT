@@ -1,0 +1,198 @@
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+}
+body{
+  background-image: url(../assets/dbBG.png);
+background-repeat: no-repeat;
+background-size: cover;
+overflow: hidden;
+}
+
+.container{
+display: flex;
+justify-content: space-around;
+align-items:center;
+height: 745px;
+padding: 30px;
+}
+
+.conts1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 700px;
+  width: 700px;
+}
+
+.form-wrap{
+  display: grid;
+  justify-content: center;
+  border-radius: 0 30px 30px 30px;
+  background-color: rgba(250, 250, 250, 0.7);
+  height: 670px;
+  width: 550px;
+  font-weight: 800;
+}
+
+.ttl-wrap{
+  margin-top: 20px;
+  text-align: center;
+  padding: 5px;
+}
+
+.ttl-wrap p{
+  font-size: 60px;
+  font-weight: 800;
+  font-family: "Nunito";
+  color: #112C9F;
+}
+
+.ttl-wrap h3{
+  font-size: 18px;
+  font-weight: 400;
+  font-family: "Nunito";
+  color: #112C9F;
+}
+
+.inputs-wrap{
+  display: flex;
+  flex-direction: column;
+  row-gap: 7px;
+  text-align: center;
+  height: 350px;
+  width: 450px;
+}
+
+.inputs-wrap label{
+  display: flex;
+ align-items: center;
+ color: #112C9F;
+ column-gap: 5px;
+  font-size: 18px;
+  font-family: "nunito";
+}
+
+ion-icon {
+  color: #112C9F;
+}
+
+select, option{
+background-color: #EAEAEA;
+border: none;
+padding: 10px;
+font-family: "roboto";
+margin-bottom: 30px;
+cursor: pointer;
+outline: none;
+}
+
+input{
+  height: 35px;
+  background-color: #EAEAEA;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family:"Roboto";
+  outline: none;
+}
+
+.SU{
+background-color: #112C9F;
+color: White;
+font-weight: bold;
+font-family: "Nunito";
+font-size: 24px;
+border-radius: 10px;
+padding: 5px;
+width: 100%;
+border: none;
+cursor: pointer;
+height: 50px;
+}
+
+.inputs-wrap a, .inputs-wrap p{
+ color: #112C9F;
+  font-family: "Nunito";
+}
+
+.inputs-wrap a{
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.conts2{
+  display: flex;
+  justify-content: flex-end;
+  height: 660px;
+  width: 650px;
+}
+.conts2 img{
+  border-radius: 100px;
+  border: 7px solid white;
+}
+
+
+@media screen and (max-width: 768px) {
+  body{
+    background-image: url(../assets/ok.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    }
+
+    .ttl-wrap{
+      margin-top: 0px;
+    }
+
+    .form-wrap{
+      padding: 10px;
+      height: 600px;
+      width: 440px;
+    }
+
+    .conts2 img{
+     height: 120px;
+    }
+
+    .ttl-wrap p{
+      font-size: 50px;
+    }
+    .inputs-wrap{
+      height: 290px;
+      width: 390px;
+    }
+    select{
+      width: 400px;
+    }
+    .in{
+      width: 400px;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 12px;
+    }
+
+    .inputs-wrap label{
+      font-size: 14px;
+    }
+
+    .SU{
+      width: 300px;
+      font-size: 20px;
+      }
+      
+
+    footer{
+      width: 767px;
+      font-size: 14px;
+    }
+  }
+

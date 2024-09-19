@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": 4542953693,
+      "name": {
+        "first": "William",
+        "last": "Sabino"
+      },
+      "age": 99,
+      "gender": "male",
+      "address": {
+        "street": "Palapat",
+        "city": "Par",
+        "province": "Region",
+        "postal_code": "0000"
+      },
+      "contact_details": {
+        "contact_no": "555-123-4567",
+        "email": "williamsabino@example.com"
+      },
+      "status": "active",
+      "created_at": "",
+      "updated_at": ""
+    },
+    {
+      "id": 4953910284,
+      "name": {
+        "first": "Papi",
+        "last": "Rei"
+      },
+      "age": 100,
+      "gender": "male",
+      "address": {
+        "street": "Abulalas",
+        "city": "Par",
+        "province": "Region",
+        "postal_code": "0000"
+      },
+      "contact_details": {
+        "contact_no": "555-987-6543",
+        "email": "papirei@example.com"
+      },
+      "status": "active",
+      "created_at": "",
+      "updated_at": ""
+    }
+  ]
+}
