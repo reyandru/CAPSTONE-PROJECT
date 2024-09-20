@@ -18,14 +18,14 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <title>Dr. ACE Fitness Gym</title>
-    <link rel="icon" href="assets/logs.png">
+    <link rel="icon" href="assets/logs.jpg">
     <link rel="stylesheet" href="../CSS/Progress.css" />
   </head>
   <body>
     <header>
       <div class="logo"> 
-        <a href="../HTML/Home.html"><img src="../assets/logs.png" alt="Logo" height="80"></a>
-      <h6>DR. ACE Fitness Gym </h6></div>
+        <a href="../HTML/Home.html"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+        <h6>REAL DEAL GYM</h6> </div>
 
     
       <div class="left-container">
@@ -99,13 +99,22 @@ $username = $_SESSION['username'];
           <div id="inputWeight">
             <button id="xBtnWeight">x</button>
             <div class="weightsNo">
-              <label for="weights" id="noOfW">Weights in kilos:</label>
-              <input id="weights" type="number" placeholder="">
-              <label for="goal" id="noOfW">Goal weight:</label>
-              <input id="goalW" type="number" placeholder="">
-              <button id="addWeights">ADD</button>
+              <div>
+                <label for="weights" id="noOfW">Current Weight:</label>
+                <input id="weights" type="number" placeholder="">
+              </div>
+              <div>         
+                <label for="goal" id="noOfW">Goal Weight:</label>
+                <input id="goalW" type="number" placeholder="">
+              </div>
+              <div>
+                <label for="startWeight" id="noOfW">Starting Weight:</label>
+                <input id="startW" type="number" placeholder="">
+              </div>
+
+                <button id="addWeights">ADD</button>
             </div>
-          </div>
+        </div>
         </div>
         </div>
       </div>
@@ -155,9 +164,9 @@ $username = $_SESSION['username'];
 
           <div class="fb">
             <div class="feedb">
-              <h1>Instructor Feedback</h1>
+              <h1>Note</h1>
               <div class="modal-body">
-                <textarea id="feedback-conts" placeholder="Suggestions and motivation?"></textarea>
+                <textarea id="feedback-conts" placeholder="Make a note.."></textarea>
             </div>        
               <div id="fb-conts"> </div>
               <button type="submit"  id ="submit-btn-fb">Submit</button>

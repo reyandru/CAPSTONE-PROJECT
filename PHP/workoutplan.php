@@ -17,14 +17,14 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
    
     <title>Dr. ACE Fitness Gym</title> 
-    <link rel="icon" href="assets/logs.png">
+    <link rel="icon" href="assets/logs.jpg">
     <link rel="stylesheet" href="../CSS/workoutPlan.css" />
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="../HTML/Home.html"><img src="../assets/logs.png" alt="Logo" height="80"></a>
-      <h6>DR. ACE Fitness Gym </h6></div>
+        <a href="../HTML/Home.html"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+        <h6>REAL DEAL GYM</h6></div>
 
     
       <div class="left-container">
@@ -92,7 +92,7 @@ $username = $_SESSION['username'];
                 <textarea placeholder="Description" id="userInput-left"></textarea>
             </div>
             <div class="modal-footer-left">
-                <button id="add-post-button-left" onclick="closeModalL()">Add Post</button>
+                <button id="add-post-button-left" onclick="closeModalL()">Add Workout</button>
             </div>
         </div>
 

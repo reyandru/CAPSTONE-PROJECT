@@ -38,46 +38,56 @@ document.getElementById("xBtnWeight").addEventListener('click', function(){
   addBtnWeight.classList.remove("hideAddBtnWeight");
 });
 
-
 document.getElementById("addWeights").addEventListener('click', function(){
-  const inputfirst = document.getElementById("weights").value;
-  const inputsecond = document.getElementById("goalW").value;
-  const percent = (inputfirst / inputsecond  * 100).toFixed(0);
+  const currentWeight = parseFloat(document.getElementById("weights").value);
+  const goalWeight = parseFloat(document.getElementById("goalW").value);
+  const startWeight = parseFloat(document.getElementById("startW").value);
   const circle = document.getElementById("circle");
 
-  if (!isNaN(percent)) {
-  if (percent) {
-    // Create a new div element to contain the output
-    const newDiv = document.createElement('div');
-    newDiv.className = 'outputConts';
+  // Make sure all inputs are valid
+  if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
+    // Ensure current weight is between start and goal weights
+    if (currentWeight <= startWeight && currentWeight >= goalWeight) {
+      
+      // Calculate progress
+      const progress = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
+      const percent = progress.toFixed(0); // Rounded to 0 decimal places
 
-    // Set the inner HTML of the new div
-    newDiv.innerHTML = 
-        `<div>${new Date().toLocaleDateString()}</div>` + // Current date
-        inputfirst + " Exercises" +                        // First input followed by " Exercises"
-        `<div>  </div>` +                                  // Empty div for spacing
-        percent + " %";     
-        
-    // Get the output container element
-    const outputContainer = document.getElementById('outputWeight');
+      // Create a new div element to contain the output
+      const newDiv = document.createElement('div');
+      newDiv.className = 'outputConts';
 
-    // Check if there are already 4 or more child nodes in the output container
-    if (outputContainer.childNodes.length >= 2) {
-        // Remove the first child node to ensure the container has at most 4 children
-        outputContainer.removeChild(outputContainer.firstChild);
+      // Set the inner HTML of the new div
+      newDiv.innerHTML = 
+          `<div>${new Date().toLocaleDateString()}</div>` + // Current date
+          `<div>Current Weight: ${currentWeight} kg</div>` + // Current weight
+          `<div>${percent} % Progress</div>`;               // Display the progress as a percentage
+
+      // Get the output container element
+      const outputContainer = document.getElementById('outputWeight');
+
+      // Check if there are already 4 or more child nodes in the output container
+      if (outputContainer.childNodes.length >= 2) {
+          // Remove the first child node to ensure the container has at most 4 children
+          outputContainer.removeChild(outputContainer.firstChild);
+      }
+
+      // Append the new div to the output container
+      outputContainer.appendChild(newDiv);
+
+      // Clear the input fields
+      document.getElementById("weights").value = '';
+      document.getElementById("goalW").value = '';
+      document.getElementById("startW").value = '';
+
+      // Update the circle with the progress percentage
+      circle.innerHTML = percent + " %";
+    } else {
+      alert("Current weight must be between start weight and goal weight!");
     }
-
-    // Append the new div to the output container
-    outputContainer.appendChild(newDiv);
-
-    // Clear the input fields
-    document.getElementById("weights").value = '';
-    document.getElementById("goalW").value = '';
-    }
+  } else {
+    alert("Please enter valid numbers for all weights.");
   }
-
-  circle.innerHTML = percent + " %";
-
 });
 
 

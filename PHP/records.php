@@ -17,14 +17,14 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
    
     <title>Dr. ACE Fitness Gym</title>
-    <link rel="icon" href="assets/logs.png">
+    <link rel="icon" href="assets/logs.jpg">
     <link rel="stylesheet" href="../CSS/records.css" />
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="../HTML/Home.html"><img src="../assets/logs.png" alt="Logo" height="80"></a>
-      <h6>DR. ACE Fitness Gym</h6></div>
+        <a href="../HTML/Home.html"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+        <h6>REAL DEAL GYM</h6></div>
 
 <div class="left-container">
   <div class="userProfil">
@@ -73,7 +73,7 @@ $username = $_SESSION['username'];
   <main class="main">
     <div class="conts1">
       <div class="page"> 
-        <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Progress</p>
+        <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Records</p>
       </div>
     </div>
     <div class="conts2">
@@ -81,7 +81,11 @@ $username = $_SESSION['username'];
         <h1>CHECK-INS</h1>
         <div class="head"><span>MEMBER</span> <span>DATE</span><span>TIME IN</span></div>
         <div id="ciRecords">
-          <div class="sample"></div>
+          <div class="sample">
+            <div class="memberNames rec"> <?php echo htmlspecialchars($username); ?> </div>
+            <div class="checkins rec"></div>
+            <div class="timeCheck rec"></div>
+          </div>
         </div>
       </div>
     </div>

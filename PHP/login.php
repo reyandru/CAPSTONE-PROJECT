@@ -34,8 +34,8 @@ include "database.php";
       <label for="passw"><ion-icon name="lock-closed"></ion-icon> Password</label>
       <input type="password" name="password" id="passw" class="in" required>
       <a href="#">Forgot your password?</a>
-      <div> <input type="submit" name="submitBtn" value="Sign Up" class="SU"></div>
-      <p>Don’t have an account? <a href="signup.php"> Log in</a></p>
+      <div> <input type="submit" name="submitBtn" value="Log in" class="SU"></div>
+      <p>Don’t have an account? <a href="signup.php"> Sign in</a></p>
       </div>
       </form>
     </div>

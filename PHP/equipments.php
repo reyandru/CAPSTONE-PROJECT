@@ -17,14 +17,14 @@ $username = $_SESSION['username'];
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>Dr. ACE Fitness Gym</title>
-  <link rel="icon" href="assets/logs.png">
+  <link rel="icon" href="assets/logs.jpg">
   <link rel="stylesheet" href="../CSS/equipment.css" />
 </head>
 <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
-      <h6>DR. ACE Fitness Gym</h6>
+      <a href="#"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+     <h6>REAL DEAL GYM</h6>
     </div>
 
     <div class="left-container">
@@ -56,24 +56,24 @@ $username = $_SESSION['username'];
     </div>
     <div class="menu" id="menu">
 
-        <a href="Home.html"> <img src="../assets/home.png" alt="" height="45"> Home</a>
+        <a href="Home.php"> <img src="../assets/home.png" alt="" height="45"> Home</a>
 
-        <a href="workoutplan.html"> <img src="../assets/DB.png" alt="" height="45">  Workout Plan</a>
+        <a href="workoutplan.php"> <img src="../assets/DB.png" alt="" height="45">  Workout Plan</a>
 
-        <a href="progress.html"> <img src="../assets/prog.png" alt="" height="45">  Progress</a>
+        <a href="progress.php"> <img src="../assets/prog.png" alt="" height="45">  Progress</a>
 
-        <a href="records.html"> <img src="../assets/records.png" alt="" height="45"> Records</a>
+        <a href="records.php"> <img src="../assets/records.png" alt="" height="45"> Records</a>
         
-        <a href="profile.html"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
+        <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
 
-        <a href="equipments.html"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
+        <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
     </div>
   </aside>
 
   <main class="main">
     <div class="conts1">
       <div class="page"> 
-        <a href="home.html"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Equipments</p>
+        <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Equipments</p>
       </div>
     </div>
     <div class="conts2">
