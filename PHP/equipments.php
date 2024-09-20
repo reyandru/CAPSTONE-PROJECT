@@ -34,7 +34,7 @@ $username = $_SESSION['username'];
           <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
         </a>
 
-  <div class="consts-dropDown">
+        <div class="consts-dropDown">
     <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50"
       width="45px"></button>
   </div>
@@ -76,36 +76,35 @@ $username = $_SESSION['username'];
         <a href="home.html"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Equipments</p>
       </div>
     </div>
-
     <div class="conts2">
      <div class="equipments_contianer">
       <div class="title">  <h1>GYM EQUIPMENTS AND GUIDES</h1></div>
 
       <div class="equipmentsList">
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment1')"> <img src="../assets/Dumbbells.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment1')"> <img src="../assets/Equipment1.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment2')"> <img src="../assets/Kettlebells .jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment2')"> <img src="../assets/Equipment2.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment3')"> <img src="../assets/chest press machine.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment3')"> <img src="../assets/Equipment3.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment4')"> <img src="../assets/Treadmills and Stationary bikes.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment4')"> <img src="../assets/Equipment4.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment5')"> <img src="../assets/back extension machine..jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment5')"> <img src="../assets/Equipment5.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment6')"> <img src="../assets/shoulder press machine.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment6')"> <img src="../assets/Equipment6.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment7')"> <img src="../assets/yoga mats.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment7')"> <img src="../assets/Equipment7.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment8')"> <img src="../assets/preacher curl bench.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment8')"> <img src="../assets/Equipment8.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment9')"> <img src="../assets/leg curl and leg extension machine..jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment9')"> <img src="../assets/Equipment9.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment10')"> <img src="../assets/plyo soft boxes..jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment10')"> <img src="../assets/Equipment10.png" alt="" height="230" width="270"></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/seated cable row machinee.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/Equipment11.png" alt="" height="230" width="270"></button></div>
         
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Medicine balls.jpg" alt="" height="180" width="190"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Equipment12.png" alt="" height="230" width="270"></button></div>
         
 
        
@@ -128,3 +127,4 @@ $username = $_SESSION['username'];
     <script src="../Javascript/equipments.js"></script>
   </body>
 </html>
+

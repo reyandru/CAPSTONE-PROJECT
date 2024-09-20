@@ -265,12 +265,12 @@ font-family: "arial";
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 92%;
+  height: 640px;
   padding: 5px;
 }
 
 .equipments_contianer{
-  height: 100%;
+  height: 90%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -291,13 +291,13 @@ font-family: "arial";
   width: 100%;
   height: 100%;
   padding: 5px;
-  overflow-y: hidden;
-  
+  overflow-y: scroll;
 }
 
 .equipment_name{
   margin: 5px;
   display: inline-block;
+  
 }
 
 .equipment_name button{
@@ -305,6 +305,19 @@ font-family: "arial";
   border: none;
   cursor: pointer;
 }
+
+.equipment_name img{
+  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.equipment_name img:hover{
+  opacity: 0.5;
+}
+
+.equipment_name img:active{
+  transform: scale(0.90);
+}
+
 
 #description {
   display: flex;
@@ -363,6 +376,7 @@ font-family: "arial";
   height: 100%;
   font-family: "nunito";
   background-color: white;
+  overflow-y: scroll;
 }
 
 
