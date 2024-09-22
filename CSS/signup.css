@@ -8,7 +8,7 @@
   font-family: inherit;
 }
 body{
-  background-image: url(../assets/dbBG.png);
+  background-image: url(../assets/area.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 overflow: hidden;
@@ -31,9 +31,15 @@ padding: 30px;
   width: 700px;
 }
 
-.form-wrap{
-  display: grid;
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  height: 670px;
+}
+
+.form-wrap{
   border-radius: 0 30px 30px 30px;
   background-color: rgba(250, 250, 250, 0.7);
   height: 670px;
@@ -42,9 +48,7 @@ padding: 30px;
 }
 
 .ttl-wrap{
-  margin-top: 20px;
-  text-align: center;
-  padding: 5px;
+  height: 150px;
 }
 
 .ttl-wrap p{
@@ -64,9 +68,8 @@ padding: 30px;
 .inputs-wrap{
   display: flex;
   flex-direction: column;
-  row-gap: 7px;
-  text-align: center;
-  height: 350px;
+  row-gap: 15px;
+  height: 400px;
   width: 450px;
 }
 
@@ -83,15 +86,6 @@ ion-icon {
   color: #112C9F;
 }
 
-select, option{
-background-color: #EAEAEA;
-border: none;
-padding: 10px;
-font-family: "roboto";
-margin-bottom: 30px;
-cursor: pointer;
-outline: none;
-}
 
 input{
   height: 35px;
@@ -135,10 +129,7 @@ height: 50px;
   height: 660px;
   width: 650px;
 }
-.conts2 img{
-  border-radius: 100px;
-  border: 7px solid white;
-}
+
 
 
 @media screen and (max-width: 768px) {
@@ -166,6 +157,7 @@ height: 50px;
     .ttl-wrap p{
       font-size: 50px;
     }
+
     .inputs-wrap{
       height: 290px;
       width: 390px;

@@ -99,6 +99,11 @@ $username = $_SESSION['username'];
           <div id="inputWeight">
             <button id="xBtnWeight">x</button>
             <div class="weightsNo">
+            <div>
+                <label for="startWeight" id="noOfW">Starting Weight:</label>
+                <input id="startW" type="number" placeholder="">
+              </div>
+
               <div>
                 <label for="weights" id="noOfW">Current Weight:</label>
                 <input id="weights" type="number" placeholder="">
@@ -107,11 +112,7 @@ $username = $_SESSION['username'];
                 <label for="goal" id="noOfW">Goal Weight:</label>
                 <input id="goalW" type="number" placeholder="">
               </div>
-              <div>
-                <label for="startWeight" id="noOfW">Starting Weight:</label>
-                <input id="startW" type="number" placeholder="">
-              </div>
-
+           
                 <button id="addWeights">ADD</button>
             </div>
         </div>

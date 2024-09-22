@@ -23,21 +23,12 @@
     <div class="form-wrap">
       <form action="<?php htmlspecialchars(($_SERVER["PHP_SELF"]))?>" method="post">
 
-        <div class="ttl-wrap">
+      <div class="ttl-wrap">
           <p id="login-ttl">SIGN UP</p>
           <h3>Enter your account details below</h3>
         </div>
 
         <div class="inputs-wrap">
-          <select name="roleOption" id="">
-    
-            <option value="Client">
-             Client
-            </option>
-            <option value="Instructor">
-            Instructor
-            </option>
-          </select>
           
           <label for="email"> <ion-icon name="mail-outline"></ion-icon>Email</label>
 
@@ -59,10 +50,6 @@
           <input type="password" name="cpassword"  id="conPassw" class="in"  required>
 
 
-          <label for="terms"> <input type="checkbox" id="terms" value="Terms">I agree to the <a href="">Terms of Service</a> </label>
-        
-          <label for="policy"> <input type="checkbox" id="policy" value="Policy">I agree to the<a href="">Data Privacy Policy</a>  </label>
-         
           <div> <input type="submit" name="submitbtn" value = "Submit" class="SU"></div>
          
         </div>

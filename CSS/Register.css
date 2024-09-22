@@ -9,7 +9,7 @@
   font-family: inherit;
 }
 body{
-background-image: url(../assets/dbBG.png);
+background-image: url(../assets/area.jpg);
 background-repeat: no-repeat;
 background-size: cover;
 overflow: hidden;
@@ -97,7 +97,7 @@ input{
   margin-bottom: 20px;
   padding: 10px;
   font-size: 16px;
-  height: 40px;
+  height: 35px;
   background-color: #EAEAEA;
   border: none;
   border-radius: 10px;
