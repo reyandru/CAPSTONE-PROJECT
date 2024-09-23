@@ -17,13 +17,13 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
    
     <title>Dr. ACE Fitness Gym</title> 
-    <link rel="icon" href="assets/logs.jpg">
+    <link rel="icon" href="assets/logs.png">
     <link rel="stylesheet" href="../CSS/workoutPlan.css" />
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="../HTML/Home.html"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+        <a href="../HTML/Home.html"><img src="../assets/logs.png" alt="Logo" height="80"></a>
         <h6>REAL DEAL GYM</h6></div>
 
     
@@ -71,63 +71,114 @@ $username = $_SESSION['username'];
     </div>
 
     <div class="conts2">
-      <div class="left">
-        <div class="date">
-          <p>Monday</p>
-        </div>
-    
-        <div class="description-cont">
 
-          <div class="containers-left">
-            <button class="input-button-left" onclick="openModalL()">Add Description</button>
-        </div>
-        <div class="overlay-left" id="overlay-left"></div>
+    <div>
 
-        <div class="modal-left" id="modal-left">
-            <div class="modal-header-left">
-                <h2 class="modal-title-left">Description and Recommendation</h2>
-                <button class="close-button-left" onclick="closeModalL()">×</button>
-            </div>
-            <div class="modal-body-left">
-                <textarea placeholder="Description" id="userInput-left"></textarea>
-            </div>
-            <div class="modal-footer-left">
-                <button id="add-post-button-left" onclick="closeModalL()">Add Workout</button>
-            </div>
-        </div>
-
-        <div id="outputContainer-left"></div>
-        </div>
-      </div>
-
-      <div class="right">
-
-        <div class="activity">
-
-          <div class="containers">
-            <button class="input-button" onclick="openModal()">Add Exercises</button>
-        </div>
-        
-        <div class="overlay" id="overlay"></div>
-
-        <div class="modal" id="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Input Exercises with set and Repititions</h2>
-                <button class="close-button" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <textarea placeholder="Exercises" id="userInput"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button id="add-post-button" onclick="closeModal()">Add Post</button>
-            </div>
-        </div>
-
-        <div id="outputContainer"></div>
-
-        </div>
-      </div>
+      
     </div>
+      <div class="days"></div>
+      <div class="activity-area">
+        <h1>Activities</h1>
+        <div class="daysButton">
+          <button id="monday-btn" onclick="setDay('monday')">Monday</button>
+          <button id="tuesday-btn" onclick="setDay('tuesday')">Tuesday</button>
+          <button id="wednesday-btn" onclick="setDay('wednesday')">Wednesday</button>
+          <button id="thursday-btn" onclick="setDay('thursday')">Thursday</button>
+          <button id="friday-btn" onclick="setDay('friday')">Friday</button>
+          <button id="saturday-btn" onclick="setDay('saturday')">Saturday</button>
+        </div>
+         
+          <div id="workout-container">
+            <input type="text" id="day-title" placeholder="">
+            <table id="workout-table">
+                <tr>
+                    <th>Workout</th>
+                    <th>Repetitions</th>
+                    <th>Sets</th>
+                    <th>Kilo</th>
+                    <th>Minutes</th>
+                </tr>
+                <tr>
+                    <td><input type="text" id="workout1" class="workoutInputs"></td>
+                    <td><input type="number" id="reps1" class="workoutInputs"></td>
+                    <td><input type="number" id="sets1" class="workoutInputs"></td>
+                    <td><input type="number" id="kilo1" class="workoutInputs"></td>
+                    <td><input type="number" id="minutes1" class="workoutInputs"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" id="workout2" class="workoutInputs"></td>
+                  <td><input type="number" id="reps2" class="workoutInputs"></td>
+                  <td><input type="number" id="sets2" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo2" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes2" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout3" class="workoutInputs"></td>
+                  <td><input type="number" id="reps3" class="workoutInputs"></td>
+                  <td><input type="number" id="sets3" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo3" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes3" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout4" class="workoutInputs"></td>
+                  <td><input type="number" id="reps4" class="workoutInputs"></td>
+                  <td><input type="number" id="sets4" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo4" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes4" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout5" class="workoutInputs"></td>
+                  <td><input type="number" id="reps5" class="workoutInputs"></td>
+                  <td><input type="number" id="sets5" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo5" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes5" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout6" class="workoutInputs"></td>
+                  <td><input type="number" id="reps6" class="workoutInputs"></td>
+                  <td><input type="number" id="sets6" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo6" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes6" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout7" class="workoutInputs"></td>
+                  <td><input type="number" id="reps7" class="workoutInputs"></td>
+                  <td><input type="number" id="sets7" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo7" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes7" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout8" class="workoutInputs"></td>
+                  <td><input type="number" id="reps8" class="workoutInputs"></td>
+                  <td><input type="number" id="sets8" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo8" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes8" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout9" class="workoutInputs"></td>
+                  <td><input type="number" id="reps9" class="workoutInputs"></td>
+                  <td><input type="number" id="sets9" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo9" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes9" class="workoutInputs"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" id="workout10" class="workoutInputs"></td>
+                  <td><input type="number" id="reps10" class="workoutInputs"></td>
+                  <td><input type="number" id="sets10" class="workoutInputs"></td>
+                  <td><input type="number" id="kilo10" class="workoutInputs"></td>
+                  <td><input type="number" id="minutes10" class="workoutInputs"></td>
+              </tr>
+
+            </table>
+            <button id="save-btn" onclick="saveData()">Save</button>
+        </div>
+
+      </div>
+     
+    </div>
+
+   
+      </div>
   </main>
 
 </div>

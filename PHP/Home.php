@@ -23,7 +23,7 @@ $username = $_SESSION['username'];
 <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
      <h6>REAL DEAL GYM</h6>
     </div>
 
@@ -77,7 +77,7 @@ $username = $_SESSION['username'];
 
           <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img class="carousel-img" src="../assets/logs.jpg">
+            <img class="carousel-img" src="../assets/logs.png">
             <div class="text"></div>
           </div>
 

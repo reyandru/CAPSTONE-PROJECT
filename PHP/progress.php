@@ -18,13 +18,13 @@ $username = $_SESSION['username'];
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <title>Dr. ACE Fitness Gym</title>
-    <link rel="icon" href="assets/logs.jpg">
+    <link rel="icon" href="assets/logs.png">
     <link rel="stylesheet" href="../CSS/Progress.css" />
   </head>
   <body>
     <header>
       <div class="logo"> 
-        <a href="../HTML/Home.html"><img src="../assets/logs.jpg" alt="Logo" height="80"></a>
+        <a href="../HTML/Home.html"><img src="../assets/logs.png" alt="Logo" height="80"></a>
         <h6>REAL DEAL GYM</h6> </div>
 
     
