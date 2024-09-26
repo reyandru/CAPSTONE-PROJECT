@@ -290,9 +290,7 @@ font-family: "arial";
 .equipmentsList{
   width: 100%;
   height: 100%;
-  padding-inline: 110px;
-  row-gap: 10px;
-  column-gap: 10px;
+  padding-inline: 50px;
   overflow-y: auto;
 }
 
