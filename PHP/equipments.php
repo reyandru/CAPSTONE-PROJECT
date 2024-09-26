@@ -105,8 +105,17 @@ $username = $_SESSION['username'];
         <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/Equipment11.png" alt="" height="230" width="270"></button></div>
         
         <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Equipment12.png" alt="" height="230" width="270"></button></div>
-        
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment13')"> <img src="../assets/Equipment13.png" alt="" height="230" width="250"></button></div>
 
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment14')"> <img src="../assets/Equipment14.png" alt="" height="230" width="250"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment15')"> <img src="../assets/Equipment15.png" alt="" height="230" width="250"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment16')"> <img src="../assets/Equipment16.png" alt="" height="230" width="250"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment17')"> <img src="../assets/Equipment17.png" alt="" height="230" width="250"></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment18')"> <img src="../assets/Equipment18.png" alt="" height="230" width="250"></button></div>
        
       </div>
       <div id="description">
@@ -114,6 +123,8 @@ $username = $_SESSION['username'];
   <div class="equip-container"> 
     <img id="equip-image" src="" alt="images"/>
     <p id="equip-text"></p>
+    <img id="equip-gif" src="" alt="">
+    <img id="equip-form" src="" alt="">
   </div>
         
       </div>
@@ -127,4 +138,3 @@ $username = $_SESSION['username'];
     <script src="../Javascript/equipments.js"></script>
   </body>
 </html>
-
