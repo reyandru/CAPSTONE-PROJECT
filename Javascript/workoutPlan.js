@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let currentDay = 'monday';
   let isEditable = true;
   const workoutInputs = document.getElementsByClassName("workoutInputs");
-  let loadWorkouts = '';
   
   // This object will store workout data for each day
   let workoutData = {
@@ -129,17 +128,5 @@ document.addEventListener("DOMContentLoaded", function() {
       loadWorkoutData();
       setDay(currentDay);
   };
-  
-  
-  
-  for (let i = 0; i < workoutInputs.length; i++) {
-      loadWorkouts += workoutInputs[i].value + ' '; // or however you want to format it
-  }
-  
-  // Remove trailing comma and space
-  loadWorkouts = loadWorkouts.slice(0, -2);
-  
-  // Now save to localStorage
-  localStorage.setItem("workoutLoads", loadWorkouts);
   
   
