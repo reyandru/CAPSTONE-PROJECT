@@ -78,7 +78,7 @@ $username = $_SESSION['username'];
 
 
 <!-- //Weight progress -->
-      <div class="weightScale">
+<div class="weightScale">
         <div class="weights">
         <div class="weightInfo">
           <h1>Weight</h1>
@@ -87,6 +87,10 @@ $username = $_SESSION['username'];
           <div id="circle">0%</div>
         </div>
       </div>  
+          <div id="goalWeight">      
+              <label for="goal" id="goalWeights">Goal Weight:</label>
+              <input class="inputsWeightProgress" id="goalW" type="number" placeholder="">
+          </div>
       </div>
 
         <div class="weightAdd">
@@ -95,27 +99,22 @@ $username = $_SESSION['username'];
 
           
           <button id="addBtnWeights">Weights in kilo<img src="../assets/addBtnWeight.png" alt="" height="30"></button>
-          
-          <div id="inputWeight">
-            <button id="xBtnWeight">x</button>
-            <div class="weightsNo">
-            <div>
-                <label for="startWeight" id="noOfW">Starting Weight:</label>
-                <input id="startW" type="number" placeholder="">
-              </div>
+            <div id="inputWeight">
+              <button id="xBtnWeight">x</button>
+              <div class="weightsNo">
+                <div>
+                  <label for="startWeight" id="noOfW">Starting Weight:</label>
+                  <input class="inputsWeightProgress"  id="startW" type="number" placeholder="">
+                </div>
+                <div>
+                  <label for="weights" id="noOfW">Current Weight:</label>
+                  <input class="inputsWeightProgress"  id="weights" type="number" placeholder="">
+                </div>
 
-              <div>
-                <label for="weights" id="noOfW">Current Weight:</label>
-                <input id="weights" type="number" placeholder="">
+                  <button id="addWeights">ADD</button>
               </div>
-              <div>         
-                <label for="goal" id="noOfW">Goal Weight:</label>
-                <input id="goalW" type="number" placeholder="">
-              </div>
-           
-                <button id="addWeights">ADD</button>
-            </div>
-        </div>
+          </div>
+        
         </div>
         </div>
       </div>
@@ -139,22 +138,31 @@ $username = $_SESSION['username'];
       <div id="outCont">
        
       </div>
-      <button class="addWorkoutBtn">No. of Exercises<img src="../assets/addBtnWeight.png" alt="" height="30"></button>
-      
-      <div id="input-workout-progress">
 
-        <button id="xBtnProg">x</button>
+      <div class="workoutProgression">
+      
+        <label for="mon"><input type="checkbox" name="monday" id="mond" value="monday">Monday</label><br>
+
+    
+        <label for="tues"><input type="checkbox" name="tuesday" id="tues" value="tuesday">Tuesday</label><br>
+
+     
+        <label for="wed"><input type="checkbox" name="wednesday" id="wed" value="wednesday">Wednesday</label><br>
+
         
-        <div class="exerciseNo">
-          <label for="done" id="labelDone">  Completed Exercises:</label>
-          <input id="done" type="number" placeholder="">
-          <label for="lenght" id="noOfEx">Goal Exercises:</label>
-          <input id="length" type="number" placeholder="">
-          <button id="addBtnExercises">ADD</button>
-        </div>
+        <label for="thurs"><input type="checkbox" name="thursday" id="thurs" value="thursday">Thursday</label><br>
 
       
+        <label for="fri"><input type="checkbox" name="friday" id="fri" value="friday">Friday</label><br>
+        
+       
+        <label for="sat"><input type="checkbox" name="saturday" id="sat" value="saturday">Saturday</label><br>
+
+        <div>
+          <button id="submitWO">Reset</button>
+        </div>
       </div>
+     
     </div>
   </div>
 </div>

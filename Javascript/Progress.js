@@ -28,17 +28,26 @@ const addBtnWeight = document.getElementById("addBtnWeights");
 const addBTNWeights = document.querySelector('#addBtnWeights');
 const inputContWeights = document.getElementById("inputWeight");
 
-addBTNWeights.addEventListener('click', function(){
+// Load goalWeight from localStorage on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const storedGoalWeight = localStorage.getItem('goalWeight');
+  if (storedGoalWeight) {
+    document.getElementById("goalW").value = storedGoalWeight;
+  }
+  loadOutput(); // Load previous outputs
+});
+
+addBTNWeights.addEventListener('click', function() {
   inputContWeights.classList.add("showsWeightInput");
   addBtnWeight.classList.add("hideAddBtnWeight");
 });
 
-document.getElementById("xBtnWeight").addEventListener('click', function(){
+document.getElementById("xBtnWeight").addEventListener('click', function() {
   inputContWeights.classList.remove("showsWeightInput");
   addBtnWeight.classList.remove("hideAddBtnWeight");
 });
 
-document.getElementById("addWeights").addEventListener('click', function(){
+document.getElementById("addWeights").addEventListener('click', function() {
   const currentWeight = parseFloat(document.getElementById("weights").value);
   const goalWeight = parseFloat(document.getElementById("goalW").value);
   const startWeight = parseFloat(document.getElementById("startW").value);
@@ -46,110 +55,148 @@ document.getElementById("addWeights").addEventListener('click', function(){
 
   // Make sure all inputs are valid
   if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
-    // Ensure current weight is between start and goal weights
-    if (currentWeight <= startWeight && currentWeight >= goalWeight) {
+    const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+
+    if (goalWeight > startWeight && currentWeight > startWeight) {
+      const progress = ((currentWeight - goalWeight) / (startWeight - goalWeight)) * 100;
+      const percent = progress.toFixed(0);
+
+      const output = createOutputDiv(currentWeight, percent);
+      outputs.push(output); // Store output
+
+      updateOutputContainer(outputs);
+      saveOutputs(outputs);
       
-      // Calculate progress
-      const progress = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
-      const percent = progress.toFixed(0); // Rounded to 0 decimal places
-
-      // Create a new div element to contain the output
-      const newDiv = document.createElement('div');
-      newDiv.className = 'outputConts';
-
-      // Set the inner HTML of the new div
-      newDiv.innerHTML = 
-          `<div>${new Date().toLocaleDateString()}</div>` + // Current date
-          `<div>Current Weight: ${currentWeight} kg</div>` + // Current weight
-          `<div>${percent} % Progress</div>`;               // Display the progress as a percentage
-
-      // Get the output container element
-      const outputContainer = document.getElementById('outputWeight');
-
-      // Check if there are already 4 or more child nodes in the output container
-      if (outputContainer.childNodes.length >= 2) {
-          // Remove the first child node to ensure the container has at most 4 children
-          outputContainer.removeChild(outputContainer.firstChild);
-      }
-
-      // Append the new div to the output container
-      outputContainer.appendChild(newDiv);
-
-      // Clear the input fields
-      document.getElementById("weights").value = '';
-      document.getElementById("goalW").value = '';
-      document.getElementById("startW").value = '';
-
-      // Update the circle with the progress percentage
+      clearInputs();
       circle.innerHTML = percent + " %";
+      localStorage.setItem('goalWeight', goalWeight);
+    } else if (currentWeight <= startWeight && currentWeight >= goalWeight) {
+      const progress = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
+      const percent = progress.toFixed(0);
+
+      const output = createOutputDiv(currentWeight, percent);
+      outputs.push(output); // Store output
+
+      updateOutputContainer(outputs);
+      saveOutputs(outputs);
+      
+      clearInputs();
+      circle.innerHTML = percent + " %";
+      localStorage.setItem('goalWeight', goalWeight);
     } else {
-      alert("Current weight must be between start weight and goal weight!");
+      alert("Please ensure current weight is within the valid range!");
     }
   } else {
     alert("Please enter valid numbers for all weights.");
   }
 });
 
+// Function to create an output div
+function createOutputDiv(currentWeight, percent) {
+  return {
+    date: new Date().toLocaleDateString(),
+    weight: currentWeight,
+    progress: percent, // This retains the percentage
+  };
+}
+
+// Function to update the output container
+function updateOutputContainer(outputs) {
+  const outputContainer = document.getElementById('outputWeight');
+  outputContainer.innerHTML = ''; // Clear existing outputs
+  outputs.forEach(output => {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'outputConts';
+    newDiv.innerHTML = 
+      `<div>${output.date}</div>` +
+      `<div>Current Weight: ${output.weight} kg</div>` +
+      `<div>${output.progress} % Progress</div>`; // Display percentage
+    outputContainer.appendChild(newDiv);
+  });
+}
+
+// Function to save outputs to localStorage
+function saveOutputs(outputs) {
+  localStorage.setItem('weightOutputs', JSON.stringify(outputs));
+}
+
+// Function to load previous outputs
+function loadOutput() {
+  const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+  updateOutputContainer(outputs);
+}
+
+// Function to clear input fields
+function clearInputs() {
+  document.getElementById("weights").value = '';
+  document.getElementById("goalW").value = '';
+  document.getElementById("startW").value = '';
+}
+
 
 
 
 //Workout progress
 
-const addBTNWorkout = document.querySelector('.addWorkoutBtn');
-const inputContWorkout = document.getElementById("input-workout-progress");
+const checkboxes = document.querySelectorAll('.workoutProgression input[type="checkbox"]');
+const circleContainer = document.getElementById('circleContainer');
+const resetButton = document.getElementById('submitWO');
 
-addBTNWorkout.addEventListener('click', function(){
-  inputContWorkout.classList.add("showsWorkoutInput");
+// Load checkbox states and percentage from localStorage
+document.addEventListener('DOMContentLoaded', loadProgress);
 
-  addBTNWorkout.classList.add("hideWorkoutBtn");
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', updateProgress);
 });
 
-document.getElementById("xBtnProg").addEventListener('click', function(){
-  inputContWorkout.classList.remove("showsWorkoutInput");
-  addBTNWorkout.classList.remove("hideWorkoutBtn");
-});
+resetButton.addEventListener('click', resetProgress);
 
+function updateProgress() {
+  const checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+  const totalCheckboxes = checkboxes.length;
+  const percentage = (checkedCount / totalCheckboxes) * 100;
+  
+  circleContainer.textContent = `${percentage.toFixed(0)}%`;
+  
+  // Save the current state to localStorage
+  saveProgress();
+}
 
-document.getElementById("addBtnExercises").addEventListener('click', function(){
-  const firstInput = document.getElementById("done").value;
-  const secondInput = document.getElementById("length").value;
-  const percentage = (firstInput / secondInput  * 100).toFixed(0);
-  const circleConts = document.getElementById("circleContainer");
+function resetProgress() {
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  circleContainer.textContent = '0%';
+  
+  // Clear the localStorage
+  localStorage.removeItem('checkboxStates');
+  localStorage.removeItem('progressPercentage');
+}
 
-  if (!isNaN(percentage)) {
-  if (percentage) {
-    // Create a new div element to contain the output
-    const newDivs = document.createElement('div');
-    newDivs.className = 'outConts';
+function saveProgress() {
+  const states = Array.from(checkboxes).map(checkbox => checkbox.checked);
+  localStorage.setItem('checkboxStates', JSON.stringify(states));
+  
+  const checkedCount = states.filter(checked => checked).length;
+  const totalCheckboxes = checkboxes.length;
+  const percentage = (checkedCount / totalCheckboxes) * 100;
+  localStorage.setItem('progressPercentage', percentage.toFixed(0));
+}
 
-    // Set the inner HTML of the new div
-    newDivs.innerHTML = 
-        `<div>${new Date().toLocaleDateString()}</div>` + // Current date
-        firstInput + " Exercises" +                        // First input followed by " Exercises"
-        `<div>  </div>` +                                  // Empty div for spacing
-        percentage + " %";     
-        
-    // Get the output container element
-    const outputContainer = document.getElementById('outCont');
+function loadProgress() {
+  const savedStates = JSON.parse(localStorage.getItem('checkboxStates'));
+  const savedPercentage = localStorage.getItem('progressPercentage');
 
-    // Check if there are already 4 or more child nodes in the output container
-    if (outputContainer.childNodes.length >= 4) {
-        // Remove the first child node to ensure the container has at most 4 children
-        outputContainer.removeChild(outputContainer.firstChild);
-    }
-
-    // Append the new div to the output container
-    outputContainer.appendChild(newDivs);
-
-    // Clear the input fields
-    document.getElementById("done").value = '';
-    document.getElementById("length").value = '';
-    }
+  if (savedStates) {
+    checkboxes.forEach((checkbox, index) => {
+      checkbox.checked = savedStates[index] || false;
+    });
   }
 
-  circleConts.innerHTML = percentage + " %";
-
-});
+  if (savedPercentage) {
+    circleContainer.textContent = `${savedPercentage}%`;
+  }
+}
 
 
 //Feedback function

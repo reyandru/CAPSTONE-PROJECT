@@ -280,7 +280,7 @@
   .weights{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   padding: 10px;
   background-color: #38B6FF;
@@ -421,10 +421,23 @@
   
   #noOfW{
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
   font-family: "roboto";
   width: 50px;
+  }
+  
+  #goalWeights{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    font-family: "roboto";
+    font-weight: bold;
+    width: 50px;
+  }
+  
+  #goalWeight{
+    margin-top: 10px;
   }
   
   #weights{
@@ -444,9 +457,9 @@
   #goalW{
     text-align: center;
     outline: none;
-    width: 40px;
+    width: 50px;
     height: 30px;
-    font-size: 18px;
+    font-size: 30px;
     font-family: "roboto";
     margin-right: 30px;
     border: none;
@@ -569,15 +582,6 @@
   border-radius: 50%;
   }
   
-  #xBtnProg{
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  font-weight: 700;
-  color: white;
-  cursor: pointer;
-  }
-  
   #input-WOprogress{
   display: flex;
   align-items: center;
@@ -588,140 +592,35 @@
   width: 100%;
   }
   
-  #outCont{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  font-family: "nunito";
-  color: white;
-  padding: 5px;
-  height: 220px;
-  }
-  
-  .outConts{
-  background-color: #2d238d;
-  height: 45px;
-  width: 100%;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 800;
-  }
-  
-  .addWorkoutBtn{
-  background-color: #5271FF;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 10px;
-  font-family: "nunito";
-  font-size: 16px;
-  color: white;
-  font-weight: 800;
-  width: 95%;
-  height: 20%;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-  }
-  
-  .addWorkoutBtn:active{
-  transform: scale(0.95);
-  }
-  
-  .hideWorkoutBtn{
-  visibility: hidden;
-  }
-  
-  #input-workout-progress{
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  border-radius: 10px;
-  background-color: #5271FF;
-  font-family: "nunito";
-  margin-top: -57px;
-  height: 60px;
-  width: 105%;
-  padding: 5px;
-  visibility: hidden;
-  }
-  
-  #input-workout-progress.showsWorkoutInput{
-  visibility: visible;
-  }
-  
-  .exerciseNo{
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 90%;
-  }
-  
-  .exerciseNo p{
-  color: white;
-  }
-  
-  #labelDone{
-  color: white;
-  font-size: 12px;
-  text-align: center;
-  font-family: "roboto";
-  width: 50px;
-  }
-  
-  #noOfEx{
-  color: white;
-  font-size: 12px;
-  text-align: center;
-  font-family: "roboto";
-  width: 50px;
-  }
-  
-  :is(#done, #length), input{
-    text-align: center;
-    outline: none;
-    width: 40px;
-    height: 30px;
-    font-size: 18px;
+  .workoutProgression{
     font-family: "roboto";
-    margin-right: 30px;
-    border: none;
+    font-weight: 800;
     color: white;
-    border-bottom: 1px solid white;
-    background-color: transparent;
+    font-size: 35px;
+    height: 80%;
+    width: 100%;
   }
   
-  #addBtnExercises{
-  width: 50px;
-  height: 80%;
-  border-radius: 10px;
-  border: none;
-  background-color: #112C9F;
-  color: whitesmoke;
-  font-weight: 800;
-  font-size: 12px;
-  cursor: pointer;
+  .workoutProgression input{
+    width: 40px;
+    height: 20px;
   }
   
-  #xBtnProg.showX {
-  display: block;
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  
+  .workoutProgression label{
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
   }
-  #xBtnProg.hideX{
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.7);
   
+  #submitWO{
+    height: 30px;
+    width: 60px;
+    font-size: 16px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    background-color: blue;
+    cursor: pointer;
   }
   
   /* feedback */
@@ -1206,37 +1105,10 @@
     height: 70%;
   }
   
-  #xBtnProg{
-    font-size: 20px;
-  }
-  
   .progressCont{
     border: 2px solid red;
     height: 40px;
     width: 100%;
-  }
-  
-  .addWorkoutBtn{  
-    font-size: 14px;
-    width: 95%;
-    height: 15%;
-  }
-  
-  #input-workout-progress{
-    display: flex;
-    margin-top: -50px;
-    height: 50px;
-    width: 100%;
-  }
-  
-  :is(#done, #length), input{
-    height: 80%;
-  }
-  
-  #addBtnExercises{ 
-    width: 40px;
-    height: 30px;
-    font-size: 10px;
   }
   
   
@@ -1289,4 +1161,3 @@
     height: 40px;
   }
   }
-  
