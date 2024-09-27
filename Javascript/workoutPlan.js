@@ -29,104 +29,141 @@ document.addEventListener("DOMContentLoaded", function() {
   
   
   // Adding activity
-  
-  let currentDay = 'monday';
-  let isEditable = true;
-  const workoutInputs = document.getElementsByClassName("workoutInputs");
-  
-  // This object will store workout data for each day
-  let workoutData = {
-      monday: {},
-      tuesday: {},
-      wednesday: {},
-      thursday: {},
-      friday: {},
-      saturday: {}
-  };
-  
-  // Load workout data from localStorage
-  function loadWorkoutData() {
-      const storedData = localStorage.getItem('userWorkouts');
-      if (storedData) {
-          workoutData = JSON.parse(storedData);
-      }
-  }
-  
-  // Save workout data to localStorage
-  function saveWorkoutData() {
-      localStorage.setItem('userWorkouts', JSON.stringify(workoutData));
-  }
-  
-  function setDay(day) {
-      saveCurrentDay();
-      currentDay = day;
-  
-      const dayTitle = workoutData[day].dayTitle || `${capitalizeFirstLetter(day)} - `;
-      document.getElementById('day-title').value = dayTitle;
-  
-      loadDayData(day);
-  }
-  
-  function saveCurrentDay() {
-      workoutData[currentDay].dayTitle = document.getElementById('day-title').value;
-  
-      for (let i = 1; i <= 10; i++) {
-          workoutData[currentDay][`workout${i}`] = document.getElementById(`workout${i}`).value;
-          workoutData[currentDay][`reps${i}`] = document.getElementById(`reps${i}`).value;
-          workoutData[currentDay][`sets${i}`] = document.getElementById(`sets${i}`).value;
-          workoutData[currentDay][`kilo${i}`] = document.getElementById(`kilo${i}`).value;
-          workoutData[currentDay][`minutes${i}`] = document.getElementById(`minutes${i}`).value;
-      }
-  
-      saveWorkoutData();
-  }
-  
-  function loadDayData(day) {
-      for (let i = 1; i <= 10; i++) {
-          document.getElementById(`workout${i}`).value = workoutData[day][`workout${i}`] || '';
-          document.getElementById(`reps${i}`).value = workoutData[day][`reps${i}`] || '';
-          document.getElementById(`sets${i}`).value = workoutData[day][`sets${i}`] || '';
-          document.getElementById(`kilo${i}`).value = workoutData[day][`kilo${i}`] || '';
-          document.getElementById(`minutes${i}`).value = workoutData[day][`minutes${i}`] || '';
-      }
-  }
-  
-  function saveData() {
-      if (isEditable) {
-          for (let i = 1; i <= 10; i++) {
-              document.getElementById(`workout${i}`).disabled = true;
-              document.getElementById(`reps${i}`).disabled = true;
-              document.getElementById(`sets${i}`).disabled = true;
-              document.getElementById(`kilo${i}`).disabled = true;
-              document.getElementById(`minutes${i}`).disabled = true;
-          }
-          document.getElementById('day-title').disabled = true;
-          document.getElementById('save-btn').textContent = 'Edit';
-          document.getElementById('save-btn').classList.add('edit-mode');
-          isEditable = false;
-      } else {
-          for (let i = 1; i <= 10; i++) {
-              document.getElementById(`workout${i}`).disabled = false;
-              document.getElementById(`reps${i}`).disabled = false;
-              document.getElementById(`sets${i}`).disabled = false;
-              document.getElementById(`kilo${i}`).disabled = false;
-              document.getElementById(`minutes${i}`).disabled = false;
-          }
-          document.getElementById('day-title').disabled = false;
-          document.getElementById('save-btn').textContent = 'Save';
-          document.getElementById('save-btn').classList.remove('edit-mode');
-          isEditable = true;
-      }
-  }
-  
-  function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  
-  // Load workout data on page load
-  window.onload = function() {
-      loadWorkoutData();
-      setDay(currentDay);
-  };
-  
-  
+  // Save the current day's data to workoutData and localStorage
+function saveData() {
+    const tableRows = document.querySelectorAll('#workout-table tr');
+    const dayData = [];
+
+    // Loop through the rows and save the workout data
+    for (let i = 1; i < tableRows.length; i++) {
+        const inputs = tableRows[i].querySelectorAll('input');
+        dayData.push({
+            workout: inputs[0].value,
+            reps: inputs[1].value,
+            sets: inputs[2].value,
+            kilo: inputs[3].value,
+            minutes: inputs[4].value
+        });
+    }
+
+    // Save the day title and current day's data
+    const dayTitle = document.getElementById('day-title').value;
+
+    // Store the dayTitle and workouts under the current day in workoutData
+    workoutData[currentDay] = {
+        dayTitle: dayTitle,  // Store the title
+        workouts: dayData    // Store the workout data array
+    };
+
+    // Save to localStorage
+    saveWorkoutData(); 
+
+    // Disable the inputs after saving
+    enableInputs(false);
+
+    // Change save button to edit button
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.innerText = "Edit";
+}
+
+// Load workout data and day title for a specific day
+function loadDayData(day) {
+    const dayData = workoutData[day];
+
+    // Load day title
+    const dayTitle = dayData?.dayTitle || `${capitalizeFirstLetter(day)} - `;
+    document.getElementById('day-title').value = dayTitle;
+
+    // Load workout data if available
+    if (dayData?.workouts) {
+        const tableRows = document.querySelectorAll('#workout-table tr');
+        for (let i = 1; i < tableRows.length; i++) {
+            const inputs = tableRows[i].querySelectorAll('input');
+            if (dayData.workouts[i - 1]) {
+                inputs[0].value = dayData.workouts[i - 1].workout || '';
+                inputs[1].value = dayData.workouts[i - 1].reps || '';
+                inputs[2].value = dayData.workouts[i - 1].sets || '';
+                inputs[3].value = dayData.workouts[i - 1].kilo || '';
+                inputs[4].value = dayData.workouts[i - 1].minutes || '';
+            }
+        }
+    }
+}
+
+// Set and load the data for the selected day
+function setDay(day) {
+    currentDay = day;
+    localStorage.setItem('currentDay', day); // Save the current day to localStorage
+
+    // Clear existing table data
+    clearTable();
+
+    // Load data for the selected day
+    if (workoutData[day] && workoutData[day].workouts.length > 0) {
+        loadDayData(day);
+    }
+
+    // Reset the save/edit button
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.innerText = "Save";
+    enableInputs(true); // Enable inputs on new day selection
+}
+
+// Load workout data from localStorage when the page loads
+window.onload = function() {
+    loadWorkoutData();
+    setDay(currentDay); // Load Monday's data by default or the last saved day
+}
+
+// Save workout data to localStorage
+function saveWorkoutData() {
+    localStorage.setItem('userWorkouts', JSON.stringify(workoutData));
+}
+
+// Load workout data from localStorage
+function loadWorkoutData() {
+    const storedData = localStorage.getItem('userWorkouts');
+    if (storedData) {
+        workoutData = JSON.parse(storedData);
+    }
+
+    // Load the last selected day from localStorage
+    const storedDay = localStorage.getItem('currentDay');
+    if (storedDay) {
+        currentDay = storedDay;
+    }
+}
+
+// Capitalize the first letter of the day
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// Clear the table inputs when switching days
+function clearTable() {
+    const inputs = document.querySelectorAll('.workoutInputs');
+    inputs.forEach(input => {
+        input.value = '';
+    });
+}
+
+// Toggle between enabling and disabling inputs
+function enableInputs(enable) {
+    const inputs = document.querySelectorAll('.workoutInputs');
+    inputs.forEach(input => {
+        input.disabled = !enable;
+    });
+}
+
+// Handle the Save/Edit button click
+document.getElementById('save-btn').addEventListener('click', function() {
+    const saveBtn = document.getElementById('save-btn');
+    
+    if (saveBtn.innerText === "Save") {
+        saveData();
+    } else if (saveBtn.innerText === "Edit") {
+        // Enable the inputs to edit
+        enableInputs(true);
+        saveBtn.innerText = "Save";
+    }
+});
