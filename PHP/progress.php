@@ -158,6 +158,9 @@ $username = $_SESSION['username'];
        
         <label for="sat"><input type="checkbox" name="saturday" id="sat" value="saturday">Saturday</label><br>
 
+
+        <label for="sun"><input type="checkbox" name="sunday" id="sun" value="sunday">Sunday</label><br>
+
         <div>
           <button id="submitWO">Reset</button>
         </div>

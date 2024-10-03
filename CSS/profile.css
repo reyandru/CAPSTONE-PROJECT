@@ -301,6 +301,7 @@ header {
   z-index: 999;
   font-family: 'roboto';
 }
+
 #qr {
   background-color: white;
   height: 100%;
@@ -313,11 +314,9 @@ header {
   padding: 10px;
 }
 
-
 #profile.showProfEdit {
   visibility: hidden;
 }
-
 
 .botConts {
   width: 100%;
@@ -423,6 +422,11 @@ header {
   flex-direction: column;
   padding: 10px;
   font-family: 'roboto';
+  visibility: hidden;
+}
+
+.editprofile{
+  visibility: visible;
 }
 
 .bottomConts,

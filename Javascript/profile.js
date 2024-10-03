@@ -26,9 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Profile
 const profEdit = document.getElementById("profile");
+const editProfile = document.getElementById("profileEdit");
 
 document.getElementById("editbtnProfs").addEventListener('click', function(){
   profEdit.classList.add("showProfEdit");
+  editProfile.classList.add("editprofile");
 });
 
 document.getElementById("sbmt").addEventListener('click', function() {

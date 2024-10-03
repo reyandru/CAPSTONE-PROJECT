@@ -534,12 +534,11 @@
   }
   
   .header-progress{
-  
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 40%;
+  height: 4 0%;
   width: 100%;
   padding: 10px;
   }
@@ -596,8 +595,9 @@
     font-family: "roboto";
     font-weight: 800;
     color: white;
-    font-size: 35px;
-    height: 80%;
+    font-size: 33px;
+    padding-inline:90px;
+    height: 100%;
     width: 100%;
   }
   
@@ -611,10 +611,16 @@
     -webkit-text-stroke-color: black;
   }
   
+  .resetButton{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+  }
   #submitWO{
-    height: 30px;
-    width: 60px;
-    font-size: 16px;
+    height: 40px;
+    width: 70px;
+    font-size: 18px;
     color: white;
     outline: none;
     border: none;
@@ -1096,13 +1102,6 @@
     width: 50%;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-  }
-  
-    
-  #outCont{
-    width: 90%;
-    padding-inline: 5px;
-    height: 70%;
   }
   
   .progressCont{
