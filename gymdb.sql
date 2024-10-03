@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 12:06 PM
+-- Generation Time: Oct 03, 2024 at 08:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `gymdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `login_time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `logout_time` timestamp NULL DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`id`, `user_id`, `login_time`, `logout_time`, `ip_address`) VALUES
+(1, 4, '2024-10-03 18:16:09', NULL, '::1'),
+(2, 4, '2024-10-03 18:16:40', NULL, '::1');
 
 -- --------------------------------------------------------
 
@@ -44,9 +66,7 @@ CREATE TABLE `registerdb` (
 --
 
 INSERT INTO `registerdb` (`id`, `firstname`, `lastname`, `age`, `gender`, `address`, `contactNo`, `email`, `date_register`) VALUES
-(1, 'Rei Andrew', 'Bariata', 21, '0', 'Abulalas', 2147483647, 'reiandrew@gmail.com', '0000-00-00 00:00:00'),
-(2, 'Rei', 'Bariata', 25, 'Male', 'Abulalas', 2147483647, 'reiandrewbariata@gmail.com', '2024-09-18 22:03:29'),
-(3, 'William', 'Sabino', 69, 'Male', 'San', 2147483647, 'Username@user.com', '2024-09-20 12:45:15');
+(4, 'Rei Andrew', 'Bariata', 21, 'Male', 'Brgy. Abulalas Hagonoy, Bulacan', 2147483647, 'username@user.com', '2024-10-04 01:52:26');
 
 -- --------------------------------------------------------
 
@@ -69,13 +89,18 @@ CREATE TABLE `signupdb` (
 --
 
 INSERT INTO `signupdb` (`id`, `role`, `email`, `username`, `password`, `cpassword`, `date_signup`) VALUES
-(1, 'Client', 'reiandrew@gmail.com', 'REI ANDREW', '$2y$10$OajBzVZOaPbLPpgHsTHxg.EuN0JK7mmJ4clNZ5lFgB5TrwEHsEzMC', '$2y$10$.FfuXEKay3PadepsMo3/e.S5yv8EhX3ruSws4SdyXtRimpTboURKi', '2024-09-18 18:56:09'),
-(2, 'Client', 'reiandrewbariata@gmail.com', 'Rei Andrew Bariata', '$2y$10$DPp4Khq7qaUuEuypSzVbrOq4JOzLYy2XrnbP94evwVcgNnvxBcRK2', '$2y$10$4waUY4BfkfJmrEf36QJf9O3wKAhS2Wz3QXuWAHLNwFTACpwGKWNuy', '2024-09-18 22:02:58'),
-(3, 'Client', 'Username@user.com', 'William Sabino', '$2y$10$nSnSP2YeYNpNz0/uEmuChOiVKdpS2C0XlacNw/Qfl5an74VXPQ7R6', '$2y$10$zMVYflfqVsxorTZzQLxdJ.c6HGhiKF7bOwMwP1iEKsZRGJLtqwvC.', '2024-09-20 12:44:54');
+(4, '', 'username@user.com', 'Rei Andrew', '$2y$10$U3wbwJ4/14D0As6T99MFVulmvy5d64IGmPNe5K2Z84tAvSOBXi2VC', '$2y$10$uYz3bxr2lCD2IAs1xh9i2e/fUVZTNC8Dt1saPHP/zevCN63fltGWi', '2024-10-04 01:51:35');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `registerdb`
@@ -96,16 +121,32 @@ ALTER TABLE `signupdb`
 --
 
 --
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `registerdb`
 --
 ALTER TABLE `registerdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `signupdb`
 --
 ALTER TABLE `signupdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `signupdb` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
