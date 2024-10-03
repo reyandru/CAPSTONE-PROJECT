@@ -53,60 +53,55 @@ include "database.php";
 </html>
 
 <?php
-// Start the session
+// Start the session at the top before any output
 session_start();
+include "database.php"; // Make sure this path is correct
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Get and sanitize user inputs
-  $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-  $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-  // Debugging output
-  // var_dump($_POST); // Uncomment this line to check what is being received
+    if (empty($email) || empty($password)) {
+        echo "<script>alert('Please enter an email and password');</script>";
+    } else {
+        // Check for the user
+        $sql = "SELECT * FROM signupdb WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
 
-  // Validate inputs
-  if (empty($email) || empty($password)) {
-      echo "<script>alert('Please enter an email or password');</script>";
-  } else {
-      // Proceed with login checks
-      $sql = "SELECT * FROM signupdb WHERE email = ?";
-      $stmt = mysqli_prepare($conn, $sql);
-      mysqli_stmt_bind_param($stmt, "s", $email);
-      mysqli_stmt_execute($stmt);
-      $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result) === 1) {
+            $user = mysqli_fetch_assoc($result);
+            
+            if (password_verify($password, $user['password'])) {
+                // Login successful, store session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
 
-      if (mysqli_num_rows($result) === 1) {
-          // Fetch user data
-          $user = mysqli_fetch_assoc($result);
+                // Insert attendance record
+                $user_id = $user['id'];
+                $ip_address = $_SERVER['REMOTE_ADDR']; // Get user's IP address
 
-          // Verify the password
-          if (password_verify($password, $user['password'])) {
-              // Password matches
-              $_SESSION['username'] = $user['username']; // Store username in session
+                $sql_attendance = "INSERT INTO attendance (user_id, ip_address) VALUES (?, ?)";
+                $stmt_attendance = mysqli_prepare($conn, $sql_attendance);
+                mysqli_stmt_bind_param($stmt_attendance, "is", $user_id, $ip_address);
+                mysqli_stmt_execute($stmt_attendance);
+                mysqli_stmt_close($stmt_attendance);
 
-              // Set a cookie (for example, to remember the user for 30 days)
-              $cookie_name = "user";
-              $cookie_value = $user['username'];
-              $cookie_expiration = time() + (30 * 24 * 60 * 60); // 30 days from now
-              setcookie($cookie_name, $cookie_value, $cookie_expiration, "/"); // "/" means available throughout the entire website
+                // Redirect to the home page
+                header("Location: Home.php");
+                exit();
+            } else {
+                echo "<script>alert('Incorrect email or password');</script>";
+            }
+        } else {
+            echo "<script>alert('Incorrect email or password');</script>";
+        }
 
-              header("Location: Home.php"); // Redirect to the home page
-              exit();
-          } else {
-              // Password does not match
-              echo "<script>alert('Incorrect email or password');</script>";
-          }
-      } else {
-          // Email does not exist
-          echo "<script>alert('Incorrect email or password');</script>";
-      }
+        mysqli_stmt_close($stmt);
+    }
 
-      // Close the statement
-      mysqli_stmt_close($stmt);
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
+    mysqli_close($conn);
 }
-
 ?>

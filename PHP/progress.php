@@ -42,7 +42,7 @@ $username = $_SESSION['username'];
         </div>
         </div>
         <div class="DD-container">
-          <button class="logOutBtn">LOG OUT</button>
+        <a href="login.php"> <button class="logOutBtn">LOG OUT</button></a>
         </div>
       </div>
  
