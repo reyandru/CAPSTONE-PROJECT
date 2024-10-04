@@ -79,16 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
 
-                // Insert attendance record
-                $user_id = $user['id'];
-                $ip_address = $_SERVER['REMOTE_ADDR']; // Get user's IP address
-
-                $sql_attendance = "INSERT INTO attendance (user_id, ip_address) VALUES (?, ?)";
-                $stmt_attendance = mysqli_prepare($conn, $sql_attendance);
-                mysqli_stmt_bind_param($stmt_attendance, "is", $user_id, $ip_address);
-                mysqli_stmt_execute($stmt_attendance);
-                mysqli_stmt_close($stmt_attendance);
-
                 // Redirect to the home page
                 header("Location: Home.php");
                 exit();

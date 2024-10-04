@@ -1,11 +1,37 @@
-
 <?php
+include('database.php'); 
 session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: login.php"); // Redirect to login if not logged in
     exit();
 }
+
 $username = $_SESSION['username'];
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get values from input fields
+    $goalWeight = $_POST['goalWeight'];
+    $startingWeight = $_POST['startingWeight'];
+    $currentWeight = $_POST['currentWeight'];
+
+    // Prepare and bind the SQL statement
+    $stmt = $conn->prepare("INSERT INTO progressdb (goalW, startW, currentW) VALUES (?, ?, ?)");
+    $stmt->bind_param("ddd", $goalWeight, $startingWeight, $currentWeight); // d for double
+
+    // Execute the statement and check for errors
+    if ($stmt->execute()) {
+        echo "<script>alert('Progress data saved successfully!');</script>";
+    } else {
+        echo "<script>alert('Error: " . $stmt->error . "');</script>";
+    }
+
+    // Close the statement
+    $stmt->close();
+}
+
+// Make sure you close the connection at the end
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -37,161 +63,136 @@ $username = $_SESSION['username'];
       
           </a>
         <div class="consts-dropDown">
-          <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50"
-            width="45px"></button>
+          <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50" width="45px"></button>
         </div>
         </div>
         <div class="DD-container">
         <a href="login.php"> <button class="logOutBtn">LOG OUT</button></a>
         </div>
       </div>
- 
-    
     </header>
-<div class="container">
-  <aside class="nav">
-    <div class="hamburger" id="hamburger" onclick="myFunction(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </div>
-    <div class="menu" id="menu">
-      <a href="home.php"> <img src="../assets/home.png" alt="" height="45"> Home</a>
-      <a href="workoutplan.php"> <img src="../assets/DB.png" alt="" height="45">  Workout Plan</a>
-      <a href="progress.php"> <img src="../assets/prog.png" alt="" height="45">  Progress</a>
-      <a href="records.php"> <img src="../assets/records.png" alt="" height="45"> Records</a>
-      <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
-      <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
-  </div>
-  </aside>
-
-  <main class="main">
-    <div class="conts1">
-      <div class="page"> 
-        <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Progress</p>
-      </div>
-    </div>
-
-    <div class="conts2">
-      <div class="progress-container">
-
-
-
-<!-- //Weight progress -->
-<div class="weightScale">
-        <div class="weights">
-        <div class="weightInfo">
-          <h1>Weight</h1>
-          <div class="percentages"> 
-        <div class="outlineB">
-          <div id="circle">0%</div>
-        </div>
-      </div>  
-          <div id="goalWeight">      
-              <label for="goal" id="goalWeights">Goal Weight:</label>
-              <input class="inputsWeightProgress" id="goalW" type="number" placeholder="">
-          </div>
-      </div>
-
-        <div class="weightAdd">
-            <div class="kgs"> </div>
-          <div id="outputWeight"></div>
-
-          
-          <button id="addBtnWeights">Weights in kilo<img src="../assets/addBtnWeight.png" alt="" height="30"></button>
-            <div id="inputWeight">
-              <button id="xBtnWeight">x</button>
-              <div class="weightsNo">
-                <div>
-                  <label for="startWeight" id="noOfW">Starting Weight:</label>
-                  <input class="inputsWeightProgress"  id="startW" type="number" placeholder="">
-                </div>
-                <div>
-                  <label for="weights" id="noOfW">Current Weight:</label>
-                  <input class="inputsWeightProgress"  id="weights" type="number" placeholder="">
-                </div>
-
-                  <button id="addWeights">ADD</button>
-              </div>
-          </div>
-        
-        </div>
-        </div>
-      </div>
-
-<!-- //workout progress -->
-<div class="workoutProg">
-  <div class="progress-conts">
-    <div class="header-progress">
-      <div class="workoutsProg">
-        <h1>Workout Progress</h1>
-      </div>
-      <div class="progress-percentage"> 
-        <div class="outlineBorder">
-          <div id="circleContainer">0%</div>
-        </div>
-      </div>  
-    </div>
-
-    <div id="input-WOprogress">
-
-      <div id="outCont">
-       
-      </div>
-
-      <div class="workoutProgression">
-      
-        <label for="mon"><input type="checkbox" name="monday" id="mond" value="monday">Monday</label><br>
-
     
-        <label for="tues"><input type="checkbox" name="tuesday" id="tues" value="tuesday">Tuesday</label><br>
-
-     
-        <label for="wed"><input type="checkbox" name="wednesday" id="wed" value="wednesday">Wednesday</label><br>
-
-        
-        <label for="thurs"><input type="checkbox" name="thursday" id="thurs" value="thursday">Thursday</label><br>
-
-      
-        <label for="fri"><input type="checkbox" name="friday" id="fri" value="friday">Friday</label><br>
-        
-       
-        <label for="sat"><input type="checkbox" name="saturday" id="sat" value="saturday">Saturday</label><br>
-
-
-        <label for="sun"><input type="checkbox" name="sunday" id="sun" value="sunday">Sunday</label><br>
-
-        <div>
-          <button id="submitWO">Reset</button>
+    <div class="container">
+      <aside class="nav">
+        <div class="hamburger" id="hamburger" onclick="myFunction(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
         </div>
-      </div>
-     
-    </div>
-  </div>
-</div>
+        <div class="menu" id="menu">
+          <a href="home.php"> <img src="../assets/home.png" alt="" height="45"> Home</a>
+          <a href="workoutplan.php"> <img src="../assets/DB.png" alt="" height="45">  Workout Plan</a>
+          <a href="progress.php"> <img src="../assets/prog.png" alt="" height="45">  Progress</a>
+          <a href="records.php"> <img src="../assets/records.png" alt="" height="45"> Records</a>
+          <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45">  Profile</a>
+          <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
+        </div>
+      </aside>
 
+      <main class="main">
+        <div class="conts1">
+          <div class="page"> 
+            <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Progress</p>
+          </div>
+        </div>
 
-<!-- //Feedback -->
-        <div class="feedback">
+        <div class="conts2">
+          <div class="progress-container">
 
-          <div class="fb">
-            <div class="feedb">
-              <h1>Note</h1>
-              <div class="modal-body">
-                <textarea id="feedback-conts" placeholder="Make a note.."></textarea>
-            </div>        
-              <div id="fb-conts"> </div>
-              <button type="submit"  id ="submit-btn-fb">Submit</button>
-              <button id="edit-btn-fb">Edit</button>
+            <!-- //Weight progress -->
+            <div class="weightScale">
+              <div class="weights">
+                <div class="weightInfo">
+                  <h1>Weight</h1>
+                  <div class="percentages"> 
+                    <div class="outlineB">
+                      <div id="circle">0%</div>
+                    </div>
+                  </div>  
+                  <form method="POST" action="progress.php">
+                    <div id="goalWeight">      
+                      <label for="goal" id="goalWeights">Goal Weight:</label>
+                      <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
+                    </div>
+                </div>
+
+                <div class="weightAdd">
+                  <div class="kgs"> </div>
+                  <div id="outputWeight"></div>
+
+                  <button id="addBtnWeights" type="button">Weights in kilo<img src="../assets/addBtnWeight.png" alt="" height="30"></button>
+                  <div id="inputWeight">
+                    <button id="xBtnWeight" type="button">x</button>
+                    <div class="weightsNo">
+                      <div>
+                        <label for="startWeight" id="noOfW">Starting Weight:</label>
+                        <input class="inputsWeightProgress" name="startingWeight" id="startW" type="number" placeholder="">
+                      </div>
+                      <div>
+                        <label for="weights" id="noOfW">Current Weight:</label>
+                        <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
+                      </div>
+
+                      <button id="addWeights" type="submit">ADD</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </form>
+
+            <!-- //workout progress -->
+            <div class="workoutProg">
+              <div class="progress-conts">
+                <div class="header-progress">
+                  <div class="workoutsProg">
+                    <h1>Workout Progress</h1>
+                  </div>
+                  <div class="progress-percentage"> 
+                    <div class="outlineBorder">
+                      <div id="circleContainer">0%</div>
+                    </div>
+                  </div>  
+                </div>
+
+                <div id="input-WOprogress">
+                  <div id="outCont">
+                  </div>
+
+                  <div class="workoutProgression">
+                    <label for="mon"><input type="checkbox" name="monday" id="mond" value="monday">Monday</label><br>
+                    <label for="tues"><input type="checkbox" name="tuesday" id="tues" value="tuesday">Tuesday</label><br>
+                    <label for="wed"><input type="checkbox" name="wednesday" id="wed" value="wednesday">Wednesday</label><br>
+                    <label for="thurs"><input type="checkbox" name="thursday" id="thurs" value="thursday">Thursday</label><br>
+                    <label for="fri"><input type="checkbox" name="friday" id="fri" value="friday">Friday</label><br>
+                    <label for="sat"><input type="checkbox" name="saturday" id="sat" value="saturday">Saturday</label><br>
+                    <label for="sun"><input type="checkbox" name="sunday" id="sun" value="sunday">Sunday</label><br>
+
+                    <div>
+                      <button id="submitWO">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-         </div>
-      
-      </div>
-    </div>
-    </div>
-  </main>
 
-</div>
+            <!-- //Feedback -->
+            <div class="feedback">
+              <div class="fb">
+                <div class="feedb">
+                  <h1>Note</h1>
+                  <div class="modal-body">
+                    <textarea id="feedback-conts" placeholder="Make a note.."></textarea>
+                  </div>        
+                  <div id="fb-conts"> </div>
+                  <button type="submit"  id ="submit-btn-fb">Submit</button>
+                  <button id="edit-btn-fb">Edit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
    
     <script src="../Javascript/Progress.js"></script>
   </body>
