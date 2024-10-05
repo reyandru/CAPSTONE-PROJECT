@@ -337,7 +337,6 @@ header {
   justify-content: center;
   width: 90%;
   height: 100%;
-  padding-inline-start: 50px;
   row-gap: 10px;
   font-size: 22px;
 }

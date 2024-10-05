@@ -1,4 +1,4 @@
-<?php
+<div?php
 include('database.php'); 
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -139,7 +139,7 @@ $conn->close();
                 </div>
               </div>
               </form>
-
+</div>
             <!-- //workout progress -->
             <div class="workoutProg">
               <div class="progress-conts">

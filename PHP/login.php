@@ -1,5 +1,6 @@
 <?php
-include "database.php";
+session_start();
+include "database.php"; // Ensure this path is correct
 ?>
 
 <!DOCTYPE html>
@@ -18,9 +19,7 @@ include "database.php";
 
 <div class="container">
 
-
   <div class="conts1">
-
     <div class="form-wrap">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <div class="ttl-wrap">
@@ -39,24 +38,20 @@ include "database.php";
       </div>
       </form>
     </div>
-    </div>
+  </div>
+
   <div class="conts2">
     <img src="../assets/logs.png" alt="" height="150">
   </div>
 
 </div>
 
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
 
 <?php
-// Start the session at the top before any output
-session_start();
-include "database.php"; // Make sure this path is correct
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
@@ -86,7 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('Incorrect email or password');</script>";
             }
         } else {
-            echo "<script>alert('Incorrect email or password');</script>";
+            // No email found in the database
+            echo "<script>alert('This email is not signed up yet.');</script>";
         }
 
         mysqli_stmt_close($stmt);
