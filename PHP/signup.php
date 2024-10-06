@@ -1,6 +1,45 @@
 <?php 
   include "database.php";
 ?>
+<?php
+$message = "";
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $role = filter_input(INPUT_POST, "roleOption", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    $cpassword = filter_input(INPUT_POST, "cpassword", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if(empty($email)){
+      $message = "Please enter a email";
+    }else if(empty($username)){
+      $message = "Please enter a username";
+    }else if(empty($password)){
+      $message = "Please enter a password";
+    }else if($password != $cpassword){
+    $message = "Password not match!";
+    }else{
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+      $chash = password_hash($cpassword, PASSWORD_DEFAULT);
+      $sql = "INSERT INTO signupdb (role,   email, username, password, cpassword) VALUES ('$role','$email','$username','$hash','$chash')";
+      try{
+        mysqli_query($conn,$sql);
+        echo"<script>alert('Successfully Sign up');</script>";
+        header("location: register.php");
+      }
+     catch(mysqli_sql_exception){
+      $message = "The username is taken";
+     }
+    }
+  }
+
+  mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +91,9 @@
 
           <div> <input type="submit" name="submitbtn" value = "Submit" class="SU"></div>
          
+          <div id="messageAlert">
+            <p style="color:black; text-align: center;" class="errorMsg"><?php echo $message; ?></p>
+          </div>
         </div>
        
       </form>
@@ -68,44 +110,7 @@
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="../Javascript/message.js"></script>
 </body>
 </html>
 
-<?php
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    $role = filter_input(INPUT_POST, "roleOption", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $cpassword = filter_input(INPUT_POST, "cpassword", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    if(empty($email)){
-      echo"Please enter a email";
-    }else if(empty($username)){
-      echo"Please enter a username";
-    }else if(empty($password)){
-      echo"Please enter a password";
-    }else if($password != $cpassword)
-    echo"<script>alert('Password not match!');</script>";
-    else{
-      $hash = password_hash($password, PASSWORD_DEFAULT);
-      $chash = password_hash($cpassword, PASSWORD_DEFAULT);
-      $sql = "INSERT INTO signupdb (role,   email, username, password, cpassword) VALUES ('$role','$email','$username','$hash','$chash')";
-      try{
-        mysqli_query($conn,$sql);
-        echo"<script>alert('Successfully Sign up');</script>";
-        header("location: register.php");
-      }
-     catch(mysqli_sql_exception){
-      echo"<script>alert('The username is taken');</script>";
-     }
-    }
-  }
-
-  mysqli_close($conn);
-?>

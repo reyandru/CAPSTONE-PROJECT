@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if (mysqli_stmt_execute($stmt)) {
                 // Registration successful, redirect to home.php
-                header("Location: Home.php");
+                header("Location: login.php");
                 exit;
             } else {
                 $message = "Error registering user";
@@ -124,8 +124,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Submit</button>
             <p>Already have an account? <a href="login.php" target="_self">Log In</a></p>
           </div>
-          <!-- Display message -->
-          <p style="color:red;"><?php echo $message; ?></p>
+          <div id="messageAlert">
+            <p style="color:black; text-align: center; " class="errorMsg"><?php echo $message; ?></p>
+           </div>
         </div>
       </form>
     </div>
@@ -137,5 +138,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="../Javascript/message.js"></script>
 </body>
 </html>

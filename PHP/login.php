@@ -1,6 +1,46 @@
 <?php
 session_start();
 include "database.php"; // Ensure this path is correct
+
+$message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if (empty($email) || empty($password)) {
+        $message = "Please enter an email and password";
+    } else {
+        // Check for the user
+        $sql = "SELECT * FROM signupdb WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if (mysqli_num_rows($result) === 1) {
+            $user = mysqli_fetch_assoc($result);
+            
+            if (password_verify($password, $user['password'])) {
+                // Login successful, store session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                // Redirect to the home page
+                header("Location: Home.php");
+                exit();
+            } else {
+              $message = "Incorrect email or password";
+            }
+        } else {
+          $message = "This email is not signed up yet.";
+        }
+
+        mysqli_stmt_close($stmt);
+    }
+
+    mysqli_close($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +75,9 @@ include "database.php"; // Ensure this path is correct
       <a href="#">Forgot your password?</a>
       <div> <input type="submit" name="submitBtn" value="Log in" class="SU"></div>
       <p>Don’t have an account? <a href="signup.php"> Sign in</a></p>
+        <div id="messageAlert">
+          <p style="color:black;" class="errorMsg"><?php echo $message; ?></p>
+        </div>
       </div>
       </form>
     </div>
@@ -48,46 +91,8 @@ include "database.php"; // Ensure this path is correct
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="../Javascript/message.js"></script>
 </body>
 </html>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    if (empty($email) || empty($password)) {
-        echo "<script>alert('Please enter an email and password');</script>";
-    } else {
-        // Check for the user
-        $sql = "SELECT * FROM signupdb WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-
-        if (mysqli_num_rows($result) === 1) {
-            $user = mysqli_fetch_assoc($result);
-            
-            if (password_verify($password, $user['password'])) {
-                // Login successful, store session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-
-                // Redirect to the home page
-                header("Location: Home.php");
-                exit();
-            } else {
-                echo "<script>alert('Incorrect email or password');</script>";
-            }
-        } else {
-            // No email found in the database
-            echo "<script>alert('This email is not signed up yet.');</script>";
-        }
-
-        mysqli_stmt_close($stmt);
-    }
-
-    mysqli_close($conn);
-}
-?>
