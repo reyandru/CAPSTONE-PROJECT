@@ -1,32 +1,25 @@
 <?php
 session_start();
-include "database.php"; // Ensure this path is correct
-
+include 'database.php'; 
 $message = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if (empty($email) || empty($password)) {
-        $message = "Please enter an email and password";
+      $message = "Please enter email and password.";
     } else {
-        // Check for the user
-        $sql = "SELECT * FROM signupdb WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $sql);
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+        $sql = "SELECT * FROM registerdb WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if (mysqli_num_rows($result) === 1) {
-            $user = mysqli_fetch_assoc($result);
-            
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
-                // Login successful, store session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-
-                // Redirect to the home page
+                $_SESSION['login_email'] = $email;
                 header("Location: Home.php");
                 exit();
             } else {
@@ -36,12 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $message = "This email is not signed up yet.";
         }
 
-        mysqli_stmt_close($stmt);
+        $stmt->close();
     }
-
-    mysqli_close($conn);
 }
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       <div class="inputs-wrap">
       <label for="email"> <ion-icon name="mail-outline"></ion-icon>Email</label>
-      <input type="email" name="email" id="email" class="in" required>
+      <input type="email" name="email" id="email" class="in" >
 
       <label for="passw"><ion-icon name="lock-closed"></ion-icon> Password</label>
-      <input type="password" name="password" id="passw" class="in" required>
+      <input type="password" name="password" id="passw" class="in" >
       <a href="#">Forgot your password?</a>
       <div> <input type="submit" name="submitBtn" value="Log in" class="SU"></div>
       <p>Don’t have an account? <a href="signup.php"> Sign in</a></p>
@@ -94,5 +88,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="../Javascript/message.js"></script>
 </body>
 </html>
-
-

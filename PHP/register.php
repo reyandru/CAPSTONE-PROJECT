@@ -1,70 +1,49 @@
 <?php
-include "database.php";
-
-// Start a session
 session_start();
+include 'database.php'; // Include the database connection
 
-$message = ""; // Variable to store alert messages
+$message="";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get and sanitize user inputs
-    $firstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_SPECIAL_CHARS);
-    $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
-    $age = filter_input(INPUT_POST, "age", FILTER_SANITIZE_NUMBER_INT);
-    $gender = filter_input(INPUT_POST, "gender", FILTER_SANITIZE_SPECIAL_CHARS);
-    $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_SPECIAL_CHARS);
-    $contact = filter_input(INPUT_POST, "contactNo", FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $register_email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    // Function to validate no special characters except for spaces
-    function validate_no_special_characters($input) {
-        return preg_match('/^[a-zA-Z0-9\s]*$/', $input); // Allow letters, numbers, and spaces
-    }
-
-    // Validate inputs
-    if (!validate_no_special_characters($firstname)) {
-        $message = "First name contains invalid characters.";
-    } elseif (!validate_no_special_characters($lastname)) {
-        $message = "Last name contains invalid characters.";
-    } elseif (!validate_no_special_characters($address)) {
-        $message = "Address contains invalid characters.";
-    } elseif (!validate_no_special_characters($contact)) {
-        $message = "Contact number contains invalid characters.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $message = "Invalid email format";
+    // Check if the email matches the one used in signup
+    if ($register_email !== $_SESSION['signup_email']) {
+      $message = "Email does not match the one used in sign-up. Please try again.";
     } else {
-        // Check if the email already exists in the registerdb table
-        $email_check_query = "SELECT * FROM registerdb WHERE email = ?";
-        $stmt = mysqli_prepare($conn, $email_check_query);
-        mysqli_stmt_bind_param($stmt, "s", $email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
+        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
+        $age = filter_input(INPUT_POST, 'age', FILTER_SANITIZE_NUMBER_INT);
+        $gender = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_SPECIAL_CHARS);
+        $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
+        $contactNo = filter_input(INPUT_POST, 'contactNo', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Email already exists, set message
-            $message = "Email already registered. Please use a different email.";
-        } else {
-            // Email does not exist, proceed to insert the registration details into registerdb
-            $insert_query = "INSERT INTO registerdb (firstname, lastname, age, gender, address, contactNo, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt = mysqli_prepare($conn, $insert_query);
-            
-            // Bind parameters
-            mysqli_stmt_bind_param($stmt, "ssissss", $firstname, $lastname, $age, $gender, $address, $contact, $email);
-            
+        // Prepare the SQL statement to update user data
+        $sql = "UPDATE registerdb SET firstname=?, lastname=?, age=?, gender=?, address=?, contactNo=? WHERE email=?";
+        
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            // Bind the parameters
+            mysqli_stmt_bind_param($stmt, "ssisss", $firstname, $lastname, $age, $gender,$address, $contactNo, $register_email);
+
+            // Execute the statement
             if (mysqli_stmt_execute($stmt)) {
-                // Registration successful, redirect to home.php
+                // Redirect to the login page
                 header("Location: login.php");
-                exit;
+                exit();
             } else {
-                $message = "Error registering user";
+                echo "Error updating record: " . mysqli_error($conn);
             }
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "Failed to prepare statement: " . mysqli_error($conn);
         }
     }
-
-    // Close the statement and connection
-    mysqli_close($conn);
 }
+
+mysqli_close($conn);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

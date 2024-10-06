@@ -1,45 +1,44 @@
-<?php 
-  include "database.php";
-?>
 <?php
+include "database.php";
+
 $message = "";
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-    $role = filter_input(INPUT_POST, "roleOption", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_SPECIAL_CHARS);
-
-    $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-
     $cpassword = filter_input(INPUT_POST, "cpassword", FILTER_SANITIZE_SPECIAL_CHARS);
 
-    if(empty($email)){
-      $message = "Please enter a email";
-    }else if(empty($username)){
-      $message = "Please enter a username";
-    }else if(empty($password)){
-      $message = "Please enter a password";
-    }else if($password != $cpassword){
-    $message = "Password not match!";
-    }else{
-      $hash = password_hash($password, PASSWORD_DEFAULT);
-      $chash = password_hash($cpassword, PASSWORD_DEFAULT);
-      $sql = "INSERT INTO signupdb (role,   email, username, password, cpassword) VALUES ('$role','$email','$username','$hash','$chash')";
-      try{
-        mysqli_query($conn,$sql);
-        echo"<script>alert('Successfully Sign up');</script>";
-        header("location: register.php");
-      }
-     catch(mysqli_sql_exception){
-      $message = "The username is taken";
-     }
-    }
-  }
+    if (empty($email)) {
+        $message = "Please enter an email";
+    } else if (empty($password)) {
+        $message = "Please enter a password";
+    } else if ($password != $cpassword) {
+        $message = "Passwords do not match!";
+    } else {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
 
-  mysqli_close($conn);
+        // Updated SQL statement to only include email and password
+        $sql = "INSERT INTO registerdb (email, password) VALUES (?, ?)";
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            // Bind the email and hashed password
+            mysqli_stmt_bind_param($stmt, "ss", $email, $hash);
+            if (mysqli_stmt_execute($stmt)) {
+                echo "<script>alert('Successfully Signed Up'); window.location.href='register.php';</script>";
+                exit(); // Ensure to exit after redirection
+            } else {
+                $message = "Error: The email is already taken.";
+            }
+            mysqli_stmt_close($stmt);
+        } else {
+            $message = "Failed to prepare statement.";
+        }
+    }
+}
+
+mysqli_close($conn);
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,12 +71,6 @@ $message = "";
           <label for="email"> <ion-icon name="mail-outline"></ion-icon>Email</label>
 
           <input type="email" name="email" id="email" class="in" required>
-
-
-          <label for="username"> <ion-icon name="person"></ion-icon> Username</label>
-
-          <input type="text" name="username" id="username" class="in"  required>
-
 
           <label for="passw"><ion-icon name="lock-closed"></ion-icon> Password</label>
 

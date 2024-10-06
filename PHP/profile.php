@@ -1,31 +1,41 @@
 <?php
 session_start();
+include 'database.php'; // Include the database connection
 
-include "database.php";
-
-if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Please log in first.'); window.location.href='login.php';</script>";
+// Check if the user is logged in
+if (!isset($_SESSION['login_email'])) {
+    header("Location: login.php"); // Redirect to login if not logged in
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
+$login_email = $_SESSION['login_email'];
 
-$sql = "SELECT firstname, lastname, age, gender, contactNo, email FROM registerdb WHERE id = ?";
+// Fetch the user's profile data from the database based on the email
+$sql = "SELECT firstname, lastname, age, gender, address, contactNo, email FROM registerdb WHERE email = ?";
 $stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $user_id);
+
+// Check for prepared statement error
+if (!$stmt) {
+    die("Preparation failed: " . mysqli_error($conn));
+}
+
+mysqli_stmt_bind_param($stmt, "s", $login_email);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
+// Fetch the user data
 if ($result && mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_assoc($result);
 } else {
-    $user = null; // Set user to null if no data found
+    echo "<p>User not found.</p>";
+    exit();
 }
 
-// Close the statement and connection
+// Close statement and database connection
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
