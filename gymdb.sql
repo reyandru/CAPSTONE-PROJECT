@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2024 at 08:20 PM
+-- Generation Time: Oct 06, 2024 at 03:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -28,20 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attendance` (
-  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `login_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `logout_time` timestamp NULL DEFAULT NULL,
   `ip_address` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `attendance`
+-- Table structure for table `progressdb`
 --
 
-INSERT INTO `attendance` (`id`, `user_id`, `login_time`, `logout_time`, `ip_address`) VALUES
-(1, 4, '2024-10-03 18:16:09', NULL, '::1'),
-(2, 4, '2024-10-03 18:16:40', NULL, '::1');
+CREATE TABLE `progressdb` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `goalW` int(11) NOT NULL,
+  `startW` int(11) NOT NULL,
+  `currentW` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,22 +56,25 @@ INSERT INTO `attendance` (`id`, `user_id`, `login_time`, `logout_time`, `ip_addr
 
 CREATE TABLE `registerdb` (
   `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `age` int(5) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `address` varchar(50) NOT NULL,
-  `contactNo` int(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `date_register` datetime NOT NULL DEFAULT current_timestamp()
+  `contactNo` varchar(20) NOT NULL,
+  `date_register` datetime NOT NULL DEFAULT current_timestamp(),
+  `profile_pic` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `registerdb`
 --
 
-INSERT INTO `registerdb` (`id`, `firstname`, `lastname`, `age`, `gender`, `address`, `contactNo`, `email`, `date_register`) VALUES
-(4, 'Rei Andrew', 'Bariata', 21, 'Male', 'Brgy. Abulalas Hagonoy, Bulacan', 2147483647, 'username@user.com', '2024-10-04 01:52:26');
+INSERT INTO `registerdb` (`id`, `email`, `password`, `firstname`, `lastname`, `age`, `gender`, `address`, `contactNo`, `date_register`, `profile_pic`) VALUES
+(22, 'reiandrew@user.com', '$2y$10$Xpk8owH/2J0c6vp/A/RhBeDA6DwGLt1qmYRBWRZsEy5tZNPVveuK2', 'Rei Andrew', 'Bariata', 21, 'Male', '', '09123456789', '2024-10-06 13:19:15', 'uploads/670293b274921_me.jpg'),
+(25, 'williamsabino@user.com', '$2y$10$pyEZCEhe272vyLu1pTkxfe5rvsU..wP/eSlPAdzaI8AP4zu6TWFL.', 'William', 'Sabino', 23, 'Male', 'Tabing ilog', '09876543210', '2024-10-06 20:18:02', 'uploads/6702938c3bd3d_William2x2.jpg');
 
 -- --------------------------------------------------------
 
@@ -76,20 +84,12 @@ INSERT INTO `registerdb` (`id`, `firstname`, `lastname`, `age`, `gender`, `addre
 
 CREATE TABLE `signupdb` (
   `id` int(11) NOT NULL,
-  `role` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `cpassword` varchar(255) NOT NULL,
   `date_signup` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `signupdb`
---
-
-INSERT INTO `signupdb` (`id`, `role`, `email`, `username`, `password`, `cpassword`, `date_signup`) VALUES
-(4, '', 'username@user.com', 'Rei Andrew', '$2y$10$U3wbwJ4/14D0As6T99MFVulmvy5d64IGmPNe5K2Z84tAvSOBXi2VC', '$2y$10$uYz3bxr2lCD2IAs1xh9i2e/fUVZTNC8Dt1saPHP/zevCN63fltGWi', '2024-10-04 01:51:35');
 
 --
 -- Indexes for dumped tables
@@ -99,15 +99,19 @@ INSERT INTO `signupdb` (`id`, `role`, `email`, `username`, `password`, `cpasswor
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `progressdb`
+--
+ALTER TABLE `progressdb`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `registerdb`
 --
 ALTER TABLE `registerdb`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `signupdb`
@@ -121,22 +125,22 @@ ALTER TABLE `signupdb`
 --
 
 --
--- AUTO_INCREMENT for table `attendance`
+-- AUTO_INCREMENT for table `progressdb`
 --
-ALTER TABLE `attendance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `progressdb`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `registerdb`
 --
 ALTER TABLE `registerdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `signupdb`
 --
 ALTER TABLE `signupdb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
