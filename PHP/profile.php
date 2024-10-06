@@ -1,20 +1,17 @@
 <?php
 session_start();
-include 'database.php'; // Include the database connection
+include 'database.php'; 
 
-// Check if the user is logged in
 if (!isset($_SESSION['login_email'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
+    header("Location: login.php"); 
     exit();
 }
 
 $login_email = $_SESSION['login_email'];
 
-// Fetch the user's profile data from the database based on the email
-$sql = "SELECT firstname, lastname, age, gender, address, contactNo, email FROM registerdb WHERE email = ?";
+$sql = "SELECT firstname, lastname, age, gender, address, contactNo, email, profile_pic FROM registerdb WHERE email = ?";
 $stmt = mysqli_prepare($conn, $sql);
 
-// Check for prepared statement error
 if (!$stmt) {
     die("Preparation failed: " . mysqli_error($conn));
 }
@@ -23,7 +20,6 @@ mysqli_stmt_bind_param($stmt, "s", $login_email);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 
-// Fetch the user data
 if ($result && mysqli_num_rows($result) > 0) {
     $user = mysqli_fetch_assoc($result);
 } else {
@@ -31,7 +27,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     exit();
 }
 
-// Close statement and database connection
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
@@ -60,7 +55,7 @@ mysqli_close($conn);
     <div class="left-container">
         <div class="userProfil">
             <a href="#">
-                <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+                <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>"     height="50" alt="" class="img-container">
                 <p class="userName"><?php if (isset($user)) echo htmlspecialchars($user["firstname"] . " " . $user["lastname"]); ?></p> 
             </a>
             <div class="consts-dropDown">
@@ -101,12 +96,20 @@ mysqli_close($conn);
             <div class="profile1">
                 <div id="profile">
                     <div class="topConts">
-                        <div id="profPics">
-                            <img src="../assets/defProf.webp" alt="" height="150">
-                            <h3>My profile</h3>
+                        <div id="profPics" class="profile-picture-wrapper">
+                            <img id="profileImagePreview" src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" alt="Profile Picture" class="profile-picture">
+                            
+                            <form action="upload_profile_pic.php" method="POST" enctype="multipart/form-data" class="upload-form">
+                                <label for="profile_pic" class="upload-label">
+                                    <input type="file" name="profile_pic" id="profile_pic" accept="image/*" required onchange="previewImage(event)">
+                                    <span>Choose Profile Picture</span>
+                                </label>
+                                <input type="submit" value="Upload" class="upload-button">
+                            </form>
+                            <h3>My Profile</h3>
                         </div>
-                        
                     </div>
+
                     <div class="line"></div>
 
                     <div class="botConts">
@@ -146,6 +149,17 @@ mysqli_close($conn);
     </main>
 </div>
 
-<script src="../Javascript/profile.js"></script>
+<script src="../Javascript/profile.js"></script>\
+<script>
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var output = document.getElementById('profileImagePreview');
+        output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
 </body>
 </html>

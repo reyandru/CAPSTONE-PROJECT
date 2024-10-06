@@ -90,10 +90,10 @@ header{
   border-radius: 50%;
 }
 
-.userName{
-color: white;
-font-size: 26px;
-font-family: "arial";
+.userName {
+  color: white;
+  font-size: 18px;
+  font-family: 'arial';
 }
 
 .consts-dropDown {

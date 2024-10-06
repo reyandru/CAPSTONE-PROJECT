@@ -1,29 +1,5 @@
 <?php
-session_start();
-
-// Ensure the user is logged in; otherwise, redirect to login
-if (!isset($_SESSION['login_email'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// Include database connection to fetch user information (if needed)
-include 'database.php';
-
-// Fetch user details from the database
-$email = $_SESSION['login_email'];
-$sql = "SELECT * FROM registerdb WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Fetch user data
-$user = $result->fetch_assoc();
-$username = $user['firstname'] . ' ' . $user['lastname']; // Adjust this based on your database structure
-
-$stmt->close();
-$conn->close();
+include('username.php');
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +24,7 @@ $conn->close();
     <div class="left-container">
       <div class="userProfil">
         <a href="profile.php">
-          <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+          <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
           <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
         </a>
         

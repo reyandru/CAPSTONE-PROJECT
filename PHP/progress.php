@@ -1,32 +1,38 @@
-<div?php
-include('database.php'); 
+<?php
 session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
+include('database.php'); 
+if (!isset($_SESSION['login_email'])) {
+  header("Location: login.php"); 
+  exit();
 }
 
-$username = $_SESSION['username'];
+$email = $_SESSION['login_email'];
+$sql = "SELECT * FROM registerdb WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// Handle form submission
+$user = $result->fetch_assoc();
+$username = $user['firstname'] . ' ' . $user['lastname']; 
+
+$login_email = $_SESSION['login_email'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get values from input fields
     $goalWeight = $_POST['goalWeight'];
     $startingWeight = $_POST['startingWeight'];
     $currentWeight = $_POST['currentWeight'];
 
-    // Prepare and bind the SQL statement
     $stmt = $conn->prepare("INSERT INTO progressdb (goalW, startW, currentW) VALUES (?, ?, ?)");
     $stmt->bind_param("ddd", $goalWeight, $startingWeight, $currentWeight); // d for double
 
-    // Execute the statement and check for errors
     if ($stmt->execute()) {
         echo "<script>alert('Progress data saved successfully!');</script>";
     } else {
         echo "<script>alert('Error: " . $stmt->error . "');</script>";
     }
 
-    // Close the statement
+
     $stmt->close();
 }
 
@@ -57,7 +63,7 @@ $conn->close();
       <div class="left-container">
         <div class="userProfil">
           <a href="profile.html">
-            <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
       
             <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
       

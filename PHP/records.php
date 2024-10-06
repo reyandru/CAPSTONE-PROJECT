@@ -1,21 +1,5 @@
 <?php
-session_start();
-include "database.php"; // Ensure this path is correct for your database connection file
-
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
-}
-
-$username = $_SESSION['username'];
-$user_id = $_SESSION['user_id']; // Assuming you have stored the user_id in the session when logging in
-
-// Query to fetch attendance records for the logged-in user
-$sql = "SELECT login_time FROM attendance WHERE user_id = ? ORDER BY login_time DESC";
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $user_id);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+include('username.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +23,7 @@ $result = mysqli_stmt_get_result($stmt);
       <div class="left-container">
         <div class="userProfil">
           <a href="profile.html">
-            <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
             <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
           </a>
           <div class="consts-dropDown">

@@ -334,8 +334,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 90%;
+  justify-content: space-evenly;
+  width: 100%;
   height: 100%;
   row-gap: 10px;
   font-size: 22px;
@@ -344,6 +344,69 @@ header {
 #profPics img {
   border-radius: 50%;
 }
+
+
+.profile-picture-wrapper {
+    text-align: center;
+  margin: 20px 0;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1877F2;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.upload-form {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+}
+
+.upload-label {
+  padding: 5px;
+  background-color: #1877F2;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.upload-label input[type="file"] {
+  display: none;
+}
+
+.upload-label:hover {
+  background-color: #145dbf;
+}
+
+.upload-button {
+  padding: 5px;
+  background-color: #42b72a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #36a420;
+}
+
 
 #editProfs {
   width: 10%;
@@ -380,19 +443,19 @@ header {
 }
 
 .user h3 {
-  width: 38%;
+  width: 50%;
 }
 
 .users div {
-  margin-left: -60px;
+  margin-left: -80px;
 }
 
 .userss div {
-  margin-left: -90px;
+  margin-left: -80px;
 }
 
 .usersss div {
-  margin-left: -120px;
+  margin-left: -80px;
 }
 
 .outpt {
@@ -403,9 +466,14 @@ header {
   width: 100%;
 }
 
+#usercontacts{
+  margin-left: -80px;
+}
+
 .line {
   border: 1px solid black;
   height: 0.1%;
+
   width: 90%;
 }
 

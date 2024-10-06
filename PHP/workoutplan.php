@@ -1,10 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
-}
-$username = $_SESSION['username'];
+include('username.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +25,7 @@ $username = $_SESSION['username'];
       <div class="left-container">
         <div class="userProfil">
           <a href="profile.html">
-            <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
+            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
       
             <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
       

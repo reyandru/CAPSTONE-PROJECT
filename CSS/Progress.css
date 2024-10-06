@@ -90,10 +90,10 @@
   border-radius: 50%;
   }
   
-  .userName{
-  color: white;
-  font-size: 26px;
-  font-family: "arial";
+  .userName {
+    color: white;
+    font-size: 18px;
+    font-family: 'arial';
   }
   
   .consts-dropDown{
@@ -466,6 +466,20 @@
     color: white;
     border-bottom: 1px solid white;
     background-color: transparent;
+    }
+
+    #startW{
+      text-align: center;
+      outline: none;
+      width: 50px;
+      height: 30px;
+      font-size: 30px;
+      font-family: "roboto";
+      margin-right: 30px;
+      border: none;
+      color: white;
+      border-bottom: 1px solid white;
+      background-color: transparent;
     }
   
   input[type="number"]::-webkit-inner-spin-button,
@@ -982,7 +996,6 @@
   
   }
   
-  /* input section of weight progress*/
   .weightAdd{
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
