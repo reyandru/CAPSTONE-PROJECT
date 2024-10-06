@@ -1,4 +1,5 @@
 <?php
+session_start(); // Make sure this is included
 include "database.php";
 
 $message = "";
@@ -6,6 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
     $cpassword = filter_input(INPUT_POST, "cpassword", FILTER_SANITIZE_SPECIAL_CHARS);
+
+    // Store email in session for comparison during registration
+    $_SESSION['signup_email'] = $email;
 
     if (empty($email)) {
         $message = "Please enter an email";
@@ -16,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Updated SQL statement to only include email and password
+        // SQL statement to insert email and password
         $sql = "INSERT INTO registerdb (email, password) VALUES (?, ?)";
         if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind the email and hashed password
@@ -36,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 mysqli_close($conn);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

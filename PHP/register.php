@@ -2,15 +2,24 @@
 session_start();
 include 'database.php'; // Include the database connection
 
-$message="";
+$message = "";
+
+// Check if signup email exists in session
+if (!isset($_SESSION['signup_email'])) {
+    // If session email is not set, redirect to signup page or show a message
+    $message = "Session expired or signup email not found. Please sign up again.";
+    echo "<script>alert('$message'); window.location.href='signup.php';</script>";
+    exit(); // Stop further execution
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $register_email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
     // Check if the email matches the one used in signup
     if ($register_email !== $_SESSION['signup_email']) {
-      $message = "Email does not match the one used in sign-up. Please try again.";
+        $message = "Email does not match the one used in sign-up. Please try again.";
     } else {
+        // Proceed with updating user information
         $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
         $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
         $age = filter_input(INPUT_POST, 'age', FILTER_SANITIZE_NUMBER_INT);
@@ -23,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind the parameters
-            mysqli_stmt_bind_param($stmt, "ssisss", $firstname, $lastname, $age, $gender,$address, $contactNo, $register_email);
+            mysqli_stmt_bind_param($stmt, "ssissss", $firstname, $lastname, $age, $gender, $address, $contactNo, $register_email);
 
             // Execute the statement
             if (mysqli_stmt_execute($stmt)) {
@@ -31,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header("Location: login.php");
                 exit();
             } else {
-                echo "Error updating record: " . mysqli_error($conn);
+                $message = "Error updating record: " . mysqli_error($conn);
             }
             mysqli_stmt_close($stmt);
         } else {
-            echo "Failed to prepare statement: " . mysqli_error($conn);
+            $message = "Failed to prepare statement: " . mysqli_error($conn);
         }
     }
 }
