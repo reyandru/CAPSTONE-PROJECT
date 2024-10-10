@@ -1,56 +1,51 @@
 <?php
-session_start();
-include 'database.php'; // Include the database connection
+include 'database.php';  
 
-$message = "";
+$message = '';  
 
-// Check if signup email exists in session
-if (!isset($_SESSION['signup_email'])) {
-    // If session email is not set, redirect to signup page or show a message
-    $message = "Session expired or signup email not found. Please sign up again.";
-    echo "<script>alert('$message'); window.location.href='signup.php';</script>";
-    exit(); // Stop further execution
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    $address = $_POST['address'];
+    $contactNo = $_POST['contactNo'];
+    $email = $_POST['email'];
+    $password = $_POST['passw'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $register_email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-
-    // Check if the email matches the one used in signup
-    if ($register_email !== $_SESSION['signup_email']) {
-        $message = "Email does not match the one used in sign-up. Please try again.";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Invalid email format";
     } else {
-        // Proceed with updating user information
-        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
-        $lastname = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
-        $age = filter_input(INPUT_POST, 'age', FILTER_SANITIZE_NUMBER_INT);
-        $gender = filter_input(INPUT_POST, 'gender', FILTER_SANITIZE_SPECIAL_CHARS);
-        $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
-        $contactNo = filter_input(INPUT_POST, 'contactNo', FILTER_SANITIZE_SPECIAL_CHARS);
+        $stmt = $conn->prepare("SELECT * FROM registerdb WHERE email = ?");
+        $stmt->bind_param('s', $email);  
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        // Prepare the SQL statement to update user data
-        $sql = "UPDATE registerdb SET firstname=?, lastname=?, age=?, gender=?, address=?, contactNo=? WHERE email=?";
-        
-        if ($stmt = mysqli_prepare($conn, $sql)) {
-            // Bind the parameters
-            mysqli_stmt_bind_param($stmt, "ssissss", $firstname, $lastname, $age, $gender, $address, $contactNo, $register_email);
-
-            // Execute the statement
-            if (mysqli_stmt_execute($stmt)) {
-                // Redirect to the login page
-                header("Location: login.php");
-                exit();
-            } else {
-                $message = "Error updating record: " . mysqli_error($conn);
-            }
-            mysqli_stmt_close($stmt);
+        if ($result->num_rows > 0) {
+            $message = "Email already exists.";
         } else {
-            $message = "Failed to prepare statement: " . mysqli_error($conn);
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            $sql = "INSERT INTO registerdb (firstname, lastname, age, gender, address, contactNo, email, password)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ssisssss', $firstname, $lastname, $age, $gender, $address, $contactNo, $email, $hashedPassword);
+            
+            if ($stmt->execute()) {
+                $message = "Registration successful!";
+            } else {
+                $message = "Registration failed. Please try again.";
+            }
         }
+
+        $stmt->close();
     }
 }
 
-mysqli_close($conn);
+$conn->close();
 ?>
+
+
 
 
 
@@ -71,7 +66,7 @@ mysqli_close($conn);
 <div class="container">
   <div class="conts1">
     <div class="form-wrap">
-      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <form action="register.php" method="post">
         <div class="ttl-wrap">
           <p id="login-ttl">Register Form</p>
         </div>
@@ -107,6 +102,9 @@ mysqli_close($conn);
         <div class="bot">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" required>
+
+          <label for="passw">Password</label>
+          <input type="password" name="passw" id="password" required>
 
           <div class="two-btn">
             <button type="submit">Submit</button>

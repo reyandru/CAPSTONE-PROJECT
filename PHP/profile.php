@@ -55,7 +55,7 @@ mysqli_close($conn);
     <div class="left-container">
         <div class="userProfil">
             <a href="#">
-                <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>"     height="50" alt="" class="img-container">
+                <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>"     height="70" width="70"  alt="" class="img-container">
                 <p class="userName"><?php if (isset($user)) echo htmlspecialchars($user["firstname"] . " " . $user["lastname"]); ?></p> 
             </a>
             <div class="consts-dropDown">

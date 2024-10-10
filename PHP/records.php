@@ -23,7 +23,7 @@ include('username.php');
       <div class="left-container">
         <div class="userProfil">
           <a href="profile.html">
-            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
+            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="70" width="70" alt="" class="img-container">
             <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
           </a>
           <div class="consts-dropDown">

@@ -23,18 +23,19 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// input and outputweights
+//weight progress
 const addBtnWeight = document.getElementById("addBtnWeights");
 const addBTNWeights = document.querySelector('#addBtnWeights');
 const inputContWeights = document.getElementById("inputWeight");
+const circle = document.getElementById("circle");
 
-// Load goalWeight from localStorage on page load
 document.addEventListener('DOMContentLoaded', function() {
   const storedGoalWeight = localStorage.getItem('goalWeight');
   if (storedGoalWeight) {
     document.getElementById("goalW").value = storedGoalWeight;
   }
-  loadOutput(); // Load previous outputs
+  loadOutput(); 
+  loadCircleValue(); 
 });
 
 addBTNWeights.addEventListener('click', function() {
@@ -51,87 +52,86 @@ document.getElementById("addWeights").addEventListener('click', function() {
   const currentWeight = parseFloat(document.getElementById("weights").value);
   const goalWeight = parseFloat(document.getElementById("goalW").value);
   const startWeight = parseFloat(document.getElementById("startW").value);
-  const circle = document.getElementById("circle");
 
-  // Make sure all inputs are valid
   if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
     const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
 
-    if (goalWeight > startWeight && currentWeight > startWeight) {
-      const progress = ((currentWeight - goalWeight) / (startWeight - goalWeight)) * 100;
-      const percent = progress.toFixed(0);
-
-      const output = createOutputDiv(currentWeight, percent);
-      outputs.push(output); // Store output
-
-      updateOutputContainer(outputs);
-      saveOutputs(outputs);
-      
-      clearInputs();
-      circle.innerHTML = percent + " %";
-      localStorage.setItem('goalWeight', goalWeight);
-    } else if (currentWeight <= startWeight && currentWeight >= goalWeight) {
-      const progress = ((startWeight - currentWeight) / (startWeight - goalWeight)) * 100;
-      const percent = progress.toFixed(0);
-
-      const output = createOutputDiv(currentWeight, percent);
-      outputs.push(output); // Store output
-
-      updateOutputContainer(outputs);
-      saveOutputs(outputs);
-      
-      clearInputs();
-      circle.innerHTML = percent + " %";
-      localStorage.setItem('goalWeight', goalWeight);
-    } else {
-      alert("Please ensure current weight is within the valid range!");
+    if (outputs.length >= 3) {
+      outputs.shift(); 
     }
+
+    let percent; 
+
+    if (currentWeight >= goalWeight) {
+      const progress = ((currentWeight - goalWeight) / (startWeight - goalWeight)) * 100;
+      percent = Math.max(0, Math.min(100, progress.toFixed(0))); // Ensure it stays within 0% to 100%
+    } else {
+      const progress = ((goalWeight - currentWeight) / (goalWeight - startWeight)) * 100;
+      percent = Math.max(0, Math.min(100, progress.toFixed(0))); // Ensure it stays within 0% to 100%
+    }
+
+    const output = createOutputDiv(currentWeight, percent);
+    outputs.push(output); 
+
+    updateOutputContainer(outputs);
+    saveOutputs(outputs);
+    
+    circle.innerHTML = percent + " %";
+    localStorage.setItem('circleValue', percent); 
+    localStorage.setItem('goalWeight', goalWeight);
+
+    clearInputs();
   } else {
     alert("Please enter valid numbers for all weights.");
   }
 });
 
-// Function to create an output div
 function createOutputDiv(currentWeight, percent) {
   return {
     date: new Date().toLocaleDateString(),
     weight: currentWeight,
-    progress: percent, // This retains the percentage
+    progress: percent, 
   };
 }
 
-// Function to update the output container
 function updateOutputContainer(outputs) {
   const outputContainer = document.getElementById('outputWeight');
-  outputContainer.innerHTML = ''; // Clear existing outputs
+  outputContainer.innerHTML = ''; 
   outputs.forEach(output => {
     const newDiv = document.createElement('div');
     newDiv.className = 'outputConts';
     newDiv.innerHTML = 
       `<div>${output.date}</div>` +
       `<div>Current Weight: ${output.weight} kg</div>` +
-      `<div>${output.progress} % Progress</div>`; // Display percentage
+      `<div>${output.progress} % Progress</div>`; 
     outputContainer.appendChild(newDiv);
   });
 }
 
-// Function to save outputs to localStorage
 function saveOutputs(outputs) {
   localStorage.setItem('weightOutputs', JSON.stringify(outputs));
 }
 
-// Function to load previous outputs
 function loadOutput() {
   const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
   updateOutputContainer(outputs);
 }
 
-// Function to clear input fields
+function loadCircleValue() {
+  const storedCircleValue = localStorage.getItem('circleValue');
+  if (storedCircleValue) {
+    circle.innerHTML = storedCircleValue + " %"; 
+  } else {
+    circle.innerHTML = "0 %"; 
+  }
+}
+
 function clearInputs() {
   document.getElementById("weights").value = '';
   document.getElementById("goalW").value = '';
   document.getElementById("startW").value = '';
 }
+
 
 
 

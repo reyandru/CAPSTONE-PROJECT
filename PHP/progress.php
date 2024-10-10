@@ -1,10 +1,12 @@
 <?php
 session_start();
-include('database.php'); 
+
 if (!isset($_SESSION['login_email'])) {
-  header("Location: login.php"); 
-  exit();
+    header("Location: login.php");
+    exit();
 }
+
+include 'database.php';  
 
 $email = $_SESSION['login_email'];
 $sql = "SELECT * FROM registerdb WHERE email = ?";
@@ -14,31 +16,55 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $user = $result->fetch_assoc();
-$username = $user['firstname'] . ' ' . $user['lastname']; 
+$username = trim($user['firstname'] . ' ' . $user['lastname']);  
 
-$login_email = $_SESSION['login_email'];
+$stmt->close();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $goalWeight = $_POST['goalWeight'];
-    $startingWeight = $_POST['startingWeight'];
-    $currentWeight = $_POST['currentWeight'];
+    $goalWeight = $_POST['goalWeight'] ?? null;
+    $startWeight = $_POST['startingWeight'] ?? null;
+    $currentWeight = $_POST['currentWeight'] ?? null;
 
-    $stmt = $conn->prepare("INSERT INTO progressdb (goalW, startW, currentW) VALUES (?, ?, ?)");
-    $stmt->bind_param("ddd", $goalWeight, $startingWeight, $currentWeight); // d for double
+    if (is_numeric($goalWeight) && is_numeric($startWeight) && is_numeric($currentWeight)) {
+        
+        $stmt = $conn->prepare("SELECT * FROM progressdb WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Progress data saved successfully!');</script>";
+        if ($result->num_rows > 0) {
+            $updateStmt = $conn->prepare("UPDATE progressdb SET goalW = ?, startW = ?, currentW = ? WHERE username = ?");
+            $updateStmt->bind_param("ddds", $goalWeight, $startWeight, $currentWeight, $username);
+
+            if ($updateStmt->execute()) {
+                echo "Progress updated successfully.";
+            } else {
+                echo "Error updating progress: " . $updateStmt->error;
+            }
+            $updateStmt->close();
+        } else {
+            $insertStmt = $conn->prepare("INSERT INTO progressdb (username, goalW, startW, currentW) VALUES (?, ?, ?, ?)");
+            $insertStmt->bind_param("sddd", $username, $goalWeight, $startWeight, $currentWeight);
+
+            if ($insertStmt->execute()) {
+                echo "alert('New progress record added.')";
+            } else {
+                echo "Error adding new progress: " . $insertStmt->error;
+            }
+            $insertStmt->close();
+        }
     } else {
-        echo "<script>alert('Error: " . $stmt->error . "');</script>";
+        echo '<script>alert("Invalid input: Please enter numeric values for weights.");</script>';
     }
-
-
-    $stmt->close();
 }
 
-// Make sure you close the connection at the end
 $conn->close();
 ?>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +89,7 @@ $conn->close();
       <div class="left-container">
         <div class="userProfil">
           <a href="profile.html">
-            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="50" alt="" class="img-container">
+            <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp'; ?>" height="70" width="70" alt="" class="img-container">
       
             <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
       
@@ -107,45 +133,48 @@ $conn->close();
 
             <!-- //Weight progress -->
             <div class="weightScale">
-              <div class="weights">
-                <div class="weightInfo">
-                  <h1>Weight</h1>
-                  <div class="percentages"> 
-                    <div class="outlineB">
-                      <div id="circle">0%</div>
-                    </div>
-                  </div>  
-                  <form method="POST" action="progress.php">
-                    <div id="goalWeight">      
-                      <label for="goal" id="goalWeights">Goal Weight:</label>
-                      <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
-                    </div>
-                </div>
+  <div class="weights">
+    <div class="weightInfo">
+      <h1>Weight</h1>
+      <div class="percentages"> 
+        <div class="outlineB">
+          <div id="circle">0%</div>
+        </div>
+      </div>  
+      <form method="POST" action="progress.php">
+        <div id="goalWeight">      
+          <label for="goal" id="goalWeights">Goal Weight:</label>
+          <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
+        </div>
+    </div>
 
-                <div class="weightAdd">
-                  <div class="kgs"> </div>
-                  <div id="outputWeight"></div>
+    <div class="weightAdd">
+      <div class="kgs"> </div>
+      <div id="outputWeight"></div>
 
-                  <button id="addBtnWeights" type="button">Weights in kilo<img src="../assets/addBtnWeight.png" alt="" height="30"></button>
-                  <div id="inputWeight">
-                    <button id="xBtnWeight" type="button">x</button>
-                    <div class="weightsNo">
-                      <div>
-                        <label for="startWeight" id="noOfW">Starting Weight:</label>
-                        <input class="inputsWeightProgress" name="startingWeight" id="startW" type="number" placeholder="">
-                      </div>
-                      <div>
-                        <label for="weights" id="noOfW">Current Weight:</label>
-                        <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
-                      </div>
+      <button id="addBtnWeights" type="button">Weights in kilo
+        <img src="../assets/addBtnWeight.png" alt="" height="30">
+      </button>
+      <div id="inputWeight">
+        <button id="xBtnWeight" type="button">x</button>
+        <div class="weightsNo">
+          <div>
+            <label for="startWeight" id="noOfW">Starting Weight:</label>
+            <input class="inputsWeightProgress" name="startingWeight" id="startW" type="number" placeholder="">
+          </div>
+          <div>
+            <label for="weights" id="noOfW">Current Weight:</label>
+            <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
+          </div>
 
-                      <button id="addWeights" type="submit">ADD</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </form>
+          <button id="addWeights" type="submit">ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
 </div>
+
             <!-- //workout progress -->
             <div class="workoutProg">
               <div class="progress-conts">

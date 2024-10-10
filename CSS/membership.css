@@ -61,42 +61,38 @@ form{
 .ttl-wrap h3{
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
   font-family: "Nunito";
   color: #112C9F;
 }
 
 .inputs-wrap{
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  row-gap: 15px;
+  row-gap: 20px;
   height: 400px;
   width: 450px;
+  font-family: "nunito";
+}
+
+.inputs-wrap h3{
+  font-size: 30px;
+}
+
+input[type=radio] {
+  border: 0px;
+  width: 30px;
+  height: 2em;
 }
 
 .inputs-wrap label{
   display: flex;
- align-items: center;
- color: #112C9F;
- column-gap: 5px;
-  font-size: 18px;
-  font-family: "nunito";
-}
-
-ion-icon {
+  align-items: center;
   color: #112C9F;
-}
-
-
-input{
-  height: 35px;
-  background-color: #EAEAEA;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  font-family:"Roboto";
-  outline: none;
+  column-gap: 5px;
+  font-size: 40px;
 }
 
 .SU{
@@ -107,7 +103,7 @@ font-family: "Nunito";
 font-size: 24px;
 border-radius: 10px;
 padding: 5px;
-width: 100%;
+width: 400px;
 border: none;
 cursor: pointer;
 height: 50px;

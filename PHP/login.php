@@ -68,7 +68,7 @@ $conn->close();
       <input type="password" name="password" id="passw" class="in" >
       <a href="#">Forgot your password?</a>
       <div> <input type="submit" name="submitBtn" value="Log in" class="SU"></div>
-      <p>Don’t have an account? <a href="signup.php"> Sign in</a></p>
+      <p>Don’t have an account? <a href="register.php"> Register</a></p>
         <div id="messageAlert">
           <p style="color:black;" class="errorMsg"><?php echo $message; ?></p>
         </div>
