@@ -1,10 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
-}
-$username = $_SESSION['username'];
+include('username.php');
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +32,7 @@ $username = $_SESSION['username'];
         </div>
       </div>
       <div class="DD-container">
-        <a href="logout.php"> <button class="logOutBtn">LOG OUT</button></a>
+      <a href="../PHP/login.php"> <button class="logOutBtn">LOG OUT</button></a>
       </div>
     </div>
   </header>

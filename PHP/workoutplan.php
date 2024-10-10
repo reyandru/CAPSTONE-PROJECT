@@ -35,7 +35,7 @@ include('username.php');
         </div>
       </div>
       <div class="DD-container">
-        <a href="login.php"> <button class="logOutBtn">LOG OUT</button></a>
+      <a href="../PHP/login.php"> <button class="logOutBtn">LOG OUT</button></a>
       </div>
       </div>
  

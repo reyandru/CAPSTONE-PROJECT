@@ -56,7 +56,7 @@ document.getElementById("addWeights").addEventListener('click', function() {
   if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
     const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
 
-    if (outputs.length >= 3) {
+    if (outputs.length <= 3) {
       outputs.shift(); 
     }
 

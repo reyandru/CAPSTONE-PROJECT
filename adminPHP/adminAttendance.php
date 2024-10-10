@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Real Deal Gym</title>
+  <link rel="icon" href="assets/logs.png">
+  <link rel="stylesheet" href="../CSS/adminAttendance.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+      <h6>REAL DEAL GYM</h6>
+    </div>
+
+    <div class="left-container">
+      <div class="userProfil">
+          <img height="70" width="70" alt="" class="img-container">
+          <p class="userName">Admin</p> 
+        
+        <div class="consts-dropDown">
+          <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50" width="45px"></button>
+        </div>
+      </div>
+      <div class="DD-container">
+        <a href="../PHP/login.php"> <button class="logOutBtn">LOG OUT</button></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="nav">
+      <div class="hamburger" id="hamburger" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
+      <div class="menu" id="menu">
+        <a href="adminAttendance.html"> <img src="../assets/attendance.png" alt="" height="45">Attendance</a>
+        <a href="membersList.html"> <img src="../assets/membersList.png" alt="" height="45">Members</a>
+        <a href="dashboard.html"> <img src="../assets/dashboard.png" alt="" height="45">Dashboard</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="conts1">
+        <div class="page"> 
+          <p><img src="../assets/homes.png" alt="" height="15">Attendance</p>
+        </div>
+        <div class="memberName">
+          <p>Welcome, Admin!</p>
+        </div>
+      </div>
+
+      <div class="conts2">
+        <div class="checkinContainer">
+          <h1>ATTENDANCE</h1>
+          <div class="header"><span>MEMBERS</span> <span>DATE</span> <span>TIME IN</span></div>
+          <div id="checkinRecords">
+              <div class="recordEntry">
+                  <div class="memberName dataField">Juan Dela Cruz</div>
+                  <div class="checkinDate dataField">10/11/2024</div>
+                  <div class="timeIn dataField">5:30 AM</div>
+              </div>
+              <p>No attendance records found.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../Javascript/adminAttendance.js"></script>
+</body>
+</html>

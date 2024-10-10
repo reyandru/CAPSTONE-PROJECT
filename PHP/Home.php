@@ -33,7 +33,7 @@ include('username.php');
         </div>
       </div>
       <div class="DD-container">
-        <a href="logout.php"> <button class="logOutBtn">LOG OUT</button></a>
+      <a href="../PHP/login.php"> <button class="logOutBtn">LOG OUT</button></a>
       </div>
     </div>
   </header>
@@ -82,7 +82,7 @@ include('username.php');
 
             <div class="mySlides fade">
               <div class="numbertext">3 / 3</div>
-              <img class="carousel-img" src="../assets/dbBG.png">
+              <img class="carousel-img" src="../assets/area1.jpg">
               <div class="text"></div>
             </div>
 

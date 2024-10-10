@@ -1,83 +1,52 @@
-<?php
-
-include('PHP/database.php');
-
-$sql = "SELECT id, firstname, lastname, age, gender, contactNo, email FROM registerdb";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Display the data in a table
-    echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Contact No</th>
-                <th>Email</th>
-            </tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . $row["id"] . "</td>
-                <td>" . $row["firstname"] . "</td>
-                <td>" . $row["lastname"] . "</td>
-                <td>" . $row["age"] . "</td>
-                <td>" . $row["gender"] . "</td>
-                <td>" . $row["contactNo"] . "</td>
-                <td>" . $row["email"] . "</td>
-              </tr>";
-    }
-    echo "</table>";
-
-    // Reset the result pointer to access the first row again
-    $result->data_seek(0);
-
-    // Fetch the first row for displaying user details
-    $row = $result->fetch_assoc();
-
-} else {
-    echo "0 results";
-}
-
-$conn->close();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Dr. ACE Fitness Gym</title>
+  <link rel="icon" href="assets/logs.png">
+  <link rel="stylesheet" href="../CSS/login.css" />
 </head>
 <body>
-    <div class="botConts">
-        <div class="userNames user userss">
-            <h3>Name:</h3>
-            <div id="username" class="outpt">
-                <?php if (isset($row)) echo htmlspecialchars($row["firstname"] . ' ' . $row["lastname"]); ?>
-            </div>
+
+<div class="container">
+
+  <div class="conts1">
+    <div class="form-wrap">
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <div class="ttl-wrap">
+      <p id="login-ttl">LOG IN</p>
+      </div>
+
+      <div class="inputs-wrap">
+      <label for="email"> <ion-icon name="mail-outline"></ion-icon>Email</label>
+      <input type="email" name="email" id="email" class="in" >
+
+      <label for="passw"><ion-icon name="lock-closed"></ion-icon> Password</label>
+      <input type="password" name="password" id="passw" class="in" >
+      <a href="#">Forgot your password?</a>
+      <div> <input type="submit" name="submitBtn" value="Log in" class="SU"></div>
+      <p>Don’t have an account? <a href="register.php"> Register</a></p>
+        <div id="messageAlert">
+          <p style="color:black;" class="errorMsg"><?php echo $message; ?></p>
         </div>
-        <div class="userAge user usersss">
-            <h3>Age:</h3>
-            <div id="userage" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['age']); ?></div>
-        </div>
-        <div class="userGender user users">
-            <h3>Gender:</h3>
-            <div id="usergender" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['gender']); ?></div>
-        </div>
-        <div class="userAddress user users">
-            <h3>Address:</h3>
-            <div id="useraddress" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['address'] ?? ''); ?></div>
-        </div>
-        <div class="userCn user">
-            <h3>Contact No:</h3>
-            <div id="usercontacts" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['contactNo']); ?></div>
-        </div>
-        <div class="userEmail user userss">
-            <h3>Email:</h3>
-            <div id="useremail" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['email']); ?></div>
-        </div>
+      </div>
+      </form>
     </div>
+  </div>
+
+  <div class="conts2">
+    <img src="../assets/logs.png" alt="" height="150">
+  </div>
+
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="../Javascript/message.js"></script>
 </body>
 </html>
+
