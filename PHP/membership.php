@@ -1,3 +1,5 @@
+<
+>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +20,7 @@
   <div class="conts1">
 
     <div class="form-wrap">
-      <form action="" method="post">
+      <form action="membership.php" method="post">
 
       <div class="ttl-wrap">
         <p id="login-ttl">Membership</p>

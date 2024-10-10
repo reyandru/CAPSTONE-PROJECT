@@ -13,7 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['passw'];
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    // Define the regex pattern to allow only letters, numbers, spaces, and hyphens
+    $pattern = "/^[a-zA-Z0-9\s\-]+$/";
+
+    // Validate special characters in firstname, lastname, and address
+    if (!preg_match($pattern, $firstname)) {
+        $message = "Firstname contains invalid characters.";
+    } elseif (!preg_match($pattern, $lastname)) {
+        $message = "Lastname contains invalid characters.";
+    } elseif (!preg_match($pattern, $address)) {
+        $message = "Address contains invalid characters.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $message = "Invalid email format";
     } else {
         $stmt = $conn->prepare("SELECT * FROM registerdb WHERE email = ?");
@@ -24,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows > 0) {
             $message = "Email already exists.";
         } else {
+            // Hash the password
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             $sql = "INSERT INTO registerdb (firstname, lastname, age, gender, address, contactNo, email, password)
@@ -33,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($stmt->execute()) {
                 $message = "Registration successful!";
+                header('Location: membership.php');
             } else {
                 $message = "Registration failed. Please try again.";
             }
@@ -44,10 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $conn->close();
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
