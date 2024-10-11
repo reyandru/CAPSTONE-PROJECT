@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($stmt->execute()) {
                 $message = "Registration successful!";
-                header('Location: membership.php');
+                header('Location: login.php');
             } else {
                 $message = "Registration failed. Please try again.";
             }
@@ -64,71 +64,69 @@ $conn->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:wght@200;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/register.css">
   <title>Dr. ACE Fitness Gym</title>
-  <link rel="icon" href="assets/logs.png">
-  <link rel="stylesheet" href="../CSS/Register.css" />
+  <link rel="icon" href="../assets/logs.png">
 </head>
 <body>
-
-<div class="container">
-  <div class="conts1">
-    <div class="form-wrap">
-      <form action="register.php" method="post">
-        <div class="ttl-wrap">
-          <p id="login-ttl">Register Form</p>
-        </div>
-        <div class="inputs-wrap">
-          <div class="left">
-            <label for="fn">First Name</label>
-            <input type="text" name="firstname" id="fn" class="ins" required>
-
-            <label for="age">Age</label>
-            <input type="number" name="age" id="age" class="ins" required>
-
-            <label for="address">Address</label>
-            <input type="text" name="address" id="address" class="ins" required> 
+  <div class="container">
+    <div class="conts1">
+      <div class="form-wrap">
+        <form action="register.php" method="post">
+          <div class="ttl-wrap">
+          <img src="../assets/logs.png" alt="logo" height="120">
+            <p id="register-title">Register Form</p>
           </div>
+          <div class="inputs-wrap">
+            <div class="left">
+              <label for="fn">First Name</label>
+              <input type="text" name="firstname" id="fn" class="ins" required>
 
-          <div class="right">
-            <label for="ln">Last Name</label>
-            <input type="text" name="lastname" id="ln" class="ins" required>
+              <label for="age">Age</label>
+              <input type="number" name="age" id="age" class="ins" required>
 
-            <Label>Gender</Label>
-            <div class="sex">
-              <input type="radio" name="gender" id="m" value="Male" required>
-              <label for="m">Male</label>
-              <input type="radio" name="gender" id="fm" value="Female" required>
-              <label for="fm">Female</label>
+              <label for="address">Address</label>
+              <input type="text" name="address" id="address" class="ins" required>
             </div>
 
-            <label for="cn">Contact Number</label>
-            <input type="text" name="contactNo" id="contactNo" class="ins" required>
+            <div class="right">
+              <label for="ln">Last Name</label>
+              <input type="text" name="lastname" id="ln" class="ins" required>
+
+              <Label>Gender</Label>
+              <div class="sex">
+                <input type="radio" name="gender" id="m" value="Male" required>
+                <label for="m">Male</label>
+                <input type="radio" name="gender" id="fm" value="Female" required>
+                <label for="fm">Female</label>
+              </div>
+
+              <label for="cn">Contact Number</label>
+              <input type="text" name="contactNo" id="cn" class="ins" required>
+            </div>
           </div>
-        </div>
 
-        <div class="bot">
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" required>
+          <div class="bot">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
 
-          <label for="passw">Password</label>
-          <input type="password" name="passw" id="password" required>
+            <label for="passw">Password</label>
+            <input type="password" name="passw" id="password" required>
 
-          <div class="two-btn">
-            <button type="submit">Submit</button>
-            <p>Already have an account? <a href="login.php" target="_self">Log In</a></p>
+            <div class="two-btn">
+              <button type="submit">Submit</button>
+            </div>
+            <div id="messageAlert">
+              <p class="errorMsg"><?php echo $message; ?></p>
+            </div>
           </div>
-          <div id="messageAlert">
-            <p style="color:black; text-align: center; " class="errorMsg"><?php echo $message; ?></p>
-           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+
   </div>
-  <div class="conts2">
-    <img src="../assets/logs.png" alt="" height="150">
-  </div>
-</div>
+
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

@@ -1,10 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirect to login if not logged in
-    exit();
-}
-$username = $_SESSION['username'];
+include('username.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,56 +11,50 @@ $username = $_SESSION['username'];
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Acme&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>Real Deal Gym</title>
-  <link rel="icon" href="assets/logs.png">
+  <link rel="icon" href="../assets/logs.png">
   <link rel="stylesheet" href="../CSS/calendar.css" />
 </head>
 <body>
-  <header>
+<header>
     <div class="logo">
       <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
-      <h6>Real Deal Gym</h6>
+      <h1>REAL DEAL GYM</h1>
     </div>
-
-    <div class="left-container">
-      <div class="userProfil">
+     
+    <div class="user-container">
+      <div class="user-profile">
         <a href="profile.php">
-          <img src="../assets/defProf.webp" height="50" alt="" class="img-container">
-          <p class="userName"><?php echo htmlspecialchars($username); ?></p> 
+          <img src="<?php echo !empty($user['profile_pic']) ? $user['profile_pic'] : '../assets/defProf.webp' ; ?>" class="img-container">
+          <span class="user-name"><?php echo htmlspecialchars($username); ?></span> 
         </a>
-        <div class="consts-dropDown">
-          <button class="dropDown" onclick=""> <img src="../assets/dropdown.png" alt="" height="50" width="45px"></button>
-        </div>
       </div>
-      <div class="DD-container">
-        <a href="logout.php"> <button class="logOutBtn">LOG OUT</button></a>
+      <div class="logout-container">
+        <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
       </div>
     </div>
   </header>
 
   <div class="container">
-    <aside class="nav">
+  <aside class="nav">
       <div class="hamburger" id="hamburger" onclick="myFunction(this)">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
       </div>
-      <div class="menu" id="menu">
-        <a href="home.php"> <img src="../assets/home.png" alt="" height="45"> Home</a>
-        <a href="workoutplan.php"> <img src="../assets/DB.png" alt="" height="45"> Workout Plan</a>
-        <a href="progress.php"> <img src="../assets/prog.png" alt="" height="45"> Progress</a>
-        <a href="records.php"> <img src="../assets/records.png" alt="" height="45"> Records</a>
-        <a href="profile.php"> <img src="../assets/profile.png" alt="" height="45"> Profile</a>
-        <a href="equipments.php"> <img src="../assets/equipments.png" alt="" height="45">Equipments</a>
-      </div>
+      <nav class="menu" id="menu">
+      <a href="home.php"><img src="../assets/svg/ion--home.svg" alt="home" height="45"> Home</a>
+        <a href="workoutPlan.php"><img src="../assets/svg/ph--barbell-fill.svg" alt="" height="45"> Workout Plan</a>
+        <a href="progress.php"><img src="../assets/svg/game-icons--progression.svg" alt="Progress Icon" height="45"> Progress</a>
+        <a href="records.php"><img src="../assets/svg/quill--paper.svg" alt="Records Icon" height="45"> Records</a>
+        <a href="profile.php"><img src="../assets/svg/iconamoon--profile-fill.svg" alt="Profile Icon" height="45"> Profile</a>
+        <a href="equipments.php"><img src="../assets/svg/hugeicons--equipment-gym-03.svg" alt="Equipments Icon" height="45"> Equipments</a>
+      </nav>
     </aside>
 
     <main class="main">
     <div class="conts1">
         <div class="page"> 
         <a href="home.php"><img src="../assets/homes.png" alt="" height="15">Home |</a><p>Calendar</p> 
-        </div>
-        <div class="memberName">
-          <p>Welcome, <?php echo htmlspecialchars($username); ?>!</p>
         </div>
       </div>
       <div class="const2">

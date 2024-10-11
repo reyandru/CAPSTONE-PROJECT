@@ -2,18 +2,22 @@
 document.addEventListener("DOMContentLoaded", function() {
   const hamburger = document.getElementById('hamburger');
   const nav = document.querySelector('.nav');
-  const menu = document.getElementById('menu');
 
   hamburger.addEventListener('click', function() {
       nav.classList.toggle('expanded');
   });
+
+  // Automatically switch slides every 3 seconds
+  setInterval(function() {
+    plusSlides(1);
+  }, 3000);
 });
 
 function myFunction(x) {
   x.classList.toggle("change");
 }
 
-//logout container
+// Logout container
 document.addEventListener("DOMContentLoaded", function() {
   const ddBtn = document.querySelector('.dropDown');
   const ddConts = document.querySelector('.DD-container');
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
-// carousel
+// Carousel
 let slideIndex = 1;
 showSlides(slideIndex);
 
