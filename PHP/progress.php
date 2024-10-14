@@ -128,47 +128,50 @@ $conn->close();
 
             <!-- //Weight progress -->
             <div class="weightScale">
-  <div class="weights">
-    <div class="weightInfo">
-      <h1>Weight</h1>
-      <div class="percentages"> 
-        <div class="outlineB">
-          <div id="circle">0%</div>
+    <div class="weights">
+        <div class="weightInfo">
+            <h1>Weight</h1>
+            <div class="percentages">
+                <div class="outlineB">
+                    <div id="circle">0%</div>
+                </div>
+            </div>
         </div>
-      </div>  
-      <form method="POST" action="progress.php">
-        <div id="goalWeight">      
-          <label for="goal" id="goalWeights">Goal Weight:</label>
-          <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
-        </div>
+
+        <form method="POST" action="progress.php" class="formWeight">
+            <div id="goalWeight">
+                <label for="goal" id="goalWeights">Goal Weight:</label>
+                <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
+            </div>
+            <div>
+                <label for="goalType">Goal Type:</label>
+                <select id="goalType" name="goalType">
+                    <option value="lose">Lose Weight</option>
+                    <option value="gain">Gain Weight</option>
+                </select>
+            </div>
+            <div class="weightAdd">
+                <div class="kgs"></div>
+                <div id="outputWeight"></div>
+
+                <button id="addBtnWeights" type="button">Weights in kilo
+                    <img src="../assets/addBtnWeight.png" alt="" height="30">
+                </button>
+
+                <div id="inputWeight">
+                    <button id="xBtnWeight" type="button">x</button>
+                    <div>
+                        <label for="weights" id="noOfW">Current Weight:</label>
+                        <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
+                    </div>
+
+                    <button id="addWeights" type="submit">ADD</button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="weightAdd">
-      <div class="kgs"> </div>
-      <div id="outputWeight"></div>
-
-      <button id="addBtnWeights" type="button">Weights in kilo
-        <img src="../assets/addBtnWeight.png" alt="" height="30">
-      </button>
-      <div id="inputWeight">
-        <button id="xBtnWeight" type="button">x</button>
-        <div class="weightsNo">
-          <div>
-            <label for="startWeight" id="noOfW">Starting Weight:</label>
-            <input class="inputsWeightProgress" name="startingWeight" id="startW" type="number" placeholder="">
-          </div>
-          <div>
-            <label for="weights" id="noOfW">Current Weight:</label>
-            <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
-          </div>
-
-          <button id="addWeights" type="submit">ADD</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  </form>
 </div>
+
 
             <!-- //workout progress -->
             <div class="workoutProg">

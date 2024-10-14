@@ -24,116 +24,105 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //weight progress
-const addBtnWeight = document.getElementById("addBtnWeights");
-const addBTNWeights = document.querySelector('#addBtnWeights');
-const inputContWeights = document.getElementById("inputWeight");
-const circle = document.getElementById("circle");
-
 document.addEventListener('DOMContentLoaded', function() {
-  const storedGoalWeight = localStorage.getItem('goalWeight');
-  if (storedGoalWeight) {
-    document.getElementById("goalW").value = storedGoalWeight;
-  }
-  loadOutput(); 
-  loadCircleValue(); 
+  loadOutput();
+  loadCircleValue();
 });
 
-addBTNWeights.addEventListener('click', function() {
-  inputContWeights.classList.add("showsWeightInput");
-  addBtnWeight.classList.add("hideAddBtnWeight");
+document.getElementById("addBtnWeights").addEventListener('click', function() {
+  document.getElementById("inputWeight").classList.add("showsWeightInput");
 });
 
 document.getElementById("xBtnWeight").addEventListener('click', function() {
-  inputContWeights.classList.remove("showsWeightInput");
-  addBtnWeight.classList.remove("hideAddBtnWeight");
+  document.getElementById("inputWeight").classList.remove("showsWeightInput");
 });
 
-document.getElementById("addWeights").addEventListener('click', function() {
+document.getElementById("addWeights").addEventListener('click', function(event) {
+  event.preventDefault();
   const currentWeight = parseFloat(document.getElementById("weights").value);
   const goalWeight = parseFloat(document.getElementById("goalW").value);
-  const startWeight = parseFloat(document.getElementById("startW").value);
+  const goalType = document.getElementById("goalType").value;
 
-  if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
-    const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+  if (!isNaN(currentWeight) && !isNaN(goalWeight)) {
+      if (goalType === "gain" && goalWeight <= currentWeight) {
+          alert("For gaining weight, please enter a goal weight that is higher than your current weight.");
+          return;
+      } else if (goalType === "lose" && goalWeight >= currentWeight) {
+          alert("For losing weight, please enter a goal weight that is lower than your current weight.");
+          return;
+      }
 
-    if (outputs.length >= 3) {
-      outputs.shift(); 
-    }
+      let percent;
+      
+      if (goalType === "lose") {
+          percent = ((currentWeight - goalWeight) / currentWeight) * 100;
+      } else if (goalType === "gain") {
+          percent = ((goalWeight - currentWeight) / goalWeight) * 100;
+      }
 
-    let percent; 
+      percent = Math.max(0, Math.min(100, percent));
 
-    if (currentWeight >= goalWeight) {
-      const progress = ((currentWeight - goalWeight) / (startWeight - goalWeight)) * 100;
-      percent = Math.max(0, Math.min(100, progress.toFixed(0))); // Ensure it stays within 0% to 100%
-    } else {
-      const progress = ((goalWeight - currentWeight) / (goalWeight - startWeight)) * 100;
-      percent = Math.max(0, Math.min(100, progress.toFixed(0))); // Ensure it stays within 0% to 100%
-    }
-
-    const output = createOutputDiv(currentWeight, percent);
-    outputs.push(output); 
-
-    updateOutputContainer(outputs);
-    saveOutputs(outputs);
-    
-    circle.innerHTML = percent + " %";
-    localStorage.setItem('circleValue', percent); 
-    localStorage.setItem('goalWeight', goalWeight);
-
-    clearInputs();
+      const output = createOutputDiv(currentWeight, percent);
+      saveOutputs(output);
+      updateOutputContainer();
+      document.getElementById("circle").innerHTML = percent.toFixed(0) + "%";
+      clearInputs();
   } else {
-    alert("Please enter valid numbers for all weights.");
+      alert("Please enter valid numbers for the goal and current weight.");
   }
 });
 
 function createOutputDiv(currentWeight, percent) {
   return {
-    date: new Date().toLocaleDateString(),
-    weight: currentWeight,
-    progress: percent, 
+      date: new Date().toLocaleDateString(),
+      weight: currentWeight,
+      progress: percent,
   };
 }
 
-function updateOutputContainer(outputs) {
-  const outputContainer = document.getElementById('outputWeight');
-  outputContainer.innerHTML = ''; 
-  outputs.forEach(output => {
-    const newDiv = document.createElement('div');
-    newDiv.className = 'outputConts';
-    newDiv.innerHTML = 
-      `<div>${output.date}</div>` +
-      `<div>Current Weight: ${output.weight} kg</div>` +
-      `<div>${output.progress} % Progress</div>`; 
-    outputContainer.appendChild(newDiv);
-  });
+function saveOutputs(output) {
+  const existingOutputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+  
+  if (existingOutputs.length >= 3) {
+      existingOutputs.shift();
+  }
+  
+  existingOutputs.push(output);
+  localStorage.setItem('weightOutputs', JSON.stringify(existingOutputs));
 }
 
-function saveOutputs(outputs) {
-  localStorage.setItem('weightOutputs', JSON.stringify(outputs));
+function updateOutputContainer() {
+  const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+  const outputContainer = document.getElementById('outputWeight');
+  outputContainer.innerHTML = '';
+
+  outputs.forEach(output => {
+      const newDiv = document.createElement('div');
+      newDiv.className = 'outputConts';
+      newDiv.innerHTML = 
+          `<div>${output.date}</div>` +
+          `<div>Current Weight: ${output.weight} kg</div>` +
+          `<div>${output.progress.toFixed(0)} % Progress</div>`;
+      outputContainer.appendChild(newDiv);
+  });
 }
 
 function loadOutput() {
   const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
-  updateOutputContainer(outputs);
+  updateOutputContainer();
 }
 
 function loadCircleValue() {
   const storedCircleValue = localStorage.getItem('circleValue');
   if (storedCircleValue) {
-    circle.innerHTML = storedCircleValue + " %"; 
-  } else {
-    circle.innerHTML = "0 %"; 
-  }
+      document.getElementById("circle").innerHTML = storedCircleValue + "%"; 
+  } 
 }
 
 function clearInputs() {
   document.getElementById("weights").value = '';
   document.getElementById("goalW").value = '';
-  document.getElementById("startW").value = '';
 }
-
-
-
 
 
 //Workout progress

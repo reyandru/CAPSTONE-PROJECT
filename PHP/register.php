@@ -73,7 +73,7 @@ $conn->close();
   <div class="container">
     <div class="conts1">
       <div class="form-wrap">
-        <form action="register.php" method="post">
+        <form action="adminpage-register.php" method="post">
           <div class="ttl-wrap">
           <img src="../assets/logs.png" alt="logo" height="120">
             <p id="register-title">Register Form</p>

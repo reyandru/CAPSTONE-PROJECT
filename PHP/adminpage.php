@@ -63,6 +63,7 @@ $result = $conn->query($sql);
         <a href="adminpage.php">Manage Users</a>
         <a href="adminpage-register.php">Register a New User</a>
         <a href="admin_reports.php">View Reports</a>
+        <a href="dashboard.php">Dashboard</a>
         <a href="#">Settings</a>
         <form method="POST" style="text-align: center; margin-top: 20px;">
             <button type="submit" name="logout" style="padding: 10px 20px; border: none; background-color: #dc3545; color: white; border-radius: 5px; cursor: pointer;">Logout</button>

@@ -78,6 +78,8 @@ User@1234 -->
         <input type="submit" name="submitBtn" value="Log in" class="SU">
       </div>
     </form>
+
+    
     <p><?php echo $message ?></p>
   </div>
 </div>

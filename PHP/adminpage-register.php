@@ -14,10 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['passw'];
 
-    // Define the regex pattern to allow only letters, numbers, spaces, and hyphens
     $pattern = "/^[a-zA-Z0-9\s\-]+$/";
 
-    // Validate special characters in firstname, lastname, and address
     if (!preg_match($pattern, $firstname)) {
         $message = "Firstname contains invalid characters.";
     } elseif (!preg_match($pattern, $lastname)) {
@@ -46,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->execute()) {
                 $message = "Registration successful!";
                 header('Location: membership.php');
-                exit(); // It's a good practice to call exit() after a header redirect
+                exit(); 
             } else {
                 $message = "Registration failed. Please try again.";
             }
@@ -56,13 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Check if the user is logged in and has admin privileges
 if (!isset($_SESSION['login_email']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
     exit();
 }
 
-// Handle role change requests
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_role'])) {
     $userId = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_NUMBER_INT);
     $newRole = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
@@ -84,18 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_role'])) {
     }
 }
 
-// Logout functionality
 if (isset($_POST['logout'])) {
     session_destroy();
     header("Location: login.php");
     exit();
 }
 
-// Fetch users to display
 $sql = "SELECT id, email, firstname, lastname, role FROM registerdb";
 $result = $conn->query($sql);
 
-// Close the connection only after all operations are done
 $conn->close();
 ?>
 
@@ -120,6 +113,7 @@ $conn->close();
         <a href="adminpage.php">Manage Users</a>
         <a href="adminpage-register.php">Register a New User</a>
         <a href="admin_reports.php">View Reports</a>
+            <a href="dashboard.php">Dashboard</a>
         <a href="#">Settings</a>
         <form method="POST" style="text-align: center; margin-top: 20px;">
             <button type="submit" name="logout" style="padding: 10px 20px; border: none; background-color: #dc3545; color: white; border-radius: 5px; cursor: pointer;">Logout</button>
@@ -130,7 +124,7 @@ $conn->close();
         <div class="container">
             <div class="conts1">
                 <div class="form-wrap">
-                    <form action="register.php" method="post">
+                    <form action="adminpage-register.php" method="post">
                         <div class="ttl-wrap">
                             <img src="../assets/logs.png" alt="logo" height="120">
                             <p id="register-title">Register Form</p>
