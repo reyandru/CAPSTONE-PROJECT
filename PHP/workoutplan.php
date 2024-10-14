@@ -29,8 +29,8 @@ include('username.php');
           <span class="user-name"><?php echo htmlspecialchars($username); ?></span> 
         </a>
       </div>
-      <div class="logout-container">
-        <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
+      <div class="DD-container">
+        <a href="login.php"> <button class="logOutBtn">LOG OUT</button></a>
       </div>
     </div>
   </header>

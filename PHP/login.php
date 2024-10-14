@@ -10,6 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($email) || empty($password)) {
         $message = "Please enter email and password.";
     } else {
+        // First, check if the email is for the admin
+        if ($email == "admin@admin.com" && $password == "admin@123") { 
+            $_SESSION['login_email'] = $email;
+            header("Location: ../adminPHP/adminAttendance.php");
+            exit();
+        }
+
+        // If not admin, proceed with regular user login
         $sql = "SELECT * FROM registerdb WHERE email = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -46,6 +54,7 @@ Admin@1234
 
 User@user.com     
 User@1234 -->
+
 
 <!DOCTYPE html>
 <html lang="en">

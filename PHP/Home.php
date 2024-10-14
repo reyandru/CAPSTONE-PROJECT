@@ -28,8 +28,8 @@ include('username.php');
           <span class="user-name"><?php echo htmlspecialchars($username); ?></span> 
         </a>
       </div>
-      <div class="logout-container">
-        <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
+      <div class="DD-container">
+        <a href="logout.php"> <button class="logOutBtn">LOG OUT</button></a>
       </div>
     </div>
   </header>
@@ -64,14 +64,27 @@ include('username.php');
 
       <div class="carousel-container">
         <div class="carousel">
-          <div class="mySlides fade">
-            <img class="carousel-img" src="../assets/poster.png" alt="Slide 1">
-          </div>
-          <div class="mySlides fade">
-            <img class="carousel-img" src="../assets/poster2.jpg" alt="Slide 2">
-          </div>
-          <div class="mySlides fade">
-            <img class="carousel-img" src="../assets/poster3.jpg" alt="Slide 3">
+          <div class="carousel-cont">
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img class="carousel-img" src="../assets/logs.png">
+              <div class="text"></div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img class="carousel-img" src="../assets/area.jpg">
+              <div class="text"></div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 3</div>
+              <img class="carousel-img" src="../assets/dbBG.png">
+              <div class="text"></div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
           </div>
         </div>
         <div class="dots">

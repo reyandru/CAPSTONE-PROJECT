@@ -43,14 +43,12 @@ document.getElementById("addWeights").addEventListener('click', function(event) 
   const goalWeight = parseFloat(document.getElementById("goalW").value);
   const goalType = document.getElementById("goalType").value;
 
-  if (!isNaN(currentWeight) && !isNaN(goalWeight)) {
-      if (goalType === "gain" && goalWeight <= currentWeight) {
-          alert("For gaining weight, please enter a goal weight that is higher than your current weight.");
-          return;
-      } else if (goalType === "lose" && goalWeight >= currentWeight) {
-          alert("For losing weight, please enter a goal weight that is lower than your current weight.");
-          return;
-      }
+  if (!isNaN(currentWeight) && !isNaN(goalWeight) && !isNaN(startWeight)) {
+    const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
+
+    if (outputs.length >= 3) {
+      outputs.shift(); 
+    }
 
       let percent;
       
