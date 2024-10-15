@@ -18,7 +18,7 @@ include('username.php');
 <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+      <a href="Home.php "><img src="../assets/logs.png" alt="Logo" height="80"></a>
       <h1>REAL DEAL GYM</h1>
     </div>
      
@@ -64,40 +64,41 @@ include('username.php');
 
       <div class="equipmentsList">
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment1')"> <img src="../assets/Equipment1.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment1')"> <img src="../assets/Equipment1.png" alt="" height="230" width="270"> <h2>Suspension trainers</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment2')"> <img src="../assets/Equipment2.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment2')"> <img src="../assets/Equipment2.png" alt="" height="230" width="270"><h2>Medicine balls</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment3')"> <img src="../assets/Equipment3.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment3')"> <img src="../assets/Equipment3.png" alt="" height="230" width="270"><h2>Yoga mats</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment4')"> <img src="../assets/Equipment4.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment4')"> <img src="../assets/Equipment4.png" alt="" height="230" width="270"><h2>Dumbbells</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment5')"> <img src="../assets/Equipment5.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment5')"> <img src="../assets/Equipment5.png" alt="" height="230" width="270"><h2>Resistance Bands</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment6')"> <img src="../assets/Equipment6.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment6')"> <img src="../assets/Equipment6.png" alt="" height="230" width="270"><h2>Kettlebells</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment7')"> <img src="../assets/Equipment7.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment7')"> <img src="../assets/Equipment7.png" alt="" height="230" width="270"><h2>Barbells</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment8')"> <img src="../assets/Equipment8.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment8')"> <img src="../assets/Equipment8.png" alt="" height="230" width="270"><h2>Stationary bikes</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment9')"> <img src="../assets/Equipment9.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment9')"> <img src="../assets/Equipment9.png" alt="" height="230" width="270"><h2>Elliptical trainers</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment10')"> <img src="../assets/Equipment10.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment10')"> <img src="../assets/Equipment10.png" alt="" height="230" width="270"><h2>Treadmills</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/Equipment11.png" alt="" height="230" width="270"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment11')"> <img src="../assets/Equipment11.png" alt="" height="230" width="270"><h2>Rowing machines</h2></button></div>
         
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Equipment12.png" alt="" height="230" width="270"></button></div>
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment13')"> <img src="../assets/Equipment13.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment12')"> <img src="../assets/Equipment12.png" alt="" height="230" width="270"><h2>Plyo Box</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment14')"> <img src="../assets/Equipment14.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment13')"> <img src="../assets/Equipment13.png" alt="" height="230" width="270"><h2>Bench</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment15')"> <img src="../assets/Equipment15.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment14')"> <img src="../assets/Equipment14.png" alt="" height="230" width="270"><h2>Leg Press Machine</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment16')"> <img src="../assets/Equipment16.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment15')"> <img src="../assets/Equipment15.png" alt="" height="230" width="270"><h2>Preacher Curl Bench</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment17')"> <img src="../assets/Equipment17.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment16')"> <img src="../assets/Equipment16.png" alt="" height="230" width="270"><h2>Shoulder Press Machine</h2></button></div>
 
-        <div class="equipment_name">  <button onclick="showEquipment('Equipment18')"> <img src="../assets/Equipment18.png" alt="" height="230" width="250"></button></div>
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment17')"> <img src="../assets/Equipment17.png" alt="" height="230" width="270"><h2>Tire Flip Machine</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment18')"> <img src="../assets/Equipment18.png" alt="" height="230" width="270"><h2>Seated Leg Extension Machine</h2></button></div>
        
       </div>
       <div id="description">

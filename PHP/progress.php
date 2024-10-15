@@ -82,7 +82,7 @@ $conn->close();
   <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+      <a href="Home.php"><img src="../assets/logs.png" alt="Logo" height="80"></a>
       <h1>REAL DEAL GYM</h1>
     </div>
      
@@ -143,11 +143,11 @@ $conn->close();
                 <label for="goal" id="goalWeights">Goal Weight:</label>
                 <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
             </div>
-            <div>
-                <label for="goalType">Goal Type:</label>
+            <div class="typeGoals" id="chooseTypes">
+                <label for="goalType" class="goalTypes">Goal Type:</label>
                 <select id="goalType" name="goalType">
-                    <option value="lose">Lose Weight</option>
-                    <option value="gain">Gain Weight</option>
+                    <option value="lose" class="loseW" id="loseWeights">Lose Weight</option>
+                    <option value="gain" class="gainW"id="gainWeights">Gain Weight</option>
                 </select>
             </div>
             <div class="weightAdd">
@@ -162,7 +162,7 @@ $conn->close();
                     <button id="xBtnWeight" type="button">x</button>
                     <div>
                         <label for="weights" id="noOfW">Current Weight:</label>
-                        <input class="inputsWeightProgress" name="currentWeight" id="weights" type="number" placeholder="">
+                        <input class="inputsWeightProgress" name="currentWeight" id="currentWeights" type="number" placeholder="">
                     </div>
 
                     <button id="addWeights" type="submit">ADD</button>

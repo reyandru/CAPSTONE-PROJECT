@@ -247,12 +247,13 @@ header {
 }
 
 .equipments_contianer{
-  height: 90%;
+  height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.584);
 }
 
 .title{
@@ -278,20 +279,22 @@ header {
 .equipment_name{
   margin: 5px;
   display: inline-block;
-  
+  border: 1px solid white;
 }
 
 .equipment_name button{
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
-.equipment_name img{
-  transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+.equipment_name{
+  transition: opacity 0.3s ease-in-out;
+
 }
 
-.equipment_name img:hover{
+.equipment_name:hover{
   opacity: 0.5;
 }
 
@@ -309,7 +312,7 @@ header {
   padding: 5px;
   width: 1200px;
   height: 550px;
-  background-color:rgb(255, 255, 255);
+  background-color:rgba(255, 255, 255, 0.53);
   margin: 0 auto;
   visibility: hidden;
 }

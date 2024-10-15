@@ -54,7 +54,7 @@ mysqli_close($conn);
 <body>
 <header>
     <div class="logo">
-        <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+        <a href="Home.php"><img src="../assets/logs.png" alt="Logo" height="80"></a>
         <h1>REAL DEAL GYM</h1>
     </div>
     <div class="user-container">
@@ -166,7 +166,7 @@ function previewImage(event) {
 $(document).ready(function() {
     var profileURL = "http://example.com/profile.php?email=" + encodeURIComponent("<?php echo htmlspecialchars($user['email']); ?>");
     
-    $("#qr").qrcode({
+    $("Home.phpqr").qrcode({
         text: profileURL,
         width: 128,
         height: 128

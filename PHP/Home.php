@@ -17,7 +17,6 @@ include('username.php');
 <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
       <h1>REAL DEAL GYM</h1>
     </div>
      
@@ -29,7 +28,7 @@ include('username.php');
         </a>
       </div>
       <div class="DD-container">
-        <a href="logout.php"> <button class="logOutBtn">LOG OUT</button></a>
+      <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
       </div>
     </div>
   </header>

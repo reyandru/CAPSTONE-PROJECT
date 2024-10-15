@@ -18,7 +18,7 @@ include('username.php');
   <body>
   <header>
     <div class="logo">
-      <a href="#"><img src="../assets/logs.png" alt="Logo" height="80"></a>
+      <a href="Home.php"><img src="../assets/logs.png" alt="Logo" height="80"></a>
       <h1>REAL DEAL GYM</h1>
     </div>
      

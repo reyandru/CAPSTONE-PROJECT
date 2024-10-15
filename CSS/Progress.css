@@ -1,211 +1,211 @@
 
-  
+
   *,
   *::before,
   *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
   }
-  
+
   * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
   }
-  
+
   body {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-    font-family: 'Nunito', sans-serif;
-    display: flex;
-    flex-direction: column; /* Stack header, nav, and main content */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column; /* Stack header, nav, and main content */
   }
-  
+
   /* Header */
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #201f1f;
-    padding: 10px 20px;
-    color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #201f1f;
+  padding: 10px 20px;
+  color: #fff;
   }
-  
+
   .logo h1 {
-    font-family: 'Acme', sans-serif;
-    margin: 0;
-    font-size: 1.5em; /* Larger font size for prominence */
-    color: rgb(255, 123, 0);
+  font-family: 'Acme', sans-serif;
+  margin: 0;
+  font-size: 1.5em; /* Larger font size for prominence */
+  color: rgb(255, 123, 0);
   }
-  
+
   .logo {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   }
-  
+
   .user-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   }
-  
+
   .user-profile {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   }
-  
+
   .user-profile a {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
   }
-  
+
   .user-profile img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover; /* Ensures same size */
-    border-radius: 50%;
-    
+  width: 50px;
+  height: 50px;
+  object-fit: cover; /* Ensures same size */
+  border-radius: 50%;
+
   }
-  
+
   .user-name {
-    margin-left: 10px;
-    font-size: 20px;
+  margin-left: 10px;
+  font-size: 20px;
   }
-  
+
   .logout-btn {
-    background-color: rgb(184, 72, 72);
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: background-color 0.3s ease;
+  background-color: rgb(184, 72, 72);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
   }
-  
+
   .logout-btn:hover {
-    background-color: rgb(209, 65, 65);
+  background-color: rgb(209, 65, 65);
   }
-  
+
   /* Navigation */
   .container {
-    display: flex;
-    flex: 1; /* Allow the container to grow and fill the available space */
+  display: flex;
+  flex: 1; /* Allow the container to grow and fill the available space */
   }
-  
+
   .nav {
-    display: flex;
-    flex-direction: column;
-    background-color: #a14338;
-    padding: 10px;
-    width: 15%;
+  display: flex;
+  flex-direction: column;
+  background-color: #a14338;
+  padding: 10px;
+  width: 15%;
   }
   .menu a:hover {
-    background-color:  #9e3a2e;
+  background-color:  #9e3a2e;
   }
-  
+
   .menu {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
   }
-  
+
   .menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 15px 10px;
-    display: flex;
-    align-items: center;
-    transition: background 0.3s;
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
   }
-  
+
 
   /* Main Content */
   .main-content {
-    flex-grow: 1; /* Allow the main content to take up the remaining space */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.9); /* Add a white background with transparency */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  flex-grow: 1; /* Allow the main content to take up the remaining space */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.9); /* Add a white background with transparency */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   }
-  
+
   .welcome-section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
   }
-  
+
   .welcome-section h2 {
-    font-size: 24px;
+  font-size: 24px;
   }
-  
+
   .carousel-container {
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden; /* Hide overflowing content */
-    border-radius: 10px; /* Round carousel corners */
-    height: 500px; /* Set a fixed height for the carousel */
-    background-position: center;
-    background-repeat: no-repeat;
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden; /* Hide overflowing content */
+  border-radius: 10px; /* Round carousel corners */
+  height: 500px; /* Set a fixed height for the carousel */
+  background-position: center;
+  background-repeat: no-repeat;
   }
-  
+
   .carousel {
-    display: flex; /* Use flexbox for layout */
-    transition: transform 0.5s ease; /* Smooth transition for sliding effect */
+  display: flex; /* Use flexbox for layout */
+  transition: transform 0.5s ease; /* Smooth transition for sliding effect */
   }
-  
+
   .mySlides {
-    min-width: 100%; /* Each slide takes full width of the carousel */
-    height: 100%; /* Each slide takes full height of the carousel */
-    display: flex; /* Use flexbox to center the image */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+  min-width: 100%; /* Each slide takes full width of the carousel */
+  height: 100%; /* Each slide takes full height of the carousel */
+  display: flex; /* Use flexbox to center the image */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   }
-  
+
   .carousel-img {
-    width: 100%; /* Make the image take the full width of the slide */
-    height: 100%; /* Ensure the image fills the height of the slide */
-    object-fit: cover; /* Maintain aspect ratio and cover the area */
-    border-radius: 10px; /* Round image corners */
-    display: block; /* Remove any gaps below the image */
-    align-items: center;
+  width: 100%; /* Make the image take the full width of the slide */
+  height: 100%; /* Ensure the image fills the height of the slide */
+  object-fit: cover; /* Maintain aspect ratio and cover the area */
+  border-radius: 10px; /* Round image corners */
+  display: block; /* Remove any gaps below the image */
+  align-items: center;
   }
-  
+
   /* Quick Links */
   .quick-links {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   }
-  
+
   .link-item {
-    flex: 1;
-    margin: 10px;
-    text-align: center;
-    color: rgb(184, 72, 72);
-    text-decoration: none;
-    border-radius: 10px;
-    padding: 20px;
-    transition: background-color 0.3s;
-    border: 1px solid #ddd;
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  flex: 1;
+  margin: 10px;
+  text-align: center;
+  color: rgb(184, 72, 72);
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 20px;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
   }
-  
-  
+
+
   .link-item:hover {
-    opacity: 0.9;
+  opacity: 0.9;
   }
-  
+
   /* main */
   .main{
-    padding: 20px;
+  padding: 20px;
   width: 85%;
   min-height: 87.9vh;
   }
-  
+
   .conts1{
   display: flex;
   flex-direction: column;
@@ -213,7 +213,7 @@
   align-items: center;
   width: 100%;
   }
-  
+
   .page{
   display: flex;
   align-items: center;
@@ -225,38 +225,38 @@
   width: 98%;
   border-radius: 10px;
   }
-  
+
   .page a{
   display: flex;
   align-items: center;
   text-decoration: none;
   color: #737373;
   }
-  
+
   .page img{
   margin-right: 5px;
   }
-  
-  
+
+
   .conts2{
   padding-block: 10px;
   height: 90%;
   width: 100%;
   }
-  
+
   .progress-container{
   display: flex;
   justify-content:space-evenly;
   align-items: center;
   height: 100%;
   }
-  
+
   /* Weights progress */
   .weightScale{
   height: 100%;
   width: 30%;
   }
-  
+
   .weights{
   display: flex;
   flex-direction: column;
@@ -269,59 +269,80 @@
   width: 100%;  
   }
   .weightInfo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 40%;
-    width: 100%;
-    padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 40%;
+  width: 100%;
+  padding: 10px;
   }
-  
+
   .formWeight{
-    border: 2px solid white;
+  height: 60%;
+  width: 100%;
   }
 
   .percentages{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80%;
-    width: 70%;
-    }
-    
-    #circle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #d1d3d4;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    font-size: 48px;
-    font-family: "roboto";
-    color: #58595b;
-    font-weight: 800;
-    }
-    
-    .outlineB{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(35, 31, 32, 0.3);
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  width: 70%;
+  }
+
+  #circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1d3d4;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  font-size: 48px;
+  font-family: "roboto";
+  color: #58595b;
+  font-weight: 800;
+  }
+
+  .outlineB{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(35, 31, 32, 0.3);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  }
+
+  .goalTypes {
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  }
+  #goalType{
+    border: none;
+    color: white;
+    background: black;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    transition: background-color 0.2s ease;
+  }
+
+  #goalType:hover{
+    background-color: white;
+    color: black;
+  } 
+
   .weightInfo h1{
   color: white;
   font-weight: 800;
   font-family: "nunito";
   text-align: center;
   }
-  
-  
+
+
   .weightAdd{
   display: flex;
   align-items: center;
@@ -330,7 +351,7 @@
   height: 70%;
   padding: 5px;
   }
-  
+
   .kgs{
   font-family: "nunito";
   width: 100%;
@@ -341,16 +362,15 @@
   font-weight: 800;
   align-items: center;
   }
-  
+
   #outputWeight{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   height: 70%;  
   }
-  
+
   #addBtnWeights{
   background-color:#FF7B00;
   display: flex;
@@ -368,15 +388,15 @@
   cursor: pointer;
   transition: transform 0.5s ease;
   }
-  
+
   #addBtnWeights:active{
   transform: scale(0.95);
   }
-  
+
   #addBtnWeights.hideAddBtnWeight{
   visibility: hidden;
   }
-  
+
   #inputWeight{
   display: flex;
   align-items: center;
@@ -392,12 +412,12 @@
   visibility: hidden;
   text-align: center;
   }
-  
-  
+
+
   #inputWeight.showsWeightInput{
   visibility: visible;
   }
-  
+
   #noOfW{
   color: white;
   font-size: 14px;
@@ -405,69 +425,73 @@
   font-family: "roboto";
   width: 50px;
   }
-  
-  #goalWeights{
-    color: white;
-    font-size: 24px;
-    text-align: center;
-    font-family: "roboto";
-    font-weight: bold;
-    width: 50px;
-  }
-  
-  #goalWeight{
-    margin-top: 10px;
-  }
-  
-  #weights{
-    text-align: center;
-    outline: none;
-    width: 40px;
-    height: 30px;
-    font-size: 18px;
-    font-family: "roboto";
-    margin-right: 5px;
-    border: none;
-    color: white;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-  }
-  
-  #goalW{
-    text-align: center;
-    outline: none;
-    width: 50px;
-    height: 30px;
-    font-size: 30px;
-    font-family: "roboto";
-    margin-right: 30px;
-    border: none;
-    color: white;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-    }
 
-    #startW{
-      text-align: center;
-      outline: none;
-      width: 50px;
-      height: 30px;
-      font-size: 18px;
-      font-family: "roboto";
-      margin-right: 30px;
-      border: none;
-      color: white;
-      border-bottom: 1px solid white;
-      background-color: transparent;
-    }
-  
+  #goalWeights{
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-family: "roboto";
+  font-weight: bold;
+  width: 50px;
+  }
+  .typeGoals{
+    padding: 10px;
+  }
+
+  #goalWeight{
+  margin-top: 10px;
+  padding: 10px;
+  }
+
+  #currentWeights{
+  text-align: center;
+  outline: none;
+  width: 40px;
+  height: 30px;
+  font-size: 18px;
+  font-family: "roboto";
+  margin-right: 5px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  }
+
+  #goalW{
+  text-align: center;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  font-size: 30px;
+  font-family: "roboto";
+  margin-right: 30px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  }
+
+  #startW{
+  text-align: center;
+  outline: none;
+  width: 50px;
+  height: 30px;
+  font-size: 18px;
+  font-family: "roboto";
+  margin-right: 30px;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  }
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
   }
-  
-  
+
+
   #addWeights{
   width: 50px;
   height: 30px;
@@ -479,23 +503,25 @@
   font-size: 12px;
   cursor: pointer;
   }
-  
+
   .outputConts{
   background-color:#FF7B00  ;
-  height: 60px;
-  width: 100%;
+  height: 95%;
+  width: 30%;
   border-radius: 10px;
   font-family: "nunito";
   color: white;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  padding-inline: 15px;
-  font-size: 14px;
+  text-align: center;
+  padding: 5px;
+  font-size: 12px;
   font-weight: 800;
   }
-  
-  
+
+
   #xBtnWeight{
   background-color: transparent;
   border: none;
@@ -504,16 +530,16 @@
   color: white;
   cursor: pointer;
   }
-  
+
   /* WORKOUT progress */
-  
+
   .workoutProg{
   display: flex;
   align-items: end;
   height: 100%;
   width: 30%;
   }
-  
+
   .progress-conts{
   padding: 10px;
   display: flex;
@@ -525,7 +551,7 @@
   height: 100%;
   width: 100%;
   }
-  
+
   .header-progress{
   display: flex;
   justify-content: center;
@@ -535,13 +561,13 @@
   width: 100%;
   padding: 10px;
   }
-  
+
   .workoutsProg h1{
   color: white;
   font-weight: 800;
   font-family: "nunito";
   }
-  
+
   .progress-percentage{
   display: flex;
   align-items: center;
@@ -549,7 +575,7 @@
   height: 80%;
   width: 70%;
   }
-  
+
   #circleContainer{
   display: flex;
   align-items: center;
@@ -563,7 +589,7 @@
   color: #58595b;
   font-weight: 800;
   }
-  
+
   .outlineBorder{
   display: flex;
   align-items: center;
@@ -573,7 +599,7 @@
   height: 170px;
   border-radius: 50%;
   }
-  
+
   #input-WOprogress{
   display: flex;
   align-items: center;
@@ -583,45 +609,45 @@
   height: 55%;
   width: 100%;
   }
-  
+
   .workoutProgression{
-    font-family: "roboto";
-    font-weight: 800;
-    color: white;
-    font-size: 26px;
-    padding-inline:80px;
-    height: 100%;
-    width: 100%;
+  font-family: "roboto";
+  font-weight: 800;
+  color: white;
+  font-size: 26px;
+  padding-inline:80px;
+  height: 100%;
+  width: 100%;
   }
-  
+
   .workoutProgression input{
-    width: 40px;
-    height: 20px;
+  width: 40px;
+  height: 20px;
   }
-  
+
   .workoutProgression label{
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   }
-  
+
   .resetButton{
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
   }
   #submitWO{
-    height: 40px;
-    width: 70px;
-    font-size: 18px;
-    color: white;
-    outline: none;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(207, 78, 78);
-    cursor: pointer;
+  height: 40px;
+  width: 70px;
+  font-size: 18px;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background-color: rgb(207, 78, 78);
+  cursor: pointer;
   }
-  
+
   /* feedback */
   .feedback{
   height: 100%;
@@ -634,14 +660,14 @@
   height: 100%;
   width: 100%;
   }
-  
+
   .feedb{
   display: flex;
   justify-content: center;
   flex-direction: column;
   row-gap: 10px;
   }
-  
+
   .feedb h1{
   color: white;
   font-weight: 800;
@@ -649,7 +675,7 @@
   font-size:28px;
   text-align: center;
   }
-  
+
   #submit-btn-fb{
   background-color:#FF7B00;
   color: white;
@@ -663,11 +689,11 @@
   cursor: pointer;
   transition: transform 0.5s ease;
   }
-  
+
   #submit-btn-fb:active{
   transform: scale(0.85);
   }
-  
+
   .modal-body textarea {
   width: 100%;
   height: 480px;
@@ -678,23 +704,23 @@
   font-size: 16px;
   resize: none;
   }
-  
+
   #fb-conts {
-    width: 100%;
-    height: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: "nunito";
-    background-color: white;
-    margin-top: -514px;
-    visibility: hidden;
+  width: 100%;
+  height: 500px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "nunito";
+  background-color: white;
+  margin-top: -514px;
+  visibility: hidden;
   }
-  
+
   #fb-conts.shows{
   visibility: visible;
   }
-  
+
   #edit-btn-fb{
   background-color: #0022B3;
   color: white;
@@ -710,32 +736,32 @@
   transition: transform 0.5s ease;
   visibility: hidden;
   }
-  
+
   #edit-btn-fb.shows-edit{
   visibility: visible;
   }
-  
+
   #edit-btn-fb:active{
   transform: scale(0.85);
   }
-  
-  
+
+
   /* Media query */
-  
-  
+
+
   @media screen and (max-width: 1168px) {
   /* header */
   .logo h6{
   font-size: 36px;
   flex-wrap: nowrap;
   }
-  
+
   .userName{
   color: white;
   font-size: 18px;
   font-family: "arial";
   }
-  
+
   .dropDown img{
   height: 20px;
   width: 20px;
@@ -746,18 +772,18 @@
   .DD-container{
   margin-top: 100px;
   }
-  
+
   .logOutBtn{
   font-size: 16px;
   width: 130px;
   height: 40px;
   }
-  
+
   /* nav bar */
   a img{
   height: 33px;
   }
-  
+
   .bar1, .bar2, .bar3 {
   width: 33px;
   height: 5px;
@@ -766,21 +792,21 @@
   width: 2px;
   height: 18px;
   }
-  
+
   .consts-dropDown{
   column-gap: 7px;
   }
-  
+
   /* main */
-  
+
   .weightScale{
   width: 90%;
   }
-  
+
   .workoutProg{
   width: 90%;
   }
-  
+
   .feedback{
   width: 90%;
   }
@@ -788,7 +814,7 @@
   width: 95%;
   height: 90%;
   }
-  
+
   .progress-conts{
   width: 95%;
   height: 90%;
@@ -798,7 +824,7 @@
   height: 90%;
   }
   }
-  
+
   @media screen and (max-width:825px) {
   .userName{
   font-size: 16px;
@@ -811,344 +837,344 @@
   background-size: cover;
   overflow: hidden;
   }
-  
+
   /* header */
   header{
-    width: auto;
-    height: 70px;
+  width: auto;
+  height: 70px;
   }
-  
+
   a img{
-    height: 30px;
+  height: 30px;
   }
   .logo{
-    padding-inline: 10px;
-    display: flex;
-    align-items: center;
-    justify-content:left;
-    width: 50%;
-    height: 100%;
-    column-gap: 20px;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content:left;
+  width: 50%;
+  height: 100%;
+  column-gap: 20px;
   }
-  
+
   .logo img{
-    height: 55px;
+  height: 55px;
   }
-  
+
   .logo h6{
-    font-size: 24px;
+  font-size: 24px;
   }
-  
+
   .dropDown img{
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
   }
-  
+
   .DD-container{
-    margin-top: 70px;
+  margin-top: 70px;
   }
   .DD-container.ddactive{
-    height: 150px;
+  height: 150px;
   }
-  
+
   .logOutBtn{
-    background-color: #112C9F;
-    color: white;
-    font-family: "nunito";
-    font-size: 20px;
-    border: none;
-    font-weight: 800;
-    border-radius: 10px;
-    width: 140px;
-    height: 50px;
+  background-color: #112C9F;
+  color: white;
+  font-family: "nunito";
+  font-size: 20px;
+  border: none;
+  font-weight: 800;
+  border-radius: 10px;
+  width: 140px;
+  height: 50px;
   }
-  
+
   .logOutBtn{
-    font-size: 14px;
-    width: 120px;
-    height: 30px;
+  font-size: 14px;
+  width: 120px;
+  height: 30px;
   }
   /* nav bar */
   .container{
-    display: flex;
-    height: 750px;
+  display: flex;
+  height: 750px;
   }
-  
+
   .hamburger{
-    padding-inline: 15px;
-    margin-bottom: 35px;
+  padding-inline: 15px;
+  margin-bottom: 35px;
   }
-  
+
   .nav {
-    background-color: rgba(255, 255, 255, 0.2);
-    width: 8%;
-    height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 8%;
+  height: 100%;
   }
-  
+
   .bar1, .bar2, .bar3 {
-    width: 20px;
-    height: 3px;
+  width: 20px;
+  height: 3px;
   }
   .change .bar1 {
-    transform: translate(0, 7px) rotate(-45deg);
+  transform: translate(0, 7px) rotate(-45deg);
   }
-  
+
   a img{
-    height: 30px;
+  height: 30px;
   }
-  
+
   .menu a{
-    height: 60px;
-    font-size: 12px;
-    padding-inline: 12px;
+  height: 60px;
+  font-size: 12px;
+  padding-inline: 12px;
   }
-  
+
   .userName{
-    font-size: 14px;
-    }
-    
-    .consts-dropDown{
-      column-gap: 7px;
-      width: 40px;
-      height: 30px;
-    }
-    
-    .line1, .line2{
-      width: 2px;
-      height: 16px;
-    }
-  
-  
-  /*Main*/
-  
-  .main{
-    overflow: scroll;
-    height: 750px;
+  font-size: 14px;
   }
-  
+
+  .consts-dropDown{
+  column-gap: 7px;
+  width: 40px;
+  height: 30px;
+  }
+
+  .line1, .line2{
+  width: 2px;
+  height: 16px;
+  }
+
+
+  /*Main*/
+
+  .main{
+  overflow: scroll;
+  height: 750px;
+  }
+
   .conts1{
-    height: 10%;
-    width: 100%;
+  height: 10%;
+  width: 100%;
   }
   .conts2{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-block: 0;
-    height: 145%;
-    width: 100%;
-    overflow: scroll;
-    scroll-behavior: smooth;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-block: 0;
+  height: 145%;
+  width: 100%;
+  overflow: scroll;
+  scroll-behavior: smooth;
   }
-  
+
   .progress-container{
-    flex-direction: column;
-    height: 100%;
+  flex-direction: column;
+  height: 100%;
   }
-  
-  
+
+
   /* weight */
-  
+
   /* chart section */
   .weights{
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    margin-top: -50px;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  margin-top: -50px;
   }
   .weightScale{
-    width: 650px;
-    height: 30%;
-    display: flex;
-    align-items: center;
+  width: 650px;
+  height: 30%;
+  display: flex;
+  align-items: center;
   }
   .weightInfo{
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 5px;
-  
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+
   }
-  
+
   .weightAdd{
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    height: 100%;
-    width: 45%;
-    padding: 5px;
-    
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  height: 100%;
+  width: 45%;
+  padding: 5px;
+
   }
-  
+
   .kgs{
-    font-size: 28px;
-    color: #112C9F;
+  font-size: 28px;
+  color: #112C9F;
   }
-  
-  
+
+
   #outputWeight{
-    padding: 5px;
+  padding: 5px;
   }
-  
+
   .weightConts{
-    height: 40px;
-    font-size: 16px;
+  height: 40px;
+  font-size: 16px;
   }
-  
+
   #addBtnWeights{
-    font-size: 14px;
-    height: 15%;
+  font-size: 14px;
+  height: 15%;
   }
-  
+
   #inputWeight{
-    margin-top: -49px;
-    height: 45px;
-    width: 100%;
+  margin-top: -49px;
+  height: 45px;
+  width: 100%;
   }
-  
+
   #xBtnWeight{
-    font-size: 20px;
+  font-size: 20px;
   }
-  
-  
+
+
   #noOfW{
-    font-size: 14px;
-    margin-left: 20px;
-    margin-right: 0px;
+  font-size: 14px;
+  margin-left: 20px;
+  margin-right: 0px;
   }
-  
+
   #weights{
-    width: 40px;
-    height: 30px;
-    margin-right: 30px;
+  width: 40px;
+  height: 30px;
+  margin-right: 30px;
   }
-  
-  
+
+
   #addWeights{
-    width: 40px;
-    height: 30px;
-    font-size: 10px;
+  width: 40px;
+  height: 30px;
+  font-size: 10px;
   }
-  
-  
+
+
   /* Workout plan */
-  
+
   /* Result area */
-  
+
   .workoutProg{
-    width: 650px;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 650px;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
-  
+
   .progress-conts{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    flex-direction: row;
-    padding: 10px;
-    margin-top: -90px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 10px;
+  margin-top: -90px;
   }
-  
+
   .header-progress{
-    height: 100%;
-    width: 48%;
-    padding: 5px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
+  height: 100%;
+  width: 48%;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
   }
-  
+
   .workoutsProg h1{
-    font-size: 26px;
+  font-size: 26px;
   }
-  
+
   .progress-percentage{
-    height: 60%;
-    width: 50%;
+  height: 60%;
+  width: 50%;
   }
-  
+
   #circleContainer{
-    width: 125px;
-    height: 110px;
-    font-size: 30px;
+  width: 125px;
+  height: 110px;
+  font-size: 30px;
   }
-  
+
   .outlineBorder{
-    background: rgba(35, 31, 32, 0.3);
-    width: 95%;
-    height: 67%;
-    border-radius: 50%;
+  background: rgba(35, 31, 32, 0.3);
+  width: 95%;
+  height: 67%;
+  border-radius: 50%;
   }
-  
+
   #input-WOprogress{
-    padding: 5px;
-    height: 100%;
-    width: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
+  padding: 5px;
+  height: 100%;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
   }
-  
+
   .progressCont{
-    border: 2px solid red;
-    height: 40px;
-    width: 100%;
+  border: 2px solid red;
+  height: 40px;
+  width: 100%;
   }
-  
-  
-      /* Feedback */
-  
+
+
+  /* Feedback */
+
   .feedback{
-    width: 650px;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 650px;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
-  
+
   .fb{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-    margin-top: -130px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  margin-top: -130px;
   }
-  
-  
+
+
   #submit-btn-fb{
-    width: 15%;
-    height: 40px;
+  width: 15%;
+  height: 40px;
   }
-  
-  
+
+
   .modal-body textarea {
-    width: 100%;
-    height: 220px;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    font-family: "nunito";
-    font-size: 16px;
-    resize: none;
+  width: 100%;
+  height: 220px;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  font-family: "nunito";
+  font-size: 16px;
+  resize: none;
   }
-  
+
   #fb-conts{
-    height: 220px;
-    padding: 10px;
-    margin-top: -235px;
+  height: 220px;
+  padding: 10px;
+  margin-top: -235px;
   }
-  
+
   #edit-btn-fb{
-    width: 15%;
-    height: 40px;
+  width: 15%;
+  height: 40px;
   }
   }
