@@ -119,6 +119,7 @@
   display: flex;
   align-items: center;
   transition: background 0.3s;
+  justify-content: space-evenly;
   }
 
 
@@ -533,7 +534,8 @@
 
   /* WORKOUT progress */
 
-  .workoutProg{
+ 
+.workoutProg{
   display: flex;
   align-items: end;
   height: 100%;
@@ -611,11 +613,14 @@
   }
 
   .workoutProgression{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "roboto";
   font-weight: 800;
   color: white;
   font-size: 26px;
-  padding-inline:80px;
   height: 100%;
   width: 100%;
   }
@@ -625,28 +630,64 @@
   height: 20px;
   }
 
-  .workoutProgression label{
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
-  }
 
-  .resetButton{
+.progressTable{
+  width: 95%;
+  height: 480px;
+}
+
+.tableOfProgress{
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  }
+  height: 480px;
+}
+
+tr,th{
+  width: 5%;
+  height: 10px;
+  font-size: 16px;
+  border-collapse: collapse;
+  border: 2px solid white;
+}
+
+.tableOfProgress input{
+  width: 80%;
+  height: 30px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  background-color: transparent;
+  color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
   #submitWO{
-  height: 40px;
+  height: 35px;
   width: 70px;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: bold;
   color: white;
   outline: none;
   border: none;
   border-radius: 20px;
-  background-color: rgb(207, 78, 78);
+  background-color: #FF7B00;
   cursor: pointer;
   }
+
+  .submitBtnProgress{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+  }
+
 
   /* feedback */
   .feedback{

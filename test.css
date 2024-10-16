@@ -1,0 +1,157 @@
+
+.workoutProg{
+  display: flex;
+  align-items: end;
+  height: 100%;
+  width: 30%;
+  }
+
+  .progress-conts{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(207, 78, 78);
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  }
+
+  .header-progress{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 4 0%;
+  width: 100%;
+  padding: 10px;
+  }
+
+  .workoutsProg h1{
+  color: white;
+  font-weight: 800;
+  font-family: "nunito";
+  }
+
+  .progress-percentage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+  width: 70%;
+  }
+
+  #circleContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d1d3d4;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  font-size: 48px;
+  font-family: "roboto";
+  color: #58595b;
+  font-weight: 800;
+  }
+
+  .outlineBorder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(35, 31, 32, 0.3);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  }
+
+  #input-WOprogress{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px;
+  height: 55%;
+  width: 100%;
+  }
+
+  .workoutProgression{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "roboto";
+  font-weight: 800;
+  color: white;
+  font-size: 26px;
+  height: 100%;
+  width: 100%;
+  }
+
+  .workoutProgression input{
+  width: 40px;
+  height: 20px;
+  }
+
+  .workoutProgression label{
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  }
+
+.progressTable{
+  width: 95%;
+  height: 480px;
+}
+
+.tableOfProgress{
+  width: 100%;
+  height: 480px;
+}
+
+tr,th{
+  width: 5%;
+  height: 10px;
+  font-size: 16px;
+  border-collapse: collapse;
+  border: 2px solid white;
+}
+
+.tableOfProgress input{
+  width: 80%;
+  height: 30px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  background-color: transparent;
+  color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+  #submitWO{
+  height: 35px;
+  width: 70px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  background-color: #FF7B00;
+  cursor: pointer;
+  }
+
+  .submitBtnProgress{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+  }

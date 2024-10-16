@@ -166,8 +166,6 @@ $conn->close();
         </form>
     </div>
 </div>
-
-
             <!-- //workout progress -->
             <div class="workoutProg">
               <div class="progress-conts">
@@ -187,16 +185,61 @@ $conn->close();
                   </div>
 
                   <div class="workoutProgression">
-                    <label for="mon"><input type="checkbox" name="monday" id="mond" value="monday">Monday</label><br>
-                    <label for="tues"><input type="checkbox" name="tuesday" id="tues" value="tuesday">Tuesday</label><br>
-                    <label for="wed"><input type="checkbox" name="wednesday" id="wed" value="wednesday">Wednesday</label><br>
-                    <label for="thurs"><input type="checkbox" name="thursday" id="thurs" value="thursday">Thursday</label><br>
-                    <label for="fri"><input type="checkbox" name="friday" id="fri" value="friday">Friday</label><br>
-                    <label for="sat"><input type="checkbox" name="saturday" id="sat" value="saturday">Saturday</label><br>
-                    <label for="sun"><input type="checkbox" name="sunday" id="sun" value="sunday">Sunday</label><br>
+                  <div class="progressTable">
+                <table class="tableOfProgress">
+                    <tr>
+                        <th>Days</th>
+                        <th>Repititions</th>
+                        <th>Duration</th>
+                        <th>Weights</th>
+                    </tr>
+                    <tr>
+                        <th>Day 1</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 2</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 3</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 4</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 5</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 6</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                    <tr>
+                        <th>Day 7</th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                        <th><input type="number"></th>
+                    </tr>
+                </table>
+            </div>
 
-                    <div>
-                      <button id="submitWO">Reset</button>
+                    <div class="submitBtnProgress">
+                      <button id="submitWO">Submit</button>
                     </div>
                   </div>
                 </div>

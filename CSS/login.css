@@ -41,6 +41,7 @@ body {
   font-size: 18px;
   color: #fff;
   margin-bottom: 10px;
+  display: flex;
 }
 
 ion-icon {
