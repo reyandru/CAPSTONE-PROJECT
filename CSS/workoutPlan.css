@@ -1,4 +1,4 @@
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -13,13 +13,13 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  min-height: 100vh; 
   font-family: 'Nunito', sans-serif;
   display: flex;
-  flex-direction: column; /* Stack header, nav, and main content */
+  flex-direction: column; 
 }
 
-/* Header */
+
 header {
   display: flex;
   justify-content: space-between;
@@ -32,7 +32,7 @@ header {
 .logo h1 {
   font-family: 'Acme', sans-serif;
   margin: 0;
-  font-size: 1.5em; /* Larger font size for prominence */
+  font-size: 1.5em; 
   color: rgb(255, 123, 0);
 }
 
@@ -63,7 +63,7 @@ header {
 .user-profile img {
   width: 50px;
   height: 50px;
-  object-fit: cover; /* Ensures same size */
+  object-fit: cover; 
   border-radius: 50%;
   
 }
@@ -88,10 +88,9 @@ header {
   background-color: rgb(209, 65, 65);
 }
 
-/* Navigation */
 .container {
   display: flex;
-  flex: 1; /* Allow the container to grow and fill the available space */
+  flex: 1; 
 }
 
 .nav {
@@ -127,7 +126,6 @@ header {
 .welcome-section h2 {
   font-size: 24px;
 }
-/* main */
 .main{
   padding: 20px;
   width: 85%;
@@ -289,9 +287,7 @@ margin: 0;
   background-color: rgb(207, 78, 78);
 }
 
-/* media query */
 @media screen and (max-width: 1168px) {
-  /* header */
   .logo h6{
     font-size: 36px;
     flex-wrap: nowrap;
@@ -316,7 +312,6 @@ margin: 0;
     height: 40px;
   }
   
-  /* nav bar */
   a img{
     height: 33px;
   }
@@ -334,7 +329,6 @@ margin: 0;
     column-gap: 7px;
   }
 
-  /* main */
 
   .left{
     display: flex;
@@ -440,7 +434,6 @@ margin: 0;
       overflow: hidden;
       }
 
-      /* header */
       header{
         width: auto;
         height: 70px;
@@ -497,7 +490,6 @@ margin: 0;
         height: 30px;
       }
 
-      /* nav bar */
       .container{
         display: flex;
         height: 750px;
@@ -547,8 +539,6 @@ margin: 0;
           height: 16px;
         }
 
-      
-      /*Main*/
       .conts1{
         height: 10%;
         width: 100%;
@@ -619,7 +609,6 @@ margin: 0;
         padding: 5px 15px ;
       }
 
-      /* activity */
       .right{
         display: flex;
         align-items: center;
@@ -658,4 +647,313 @@ margin: 0;
         padding: 5px 15px ;
       }
   
-    }
+    } */
+
+    *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #201f1f;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.logo h1 {
+  font-family: 'Acme', sans-serif;
+  margin: 0;
+  font-size: 1.5em;
+  color: rgb(255, 123, 0);
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile a {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+}
+
+.user-profile img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-name {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.logout-btn {
+  background-color: rgb(184, 72, 72);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgb(209, 65, 65);
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  background-color: #a14338;
+  padding: 10px;
+  width: 15%;
+}
+
+.menu a:hover {
+  background-color: #9e3a2e;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.main {
+  padding: 20px;
+  width: 85%;
+}
+
+.conts1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  background-color: white;
+  gap: 5px;
+  color: #737373;
+  width: 98%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.page a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #737373;
+}
+
+.activity-area {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(207, 78, 78);
+  border-radius: 10px;
+  font-family: "nunito";
+  text-transform: uppercase;
+}
+
+.activity-area h1 {
+  font-size: 50px;
+  color: white;
+}
+
+.daysButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.daysButton button {
+  background-color: #ff7b00;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin: 10px;
+  width: 15%;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.daysButton button:hover {
+  background-color: rgb(185, 49, 49);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#workout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+  overflow-y: scroll;
+}
+
+#workout-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+#workout-table th, 
+#workout-table td {
+  border: 1px solid #c0bbbb;
+  padding: 5px;
+}
+
+#workout-table th {
+  background-color: rgb(207, 78, 78);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.workoutInputs {
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  outline: none;
+}
+
+#save-btn {
+  background-color: rgb(207, 78, 78);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#save-btn.edit-mode {
+  background-color: #ffa500;
+}
+
+#day-title {
+  font-size: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  border: none;
+  background-color: rgb(207, 78, 78);
+}
+
+@media screen and (max-width: 1168px) {
+  .logo h6 {
+    font-size: 36px;
+  }
+
+  .userName {
+    font-size: 18px;
+  }
+
+  .DD-container.ddactive {
+    height: 130px;
+  }
+
+  .logOutBtn {
+    font-size: 16px;
+    width: 130px;
+  }
+
+  a img {
+    height: 33px;
+  }
+
+  .bar1, .bar2, .bar3 {
+    width: 33px;
+    height: 5px;
+  }
+
+  .left {
+    width: 60%;
+  }
+
+  .right {
+    width: 50%;
+  }
+
+  .modal-left, .modal {
+    width: 80%;
+    max-width: 450px;
+  }
+
+  .deleteBtn {
+    width: 40px;
+    height: 20px;
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    height: 70px;
+  }
+
+  a img {
+    height: 30px;
+  }
+}

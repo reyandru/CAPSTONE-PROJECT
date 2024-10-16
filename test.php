@@ -1,83 +1,76 @@
 <?php
-
 include('PHP/database.php');
 
-$sql = "SELECT id, firstname, lastname, age, gender, contactNo, email FROM registerdb";
-$result = $conn->query($sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $new_password = $_POST['password'];
 
-if ($result->num_rows > 0) {
-    // Display the data in a table
-    echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Contact No</th>
-                <th>Email</th>
-            </tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>
-                <td>" . $row["id"] . "</td>
-                <td>" . $row["firstname"] . "</td>
-                <td>" . $row["lastname"] . "</td>
-                <td>" . $row["age"] . "</td>
-                <td>" . $row["gender"] . "</td>
-                <td>" . $row["contactNo"] . "</td>
-                <td>" . $row["email"] . "</td>
-              </tr>";
+    $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+
+    $stmt = $conn->prepare("UPDATE registerdb SET password = ? WHERE email = ?");
+    $stmt->bind_param("ss", $hashed_password, $email);
+
+    if ($stmt->execute()) {
+        echo "Password updated successfully.";
+    } else {
+        echo "Error updating password: " . $stmt->error;
     }
-    echo "</table>";
 
-    // Reset the result pointer to access the first row again
-    $result->data_seek(0);
-
-    // Fetch the first row for displaying user details
-    $row = $result->fetch_assoc();
-
-} else {
-    echo "0 results";
+    $stmt->close();
 }
-
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="test.css">
+    <title>REAL DEAL GYM</title>
+    <link rel="icon" href="assets/logs.png">
 </head>
 <body>
-    <div class="botConts">
-        <div class="userNames user userss">
-            <h3>Name:</h3>
-            <div id="username" class="outpt">
-                <?php if (isset($row)) echo htmlspecialchars($row["firstname"] . ' ' . $row["lastname"]); ?>
+
+<div class="container">
+    <div class="form-wrap">
+        <div class="ttl-wrap">
+            <img src="assets/logs.png" alt="logo" height="120">
+            <p>CHANGE PASSWORD</p>
+        </div>
+        <form action="changePassword.php" method="post" onsubmit="return validateForm()">
+            <div class="inputs-wrap">
+                <label for="email"><ion-icon name="mail-outline"></ion-icon>Email</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="new_passw"><ion-icon name="lock-closed-outline"></ion-icon> Enter New Password</label>
+                <input type="password" name="password" id="new_passw" required>
+
+                <label for="confirm_passw"><ion-icon name="lock-closed-outline"></ion-icon> Re-enter New Password</label>
+                <input type="password" name="confirm_password" id="confirm_passw" required>
+
+                <input type="submit" name="submitBtn" value="Submit" class="SU">
             </div>
-        </div>
-        <div class="userAge user usersss">
-            <h3>Age:</h3>
-            <div id="userage" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['age']); ?></div>
-        </div>
-        <div class="userGender user users">
-            <h3>Gender:</h3>
-            <div id="usergender" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['gender']); ?></div>
-        </div>
-        <div class="userAddress user users">
-            <h3>Address:</h3>
-            <div id="useraddress" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['address'] ?? ''); ?></div>
-        </div>
-        <div class="userCn user">
-            <h3>Contact No:</h3>
-            <div id="usercontacts" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['contactNo']); ?></div>
-        </div>
-        <div class="userEmail user userss">
-            <h3>Email:</h3>
-            <div id="useremail" class="outpt"><?php if (isset($row)) echo htmlspecialchars($row['email']); ?></div>
-        </div>
+        </form>
+        <p id="message"></p>
     </div>
+</div>
+
+<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+<script>
+function validateForm() {
+    const password = document.getElementById('new_passw').value;
+    const confirmPassword = document.getElementById('confirm_passw').value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return false; 
+    }
+    return true; 
+}
+</script>
 </body>
 </html>

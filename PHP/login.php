@@ -83,7 +83,7 @@ User@1234 -->
         <label for="passw"><ion-icon name="lock-closed-outline"></ion-icon> Password</label>
         <input type="password" name="password" id="passw">
 
-        <a href="#">Change password?</a>
+        <a class="changepasslink" href="changePassword.php">Change password?</a>
         <input type="submit" name="submitBtn" value="Log in" class="SU">
       </div>
     </form>

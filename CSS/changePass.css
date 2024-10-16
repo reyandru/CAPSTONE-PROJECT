@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -26,9 +27,9 @@ body {
 }
 
 .ttl-wrap p {
-  font-size: 50px;
+  font-size: 40px;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 20px;    
 }
 
 .inputs-wrap {
@@ -88,7 +89,7 @@ input:focus {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
-  margin: 10px;   
+  margin: 10px;
 }
 
 .inputs-wrap a:hover {
@@ -98,7 +99,6 @@ input:focus {
 #message{
   color: white;
 }
-
 @media (max-width: 768px) {
   .form-wrap {
     width: 90%;
