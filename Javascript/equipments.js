@@ -111,7 +111,7 @@ function showEquipment(equipment) {
       break;
     case 'Equipment14':
       equipImage.src = '../assets/legpress.png';
-      equipText.innerHTML = '<h1>Leg Press Machine</h1><br><p>The leg press machine is a weight training equipment used to strengthen the legs, primarily targeting the quadriceps, hamstrings, and glutes. Its a versatile machine that can be used to build muscle mass, improve lower body power, and rehabilitate injuries.</p><br><br><h3>How to use it:</h3><br><p>~ Sit on the machine and place your feet shoulder-width apart on the platform.</p><br><p>~ Adjust the seat height to ensure your knees are at a 90-degree angle when the platform is fully lowered.</p><br><p>~ Grip the handles on either side of the machine.</p><br><p>~ Slowly lower the platform until you feel a stretch in your legs.</p><br><p>~ Push the platform back up to the starting position.</p>';
+      equipText.innerHTML = '<h1>Leg Press Machine</h1><br><p>The leg press machine is a weight training equipment used to strengthen the legs, primarily targeting the quadriceps, hamstrings, and glutes. Its a versatile machine that can be used to build muscle mass, improve lower body power, and rehabilitate injuries.</p><br><br><h3>How to use it:</h3><br><p>~ Sit on the machine and place your feet shoulder-width apart on the platform.</p><br><p>~ Adjust the seat height to ensure your knees are at a 90-degree angle when the platform is fully lowered.</p><br><p>~ Grip the handles on either side of the machine.</p><br><p>~ Slowly lower the platform  until you feel a stretch in your legs.</p><br><p>~ Push the platform back up to the starting position.</p>';
       equipGif.src = '../GIFS/leg press machine2.gif';
       equipForm.src = '../GIFS/leg press machine.jpg';
       break;
@@ -139,7 +139,70 @@ function showEquipment(equipment) {
         equipGif.src = '../GIFS/seated leg extension machine2.gif';
         equipForm.src = '../GIFS/seated leg extension machine2.jpg';
         break;
-      
+      case 'Equipment19':
+        equipImage.src = '../assets/pullUpsbar.png';
+        equipText.innerHTML = '<h1>Pull-up Bar </h1><br><p>Great for upper body strength, focusing on back, shoulders, and arms.</p><br><br><h3>How to use it:</h3><br><p>~ Find a sturdy bar at a height you can reach </p><br><p>~ Grasp the bar with palms facing away (overhand grip) or towards you (underhand grip), hands shoulder-width apart.</p><br><p>~ Start from a dead hang, arms fully extended.</p><br><p>~  Engage your core and pull your body up until your chin is above the bar.</p><br><p>~ Lower yourself back to the starting position in a controlled manner.</p>';
+        equipGif.src = '../GIFS/pullUps.gif';
+        equipForm.src = '../GIFS/pullupbar.jpg';
+        break;
+
+        case 'Equipment20':
+          equipImage.src = '../assets/SquatsRacks.png';
+          equipText.innerHTML = '<h1>Squat Rack</h1><br><p>Essential for safely performing squats and other barbell exercises.</p><br><br><h3>How to use it:</h3><br><p>~Adjust the bar to shoulder height.</p><br><p>~ Step under the bar, resting it on your upper back.</p><br><p>~ Stand up to lift the bar off the rack.</p><br><p>~ Lower into a squat, keeping your chest up and knees aligned with your toes, then push back up.</p>';
+          equipGif.src = '../GIFS/SquatsRack.gif';
+          equipForm.src = '../GIFS/SquatsRack.jpg';
+          break;
+    
+        case 'Equipment21':
+           equipImage.src = '../assets/CableMachine.png';
+          equipText.innerHTML = '<h1>Cable Machine</h1><br><p>Versatile for a wide range of strength exercises targeting various muscle groups.</p><br><br><h3>How to use it:</h3><br><p>~ Adjust the weight on the stack.</p><br><p>~ Attach the desired handle (e.g., rope, straight bar).</p><br><p>~ Stand or sit with your feet planted.</p><br><p>~ Pull the cable toward you, focusing on the target muscle group.</p>';
+             equipGif.src = '../GIFS/CableMachine.gif';
+          equipForm.src = '../GIFS/CableMachine.jpg';
+          break;
+    
+        case 'Equipment22':
+            equipImage.src = '../assets/ChestPressMachine';
+          equipText.innerHTML = '<h1>Chest Press Machine</h1><br><p>Isolates and strengthens the chest, shoulders, and triceps.</p><br><br><h3>How to use it:</h3><br><p>~ Set the seat height so handles are at chest level.</p><br><p>~ Sit back and grip the handles.</p><br><p>~ Push the handles forward until your arms are fully extended, then return to the starting position.</p>';
+          equipGif.src = '../GIFS/ChestPressMachine.gif';
+          equipForm.src = '../GIFS/ChestPressMachine.jpg';
+          break;
+    
+        case 'Equipment23':
+        equipImage.src = '../assets/LPM.png';
+          equipText.innerHTML = '<h1>Lat Pulldown Machine</h1><br><p> Targets the back muscles, especially the lats, helping with upper body strength.</p><br><br><h3>How to use it:</h3><br><p>~ Set the seat so your thighs are secured under the pads.</p><br><p>~ Use an overhand grip on the bar.</p><br><p>~ Pull the bar down to your chest, squeezing your shoulder blades together, then slowly return.</p>';
+          equipGif.src = '../GIFS/LPM.gif';
+          equipForm.src = '../GIFS/LPM.jpg';
+          break;
+    
+    
+        case 'Equipment24':
+        equipImage.src = '../assets/StairClimber.png';
+          equipText.innerHTML = '<h1>Stair Climber</h1><br><p>Excellent for cardio and lower body strength, simulating stair climbing.</p><br><br><h3>How to use it:</h3><br><p>~ Step onto the platform and hold the handrails.</p><br><p>~ Set the speed and duration.</p><br><p>~ Start stepping as if climbing stairs, maintaining a steady rhythm.</p>';
+           equipGif.src = '../GIFS/StairClimber.gif';
+          equipForm.src = '../GIFS/StairClimber.jpg';
+          break;
+    
+        case 'Equipment25':
+          equipImage.src = '../assets/AirBike.png';
+          equipText.innerHTML = '<h1>Air Bike</h1><br><p>Full-body cardio workout that adjusts resistance based on effort, great for HIIT.</p><br><br><h3>How to use it:</h3><br><p>~ Set the seat height so you can comfortably reach the pedals.</p><br><p>~ Begin pedaling while gripping the handlebars.</p><br><p>~ Increase your effort for more resistance, great for HIIT workouts.</p>';
+           equipGif.src = '../GIFS/AirBike.gif';
+          equipForm.src = '../GIFS/AirBike.jpg';
+          break;
+    
+        case 'Equipment26':
+         equipImage.src = '../assets/gluteMachine';
+          equipText.innerHTML = '<h1>Glute Bridge Machine</h1><br><p>Focuses on strengthening the glutes and hamstrings.</p><br><br><h3>How to use it:</h3><br><p>~ Adjust the foot platform and weight.</p><br><p>~ Sit with your back against the pad and feet on the platform.</p><br><p>~ Push through your heels to lift your hips, squeezing your glutes at the top, then lower back down.</p>';
+           equipGif.src = '../GIFS/GBM.gif';
+          equipForm.src = '../GIFS/GBM.jpg';
+          break;
+  
+        case 'Equipment27':
+      equipImage.src = '../assets/FaomRoller.png';
+          equipText.innerHTML = '<h1>Foam Roller</h1><br><p>Essential for recovery, helping to relieve muscle tightness and improve flexibility.</p><br><br><h3>How to use it:</h3><br><p>~ Select the muscle group you want to target (e.g., back, thighs).</p><br><p>~ Place the roller under the area and use your body weight to apply pressure.</p><br><p>~ Slowly roll back and forth for 1-2 minutes, focusing on tight spots.</p>';
+            equipGif.src = '../GIFS/FaomRoller.gif';
+          equipForm.src = '../GIFS/FaomRoller.jpg';
+          break;
+    
     default:
       equipImage.src = '';
       equipText.innerText = '';

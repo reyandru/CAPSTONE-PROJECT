@@ -100,6 +100,23 @@ include('username.php');
 
         <div class="equipment_name">  <button onclick="showEquipment('Equipment18')"> <img src="../assets/Equipment18.png" alt="" height="230" width="270"><h2>Seated Leg Extension Machine</h2></button></div>
        
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment19')"> <img src="../assets/Equipment19.png" alt="" height="230" width="270"><h2>Pull-up Bar</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment20')"> <img src="../assets/Equipment20.png" alt="" height="230" width="270"><h2>Squat Rack</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment21')"> <img src="../assets/Equipment21.png" alt="" height="230" width="270"><h2>Cable Machine</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment22')"> <img src="../assets/Equipment22.png" alt="" height="230" width="270"><h2>Chest Press Machine</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment23')"> <img src="../assets/Equipment23.png" alt="" height="230" width="270"><h2>Lat Pulldown Machine</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment24')"> <img src="../assets/Equipment24.png" alt="" height="230" width="270"><h2>Stair Climber</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment25')"> <img src="../assets/Equipment25.png" alt="" height="230" width="270"><h2>Air Bike</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment26')"> <img src="../assets/Equipment26.png" alt="" height="230" width="270"><h2>Glute Bridge Machine</h2></button></div>
+
+        <div class="equipment_name">  <button onclick="showEquipment('Equipment27')"> <img src="../assets/Equipment27.png" alt="" height="230" width="270"><h2>Foam Roller</h2></button></div>
       </div>
       <div id="description">
         <div id="quitBTN"><button>x</button></div>
