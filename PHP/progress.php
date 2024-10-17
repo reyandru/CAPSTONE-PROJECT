@@ -173,17 +173,15 @@ $conn->close();
                   <div class="workoutsProg">
                     <h1>Workout Progress</h1>
                   </div>
-                  <div class="progress-percentage"> 
+                  <!-- <div class="progress-percentage"> 
                     <div class="outlineBorder">
                       <div id="circleContainer">0%</div>
                     </div>
-                  </div>  
+                  </div>   -->
                 </div>
 
                 <div id="input-WOprogress">
-                  <div id="outCont">
-                  </div>
-
+                
                   <div class="workoutProgression">
                   <div class="progressTable">
                 <table class="tableOfProgress">

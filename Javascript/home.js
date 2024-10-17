@@ -17,16 +17,6 @@ function myFunction(x) {
   x.classList.toggle("change");
 }
 
-// Logout container
-document.addEventListener("DOMContentLoaded", function() {
-  const ddBtn = document.querySelector('.dropDown');
-  const ddConts = document.querySelector('.DD-container');
- 
-  ddBtn.addEventListener('click', function() {
-    ddConts.classList.toggle('ddactive');
-  });
-});
-
 // Carousel
 let slideIndex = 1;
 showSlides(slideIndex);

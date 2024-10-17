@@ -89,7 +89,7 @@ User@1234 -->
     </form>
 
     
-    <p><?php echo $message ?></p>
+    <p id="message" ><?php echo $message ?></p>
   </div>
 </div>
 

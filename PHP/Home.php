@@ -66,7 +66,7 @@ include('username.php');
           <div class="carousel-cont">
             <div class="mySlides fade">
               <div class="numbertext">1 / 3</div>
-              <img class="carousel-img" src="../assets/logs.png">
+              <img class="carousel-img" src="../assets/realdeal.png">
               <div class="text"></div>
             </div>
 
@@ -78,12 +78,9 @@ include('username.php');
 
             <div class="mySlides fade">
               <div class="numbertext">3 / 3</div>
-              <img class="carousel-img" src="../assets/dbBG.png">
+              <img class="carousel-img" src="../assets/area1.jpg">
               <div class="text"></div>
             </div>
-
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
           </div>
         </div>
         <div class="dots">
