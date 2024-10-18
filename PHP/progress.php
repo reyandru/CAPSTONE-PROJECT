@@ -1,64 +1,6 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['login_email'])) {
-    header("Location: login.php");
-    exit();
-}
-
-include 'database.php';  
-
-$email = $_SESSION['login_email'];
-$sql = "SELECT * FROM registerdb WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-$user = $result->fetch_assoc();
-$username = trim($user['firstname'] . ' ' . $user['lastname']);  
-
-$stmt->close();
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $goalWeight = $_POST['goalWeight'] ?? null;
-    $startWeight = $_POST['startingWeight'] ?? null;
-    $currentWeight = $_POST['currentWeight'] ?? null;
-
-    if (is_numeric($goalWeight) && is_numeric($startWeight) && is_numeric($currentWeight)) {
-        
-        $stmt = $conn->prepare("SELECT * FROM progressdb WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $updateStmt = $conn->prepare("UPDATE progressdb SET goalW = ?, startW = ?, currentW = ? WHERE username = ?");
-            $updateStmt->bind_param("ddds", $goalWeight, $startWeight, $currentWeight, $username);
-
-            if ($updateStmt->execute()) {
-                echo "Progress updated successfully.";
-            } else {
-                echo "Error updating progress: " . $updateStmt->error;
-            }
-            $updateStmt->close();
-        } else {
-            $insertStmt = $conn->prepare("INSERT INTO progressdb (username, goalW, startW, currentW) VALUES (?, ?, ?, ?)");
-            $insertStmt->bind_param("sddd", $username, $goalWeight, $startWeight, $currentWeight);
-
-            if ($insertStmt->execute()) {
-                echo "alert('New progress record added.')";
-            } else {
-                echo "Error adding new progress: " . $insertStmt->error;
-            }
-            $insertStmt->close();
-        }
-    } else {
-        echo '<script>alert("Invalid input: Please enter numeric values for weights.");</script>';
-    }
-}
-
-$conn->close();
+<?php 
+  include 'workout_progress.php';
+  include 'weight_progress.php';
 ?>
 
 <!DOCTYPE html>
@@ -173,96 +115,225 @@ $conn->close();
                   <div class="workoutsProg">
                     <h1>Workout Progress</h1>
                   </div>
-                  <!-- <div class="progress-percentage"> 
-                    <div class="outlineBorder">
-                      <div id="circleContainer">0%</div>
-                    </div>
-                  </div>   -->
                 </div>
+            <div class="containerProgress">  
+              <div class="graphProgress">
+              <?php
+                include 'database.php'; 
+                $dates = [];
+                $repetitions = [];
+                $weights = [];
+                $durations = [];
 
+                $query = "
+                SELECT DATE(workout_date) AS WorkoutDate, repetitions, weights, duration 
+                FROM progressdb 
+                WHERE workout_date >= NOW() - INTERVAL 7 DAY
+                ORDER BY WorkoutDate
+            ";
+            
+
+                $result = $conn->query($query);
+
+                if ($result) {
+                    while ($row = $result->fetch_assoc()) {
+                        $dates[] = $row['WorkoutDate'];
+                        $repetitions[] = $row['repetitions'];
+                        $weights[] = $row['weights'];
+                        $durations[] = $row['duration'];
+                    }
+                } else {
+                    echo "Database error: " . htmlspecialchars($conn->error);
+                }
+            ?>
+
+                <canvas id="membershipChart" width="400" height="400"></canvas>
+              </div>
+
+              <form action="progress.php" method="post">
                 <div id="input-WOprogress">
-                
                   <div class="workoutProgression">
-                  <div class="progressTable">
-                <table class="tableOfProgress">
-                    <tr>
-                        <th>Days</th>
-                        <th>Repititions</th>
-                        <th>Duration</th>
-                        <th>Weights</th>
-                    </tr>
-                    <tr>
-                        <th>Day 1</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 2</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 3</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 4</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 5</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 6</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                    <tr>
-                        <th>Day 7</th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                        <th><input type="number"></th>
-                    </tr>
-                </table>
-            </div>
-
-                    <div class="submitBtnProgress">
-                      <button id="submitWO">Submit</button>
+                    <div class="progressTable">
+                      <table class="tableOfProgress">
+                        <tr>
+                          <th>Days</th>
+                          <th>Repetitions</th>
+                          <th>Duration (mins)</th>
+                          <th>Weights (kg)</th>
+                        </tr>
+                        <tr>
+                          <th>Day 1</th>
+                          <th><input type="number" name="repetitions[]"></th>
+                          <th><input type="number" name="duration[]"></th>
+                          <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                          <th>Day 2</th>
+                          <th><input type="number" name="repetitions[]"></th>
+                          <th><input type="number" name="duration[]"></th>
+                          <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                          <th>Day 3</th>
+                            <th><input type="number" name="repetitions[]"></th>
+                            <th><input type="number" name="duration[]"></th>
+                            <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                            <th>Day 4</th>
+                            <th><input type="number" name="repetitions[]"></th>
+                            <th><input type="number" name="duration[]"></th>
+                            <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                            <th>Day 5</th>
+                            <th><input type="number" name="repetitions[]"></th>
+                            <th><input type="number" name="duration[]"></th>
+                            <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                            <th>Day 6</th>
+                            <th><input type="number" name="repetitions[]"></th>
+                            <th><input type="number" name="duration[]"></th>
+                            <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        <tr>
+                            <th>Day 7</th>
+                            <th><input type="number" name="repetitions[]"></th>
+                            <th><input type="number" name="duration[]"></th>
+                            <th><input type="number" name="weights[]"></th>
+                        </tr>
+                        </table>
+                        </div>
+                        <div class="submitBtnProgress">
+                          <button type="submit">Submit</button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+              </form>
+
+            </div>
+             
               </div>
             </div>
 
-            <!-- //Feedback -->
-            <div class="feedback">
-              <div class="fb">
-                <div class="feedb">
-                  <h1>Note</h1>
-                  <div class="modal-body">
-                    <textarea id="feedback-conts" placeholder="Make a note.."></textarea>
-                  </div>        
-                  <div id="fb-conts"> </div>
-                  <button type="submit"  id ="submit-btn-fb">Submit</button>
-                  <button id="edit-btn-fb">Edit</button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </main>
     </div>
    
     <script src="../Javascript/Progress.js"></script>
+    <script>
+const ctx = document.getElementById('membershipChart').getContext('2d');
+
+const membershipChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: <?php echo json_encode($dates); ?>,
+        datasets: [
+            {
+                label: 'Repetitions',
+                data: <?php echo json_encode($repetitions); ?>,
+                borderColor: 'rgba(255, 255, 255, 0.8)',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointBackgroundColor: 'white',
+                fill: false, // No fill
+                tension: 0 // Straight lines
+            },
+            {
+                label: 'Weights (kg)',
+                data: <?php echo json_encode($weights); ?>,
+                borderColor: 'rgba(255, 255, 0, 0.8)',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointBackgroundColor: 'yellow',
+                fill: false, // No fill
+                tension: 0 // Straight lines
+            },
+            {
+                label: 'Duration (mins)',
+                data: <?php echo json_encode($durations); ?>,
+                borderColor: 'rgba(0, 255, 255, 0.8)',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointBackgroundColor: 'cyan',
+                fill: false, // No fill
+                tension: 0 // Straight lines
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white',
+                    font: {
+                        family: 'Arial',
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: 'white',
+                    font: {
+                        family: 'Arial',
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'rgba(255, 255, 255, 0.1)'
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white',
+                    font: {
+                        family: 'Arial',
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                bodyFont: {
+                    family: 'Arial',
+                    size: 14
+                }
+            }
+        },
+        layout: {
+            padding: {
+                left: 20,
+                right: 20,
+                top: 20,
+                bottom: 20
+            }
+        },
+        elements: {
+            line: {
+                borderJoinStyle: 'round'
+            }
+        }
+    }
+});
+
+ctx.canvas.parentNode.style.backgroundColor = 'rgba(50, 50, 50, 1)'; 
+</script>
+
+
   </body>
 </html>

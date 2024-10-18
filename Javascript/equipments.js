@@ -190,7 +190,7 @@ function showEquipment(equipment) {
           break;
     
         case 'Equipment26':
-         equipImage.src = '../assets/gluteMachine';
+         equipImage.src = '../assets/gluteMachine.jpg';
           equipText.innerHTML = '<h1>Glute Bridge Machine</h1><br><p>Focuses on strengthening the glutes and hamstrings.</p><br><br><h3>How to use it:</h3><br><p>~ Adjust the foot platform and weight.</p><br><p>~ Sit with your back against the pad and feet on the platform.</p><br><p>~ Push through your heels to lift your hips, squeezing your glutes at the top, then lower back down.</p>';
            equipGif.src = '../GIFS/GBM.gif';
           equipForm.src = '../GIFS/GBM.jpg';
