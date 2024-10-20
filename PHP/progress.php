@@ -77,33 +77,26 @@
 
         <form method="POST" action="progress.php" class="formWeight">
             <div id="goalWeight">
-                <label for="goal" id="goalWeights">Goal Weight:</label>
+                <label for="goal" id="goalWeights">Goal Weight:
                 <input class="inputsWeightProgress" id="goalW" name="goalWeight" type="number" placeholder="">
+                </label>
+      
+              <label for="weights" id="currentWeight">Current Weight:
+              <input class="inputsWeightProgress" name="currentWeight" id="currentW" type="number" placeholder="">
+              </label>
+              <button id="addWeights" type="submit">ADD</button>
             </div>
+            
             <div class="typeGoals" id="chooseTypes">
                 <label for="goalType" class="goalTypes">Goal Type:</label>
                 <select id="goalType" name="goalType">
                     <option value="lose" class="loseW" id="loseWeights">Lose Weight</option>
-                    <option value="gain" class="gainW"id="gainWeights">Gain Weight</option>
+                    <option value="gain" class="gainW"id="  ">Gain Weight</option>
                 </select>
             </div>
+            <div id="outputWeight"></div> 
             <div class="weightAdd">
-                <div class="kgs"></div>
-                <div id="outputWeight"></div>
-
-                <button id="addBtnWeights" type="button">Weights in kilo
-                    <img src="../assets/addBtnWeight.png" alt="" height="30">
-                </button>
-
-                <div id="inputWeight">
-                    <button id="xBtnWeight" type="button">x</button>
-                    <div>
-                        <label for="weights" id="noOfW">Current Weight:</label>
-                        <input class="inputsWeightProgress" name="currentWeight" id="currentWeights" type="number" placeholder="">
-                    </div>
-
-                    <button id="addWeights" type="submit">ADD</button>
-                </div>
+      
             </div>
         </form>
     </div>

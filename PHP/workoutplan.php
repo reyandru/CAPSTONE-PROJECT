@@ -18,6 +18,7 @@ include('username.php');
   <body>
   <header>
     <div class="logo">
+      <a href="Home.php"><img src="../assets/logs.png" alt="Logo" height="80"></a>
       <h1>REAL DEAL GYM</h1>
     </div>
      
@@ -28,11 +29,12 @@ include('username.php');
           <span class="user-name"><?php echo htmlspecialchars($username); ?></span> 
         </a>
       </div>
-      <div class="DD-container">
-      <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
+      <div class="logout-container">
+        <a href="login.php"><button class="logout-btn">LOG OUT</button></a>
       </div>
     </div>
   </header>
+
 
 <div class="container">
 <aside class="nav">

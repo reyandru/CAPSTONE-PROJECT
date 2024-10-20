@@ -65,19 +65,19 @@ include('username.php');
         <div class="carousel">
           <div class="carousel-cont">
             <div class="mySlides fade">
-              <div class="numbertext">1 / 3</div>
+           
               <img class="carousel-img" src="../assets/realdeal.png">
               <div class="text"></div>
             </div>
 
             <div class="mySlides fade">
-              <div class="numbertext">2 / 3</div>
+            
               <img class="carousel-img" src="../assets/area.jpg">
               <div class="text"></div>
             </div>
 
             <div class="mySlides fade">
-              <div class="numbertext">3 / 3</div>
+          
               <img class="carousel-img" src="../assets/area1.jpg">
               <div class="text"></div>
             </div>

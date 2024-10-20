@@ -324,8 +324,6 @@
   }
   #goalType{
     border: none;
-    color: white;
-    background: black;
     font-size: 16px;
     font-weight: bold;
     outline: none;
@@ -344,13 +342,12 @@
   text-align: center;
   }
 
-
   .weightAdd{
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 70%;
+  height: 40%;
   padding: 5px;
   }
 
@@ -370,63 +367,9 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  height: 70%;  
+  height: 50%;  
   }
 
-  #addBtnWeights{
-  background-color:#FF7B00;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 10px;
-  font-family: "nunito";
-  font-size: 16px;
-  color: white;
-  font-weight: 800;
-  height: 55px;
-  width: 300px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-  }
-
-  #addBtnWeights:active{
-  transform: scale(0.95);
-  }
-
-  #addBtnWeights.hideAddBtnWeight{
-  visibility: hidden;
-  }
-
-  #inputWeight{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 10px;
-  background-color:#FF7B00;
-  font-family: "nunito";
-  margin-top: -60px;
-  height: 55px;
-  width: 300px;
-  padding: 5px;
-  font-weight: bold;
-  visibility: hidden;
-  text-align: center;
-  }
-
-
-  #inputWeight.showsWeightInput{
-  visibility: visible;
-  }
-
-  #noOfW{
-  color: white;
-  font-size: 14px;
-  text-align: center;
-  font-family: "roboto";
-  width: 50px;
-  }
 
   #goalWeights{
   color: white;
@@ -436,6 +379,7 @@
   font-weight: bold;
   width: 50px;
   }
+
   .typeGoals{
     padding: 10px;
   }
@@ -445,12 +389,13 @@
   padding: 10px;
   }
 
-  #currentWeights{
+
+  #currentW{
   text-align: center;
   outline: none;
-  width: 40px;
+  width: 150px;
   height: 30px;
-  font-size: 18px;
+  font-size: 24px;
   font-family: "roboto";
   margin-right: 5px;
   border: none;
@@ -459,12 +404,20 @@
   background-color: transparent;
   }
 
+  #currentWeight{
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    font-family: "roboto";
+    font-weight: bold;
+    width: 50px;
+  }
   #goalW{
   text-align: center;
   outline: none;
-  width: 50px;
+  width: 155px;
   height: 30px;
-  font-size: 30px;
+  font-size: 24px;
   font-family: "roboto";
   margin-right: 30px;
   border: none;
@@ -473,19 +426,6 @@
   background-color: transparent;
   }
 
-  #startW{
-  text-align: center;
-  outline: none;
-  width: 50px;
-  height: 30px;
-  font-size: 18px;
-  font-family: "roboto";
-  margin-right: 30px;
-  border: none;
-  color: white;
-  border-bottom: 1px solid white;
-  background-color: transparent;
-  }
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
@@ -499,7 +439,7 @@
   height: 30px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(207, 78, 78);
+  background-color:rgb(57, 177, 177);
   color: whitesmoke;
   font-weight: 800;
   font-size: 12px;
@@ -579,38 +519,7 @@
   color: white;
   font-weight: 800;
   font-family: "nunito";
-  }
-
-  .progress-percentage{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-  width: 70%;
-  }
-
-  #circleContainer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #d1d3d4;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  font-size: 48px;
-  font-family: "roboto";
-  color: #58595b;
-  font-weight: 800;
-  }
-
-  .outlineBorder{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(35, 31, 32, 0.3);
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
+  font-size: 50px;
   }
 
   #input-WOprogress{
@@ -701,103 +610,6 @@ margin: 0;
   .submitBtnProgress button:active{
     transform: scale(0.85);
     }
-
-  /* feedback */
-  .feedback{
-  height: 100%;
-  width: 30%;
-  }
-  .fb{
-  padding: 10px;
-  background-color: rgb(207, 78, 78);
-  border-radius: 10px;
-  height: 100%;
-  width: 100%;
-  }
-
-  .feedb{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 10px;
-  }
-
-  .feedb h1{
-  color: white;
-  font-weight: 800;
-  font-family: "nunito";
-  font-size:28px;
-  text-align: center;
-  }
-
-  #submit-btn-fb{
-  background-color:#FF7B00;
-  color: white;
-  font-family: "nunito";
-  font-size: 16px;
-  align-self: center;
-  width: 40%;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-  }
-
-  #submit-btn-fb:active{
-  transform: scale(0.85);
-  }
-
-  .modal-body textarea {
-  width: 100%;
-  height: 480px;
-  padding: 10px;
-  border-radius: 5px;
-  outline: none;
-  font-family: "nunito";
-  font-size: 16px;
-  resize: none;
-  }
-
-  #fb-conts {
-  width: 100%;
-  height: 500px;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-family: "nunito";
-  background-color: white;
-  margin-top: -514px;
-  visibility: hidden;
-  }
-
-  #fb-conts.shows{
-  visibility: visible;
-  }
-
-  #edit-btn-fb{
-  background-color: #0022B3;
-  color: white;
-  font-family: "nunito";
-  font-size: 16px;
-  align-self: center;
-  width: 40%;
-  height: 40px;
-  margin-top: -50px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-  visibility: hidden;
-  }
-
-  #edit-btn-fb.shows-edit{
-  visibility: visible;
-  }
-
-  #edit-btn-fb:active{
-  transform: scale(0.85);
-  }
 
 
   /* Media query */
@@ -1084,18 +896,12 @@ margin: 0;
   height: 15%;
   }
 
-  #inputWeight{
-  margin-top: -49px;
-  height: 45px;
-  width: 100%;
-  }
-
   #xBtnWeight{
   font-size: 20px;
   }
 
 
-  #noOfW{
+  #currentWeight{
   font-size: 14px;
   margin-left: 20px;
   margin-right: 0px;

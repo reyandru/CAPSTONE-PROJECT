@@ -13,103 +13,33 @@ function myFunction(x) {
 }
 
 //weight progress
-document.addEventListener('DOMContentLoaded', function() {
-  loadOutput();
-  loadCircleValue();
-});
-
-document.getElementById("addBtnWeights").addEventListener('click', function() {
-  document.getElementById("inputWeight").classList.add("showsWeightInput");
-});
-
-document.getElementById("xBtnWeight").addEventListener('click', function() {
-  document.getElementById("inputWeight").classList.remove("showsWeightInput");
-});
-
-document.getElementById("addWeights").addEventListener('click', function(event) {
-  event.preventDefault();
-  console.log("Add button clicked!");  // Debugging log to check if the button click works
-  
-  const currentWeight = parseFloat(document.getElementById("currentWeights").value);
+function calculateProgress() {
   const goalWeight = parseFloat(document.getElementById("goalW").value);
+  const currentWeight = parseFloat(document.getElementById("currentWeights").value);
   const goalType = document.getElementById("goalType").value;
+  let progressMessage = "";
 
-  if (!isNaN(currentWeight) && !isNaN(goalWeight)) { 
-    const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
-
-    if (outputs.length >= 3) {
-      outputs.shift(); 
-    }
-
-    let percent;
-
-    if (goalType === "lose") {
-      percent = ((currentWeight - goalWeight) / currentWeight) * 100;
-    } else if (goalType === "gain") {
-      percent = ((goalWeight - currentWeight) / goalWeight) * 100;
-    }
-
-    percent = Math.max(0, Math.min(100, percent));
-
-    const output = createOutputDiv(currentWeight, percent);
-    saveOutputs(output);
-    updateOutputContainer();
-    document.getElementById("circle").innerHTML = percent.toFixed(0) + "%";
-    clearInputs();
-  } else {
-    alert("Please enter valid numbers for the goal and current weight.");
+  if (isNaN(goalWeight) || isNaN(currentWeight)) {
+      alert("Please enter valid weights.");
+      return false;
   }
-});
 
-function createOutputDiv(currentWeight, percent) {
-  return {
-    date: new Date().toLocaleDateString(),
-    weight: currentWeight,
-    progress: percent,
-  };
-}
-
-function saveOutputs(output) {
-  const existingOutputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
-  
-  if (existingOutputs.length >= 3) {
-    existingOutputs.shift();
+  if (goalType === "lose") {
+      if (currentWeight > goalWeight) {
+          const weightDifference = currentWeight - goalWeight;
+          progressMessage = `You need to lose ${weightDifference} kg to reach your goal.`;
+      } else {
+          progressMessage = "Your current weight is already lower than or equal to your goal.";
+      }
+  } else if (goalType === "gain") {
+      if (currentWeight < goalWeight) {
+          const weightDifference = goalWeight - currentWeight;
+          progressMessage = `You need to gain ${weightDifference} kg to reach your goal.`;
+      } else {
+          progressMessage = "Your current weight is already higher than or equal to your goal.";
+      }
   }
-  
-  existingOutputs.push(output);
-  localStorage.setItem('weightOutputs', JSON.stringify(existingOutputs));
+
+  document.getElementById("outputWeight").innerHTML = progressMessage;
+  return false;  
 }
-
-function updateOutputContainer() {
-  const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
-  const outputContainer = document.getElementById('outputWeight');
-  outputContainer.innerHTML = '';
-
-  outputs.forEach(output => {
-    const newDiv = document.createElement('div');
-    newDiv.className = 'outputConts';
-    newDiv.innerHTML = 
-      `<div>${output.date}</div>` +
-      `<div>Current Weight: ${output.weight} kg</div>` +
-      `<div>${output.progress.toFixed(0)} % Progress</div>`;
-    outputContainer.appendChild(newDiv);
-  });
-}
-
-function loadOutput() {
-  const outputs = JSON.parse(localStorage.getItem('weightOutputs')) || [];
-  updateOutputContainer();
-}
-
-function loadCircleValue() {
-  const storedCircleValue = localStorage.getItem('circleValue');
-  if (storedCircleValue) {
-    document.getElementById("circle").innerHTML = storedCircleValue + "%"; 
-  } 
-}
-
-function clearInputs() {
-  document.getElementById("weights").value = '';
-  document.getElementById("goalW").value = '';
-}
-

@@ -29,8 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['repetitions'], $_POST[
     } else {
         echo '<script>alert("Data mismatch!");</script>';
     }
-} else {
-    echo '<script>alert("Form data not submitted!");</script>';
 }
 
 $conn->close();

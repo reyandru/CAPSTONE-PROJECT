@@ -26,46 +26,54 @@ header {
   background-color: #201f1f;
   padding: 10px 20px;
   color: #fff;
-}
+  }
 
-.logo h1 {
+  .logo h1 {
   font-family: 'Acme', sans-serif;
   margin: 0;
-  font-size: 1.5em;
+  font-size: 1.5em; /* Larger font size for prominence */
   color: rgb(255, 123, 0);
-}
+  }
 
-.user-container {
+  .logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  }
+
+  
+  .user-container {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+  }
 
-.user-profile {
+  .user-profile {
   display: flex;
   align-items: center;
-}
+  }
 
-.user-profile a {
+  .user-profile a {
   display: flex;
   align-items: center;
   color: #fff;
   text-decoration: none;
-}
+  }
 
-.user-profile img {
+  .user-profile img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  object-fit: cover; /* Ensures same size */
   border-radius: 50%;
-}
 
-.user-name {
+  }
+
+  .user-name {
   margin-left: 10px;
   font-size: 20px;
-}
+  }
 
-.logout-btn {
+  .logout-btn {
   background-color: rgb(184, 72, 72);
   color: #fff;
   border: none;
@@ -74,11 +82,12 @@ header {
   cursor: pointer;
   margin-left: 10px;
   transition: background-color 0.3s ease;
-}
+  }
 
-.logout-btn:hover {
+  .logout-btn:hover {
   background-color: rgb(209, 65, 65);
-}
+  }
+
 
 .container {
   display: flex;
